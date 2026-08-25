@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KhmerLang IDE | កម្មវិធីសរសេរភាសាខ្មែរ (Programiz-Style Compiler)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Kantumruy+Pro:wght@300;400;600;700&family=Noto+Sans+Khmer:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+    <!-- Header / Navbar -->
+    <header class="navbar">
+        <div class="brand">
+            <div class="logo">🇰🇭</div>
+            <div class="title-container">
+                <h1>ភាសាខ្មែរ <span class="badge">Compiler Playground</span></h1>
+                <span class="subtitle">KhmerLang Interactive Code Editor</span>
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="preset-selector">
+                <label for="exampleSelect">ឧទាហរណ៍ / Examples:</label>
+                <select id="exampleSelect">
+                    <option value="hello">១. ជម្រាបសួរ (Hello World)</option>
+                    <option value="numerals">២. លេខខ្មែរ (Khmer Numerals)</option>
+                    <option value="control">៣. លក្ខខណ្ឌ និងរង្វិលជុំ (Control Flow)</option>
+                    <option value="functions">៤. អនុគមន៍ និង Fibonacci (Functions)</option>
+                    <option value="calculator">៥. កម្មវិធីគណនា (Calculator App)</option>
+                    <option value="oop">៦. OOP និង ថ្នាក់/Class (Object-Oriented)</option>
+                </select>
+            </div>
+
+            <button id="runBtn" class="btn btn-run" title="Run Code (Ctrl + Enter)">
+                <span class="icon">▶</span> រ៉ាន់កូដ / Run
+            </button>
+            <button id="clearBtn" class="btn btn-secondary">សម្អាត / Clear</button>
+        </div>
+    </header>
+
+    <!-- Main IDE Workspace Layout -->
+    <main class="ide-container">
+        <!-- Left Panel: Code Editor -->
+        <section class="panel editor-panel">
+            <div class="panel-header">
+                <div class="tab active">
+                    <span class="file-icon">📄</span> main.khmer
+                </div>
+                <div class="editor-info">
+                    <span id="lineColInfo">បន្ទាត់ 1, ជួរ 1</span>
+                    <span class="shortcut-tip">ចុច Ctrl + Enter ដើម្បីរ៉ាន់</span>
+                </div>
+            </div>
+
+            <!-- Quick Keyword & Symbols Bar -->
+            <div class="quick-insert-bar">
+                <div class="quick-title">⌨️ ពាក្យគន្លឹះ / Keywords:</div>
+                <div class="keyword-btn-group">
+                    <button class="kw-btn kw-decl" data-insert="តាំង ">តាំង</button>
+                    <button class="kw-btn kw-io" data-insert="បង្ហាញ()">បង្ហាញ()</button>
+                    <button class="kw-btn kw-flow" data-insert="បើ () {\n    \n}">បើ</button>
+                    <button class="kw-btn kw-flow" data-insert="ឬបើ () {\n    \n}">ឬបើ</button>
+                    <button class="kw-btn kw-flow" data-insert="ផ្សេងទៀត {\n    \n}">ផ្សេងទៀត</button>
+                    <button class="kw-btn kw-flow" data-insert="ខណៈ () {\n    \n}">ខណៈ</button>
+                    <button class="kw-btn kw-flow" data-insert="សម្រាប់ (តាំង i = ០; i < ៥; i = i + ១) {\n    \n}">សម្រាប់</button>
+                    <button class="kw-btn kw-fn" data-insert="អនុគមន៍ ឈ្មោះ() {\n    \n}">អនុគមន៍</button>
+                    <button class="kw-btn kw-fn" data-insert="ត្រឡប់ ">ត្រឡប់</button>
+                    <button class="kw-btn kw-oop" data-insert="ថ្នាក់ ឈ្មោះថ្នាក់ {\n    បង្កើត(ឈ្មោះ) {\n        នេះ.ឈ្មោះ = ឈ្មោះ\n    }\n}">ថ្នាក់ (Class)</button>
+                    <button class="kw-btn kw-oop" data-insert="វិធី ឈ្មោះវិធី() {\n    \n}">វិធី (Method)</button>
+                    <button class="kw-btn kw-oop" data-insert="នេះ.">នេះ (this)</button>
+                    <button class="kw-btn kw-oop" data-insert="ថ្មី ">ថ្មី (new)</button>
+                    <button class="kw-btn kw-oop" data-insert=" បន្តពី ">បន្តពី (extends)</button>
+                    <button class="kw-btn kw-val" data-insert="ពិត">ពិត</button>
+                    <button class="kw-btn kw-val" data-insert="មិនពិត">មិនពិត</button>
+                    <button class="kw-btn kw-val" data-insert="ទទេ">ទទេ</button>
+                </div>
+
+                <div class="quick-title" style="margin-top: 5px;">🔣 សញ្ញា និងប្រមាណវិធី / Operators & Symbols:</div>
+                <div class="keyword-btn-group symbols-group">
+                    <button class="kw-btn kw-sym" data-insert=" = ">=</button>
+                    <button class="kw-btn kw-sym" data-insert=" == ">==</button>
+                    <button class="kw-btn kw-sym" data-insert=" != ">!=</button>
+                    <button class="kw-btn kw-sym" data-insert=" > ">&gt;</button>
+                    <button class="kw-btn kw-sym" data-insert=" < ">&lt;</button>
+                    <button class="kw-btn kw-sym" data-insert=" >= ">&gt;=</button>
+                    <button class="kw-btn kw-sym" data-insert=" <= ">&lt;=</button>
+                    <button class="kw-btn kw-sym" data-insert=" + ">+</button>
+                    <button class="kw-btn kw-sym" data-insert=" - ">-</button>
+                    <button class="kw-btn kw-sym" data-insert=" * ">*</button>
+                    <button class="kw-btn kw-sym" data-insert=" / ">/</button>
+                    <button class="kw-btn kw-sym" data-insert=" % ">%</button>
+                    <button class="kw-btn kw-sym" data-insert="()">()</button>
+                    <button class="kw-btn kw-sym" data-insert="{\n    \n}">{}</button>
+                    <button class="kw-btn kw-sym" data-insert="[]">[]</button>
+                    <button class="kw-btn kw-sym" data-insert="&quot;&quot;">""</button>
+                    <button class="kw-btn kw-sym" data-insert=", ">,</button>
+                    <button class="kw-btn kw-sym" data-insert=";">;</button>
+                    <button class="kw-btn kw-sym" data-insert=": ">:</button>
+                    <button class="kw-btn kw-sym" data-insert=".">.</button>
+                </div>
+
+                <div class="quick-title" style="margin-top: 5px;">🔢 លេខខ្មែរ / Khmer Digits:</div>
+                <div class="keyword-btn-group digits-group">
+                    <button class="kw-btn kw-num" data-insert="០">០</button>
+                    <button class="kw-btn kw-num" data-insert="១">១</button>
+                    <button class="kw-btn kw-num" data-insert="២">២</button>
+                    <button class="kw-btn kw-num" data-insert="៣">៣</button>
+                    <button class="kw-btn kw-num" data-insert="៤">៤</button>
+                    <button class="kw-btn kw-num" data-insert="៥">៥</button>
+                    <button class="kw-btn kw-num" data-insert="៦">៦</button>
+                    <button class="kw-btn kw-num" data-insert="៧">៧</button>
+                    <button class="kw-btn kw-num" data-insert="៨">៨</button>
+                    <button class="kw-btn kw-num" data-insert="៩">៩</button>
+                </div>
+            </div>
+            
+            <div class="editor-container">
+                <div class="line-numbers" id="lineNumbers">1</div>
+                <div class="editor-wrapper">
+                    <textarea id="codeEditor" spellcheck="false" placeholder="សរសេរកូដភាសាខ្មែរនៅទីនេះ..."></textarea>
+                    <pre id="highlighting" aria-hidden="true"><code id="highlightingContent"></code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Right Panel: Output Console & Syntax Reference -->
+        <section class="panel output-panel">
+            <!-- Output Window -->
+            <div class="console-box">
+                <div class="panel-header">
+                    <span>🖥️ លទ្ធផល / Output Terminal</span>
+                    <span id="statusIndicator" class="status-ready">សភាព: ត្រៀមជាស្រេច</span>
+                </div>
+                <div class="terminal-body" id="terminalOutput">
+                    <div class="terminal-welcome">
+                        👋 សូមស្វាគមន៍មកកាន់ **KhmerLang Compiler Playground**! <br>
+                        ចុចប៊ូតុង **"រ៉ាន់កូដ / Run"** ឬចុច **Ctrl + Enter** ដើម្បីដំណើការកូដរបស់អ្នក។
+                    </div>
+                </div>
+            </div>
+
+            <!-- Syntax Reference & Documentation -->
+            <div class="docs-box">
+                <div class="panel-header docs-toggle" id="docsHeader">
+                    <span>📖 តារាងពាក្យគន្លឹះភាសាខ្មែរ / Khmer Keywords Reference</span>
+                    <span id="docsArrow">▼</span>
+                </div>
+                <div class="docs-body" id="docsBody">
+                    <table class="keywords-table">
+                        <thead>
+                            <tr>
+                                <th>ពាក្យគន្លឹះ (Khmer Keyword)</th>
+                                <th>អត្ថន័យ (Meaning)</th>
+                                <th>ឧទាហរណ៍ (Example)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>តាំង</code></td><td>ប្រកាសអថេរ (Variable)</td><td><code>តាំង x = ១០</code></td></tr>
+                            <tr><td><code>បង្ហាញ</code></td><td>បង្ហាញលទ្ធផល (Print)</td><td><code>បង្ហាញ("ជម្រាបសួរ")</code></td></tr>
+                            <tr><td><code>បើ</code></td><td>លក្ខខណ្ឌ (If)</td><td><code>បើ (x > ៥) { ... }</code></td></tr>
+                            <tr><td><code>ឬបើ</code></td><td>លក្ខខណ្ឌបន្ទាប់ (Else If)</td><td><code>ឬបើ (x == ៥) { ... }</code></td></tr>
+                            <tr><td><code>ផ្សេងទៀត</code></td><td>លក្ខខណ្ឌចុងក្រោយ (Else)</td><td><code>ផ្សេងទៀត { ... }</code></td></tr>
+                            <tr><td><code>ខណៈ</code></td><td>រង្វិលជុំ (While)</td><td><code>ខណៈ (x > ០) { ... }</code></td></tr>
+                            <tr><td><code>សម្រាប់</code></td><td>រង្វិលជុំកំណត់ (For)</td><td><code>សម្រាប់ (តាំង i = ០; i < ៥; i = i + ១)</code></td></tr>
+                            <tr><td><code>អនុគមន៍</code></td><td>បង្កើតអនុគមន៍ (Function)</td><td><code>អនុគមន៍ បូក(a, b) { ... }</code></td></tr>
+                            <tr><td><code>ត្រឡប់</code></td><td>បញ្ជូនតម្លៃមកវិញ (Return)</td><td><code>ត្រឡប់ a + b</code></td></tr>
+                            <tr><td><code>ថ្នាក់</code></td><td>បង្កើត Class (OOP)</td><td><code>ថ្នាក់ មនុស្ស { ... }</code></td></tr>
+                            <tr><td><code>វិធី / បង្កើត</code></td><td>Method / Constructor</td><td><code>បង្កើត(ឈ្មោះ) { នេះ.ឈ្មោះ = ឈ្មោះ }</code></td></tr>
+                            <tr><td><code>នេះ / ខ្លួនវា</code></td><td>this / self (OOP)</td><td><code>នេះ.ឈ្មោះ</code></td></tr>
+                            <tr><td><code>ថ្មី</code></td><td>New Instance (OOP)</td><td><code>តាំង p = ថ្មី មនុស្ស("សុខ")</code></td></tr>
+                            <tr><td><code>បន្តពី</code></td><td>Inheritance / Extends</td><td><code>ថ្នាក់ សិស្ស បន្តពី មនុស្ស</code></td></tr>
+                            <tr><td><code>ពិត / មិនពិត</code></td><td>តក្កវិទ្យា (True / False)</td><td><code>តាំង ត្រូវ = ពិត</code></td></tr>
+                            <tr><td><code>០, ១, ២ ... ៩</code></td><td>លេខខ្មែរ (Khmer Digits)</td><td><code>តាំង លេខ = ១២៣</code></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <span>KhmerLang v1.0.0 &copy; 2026. ភាសាប្រូក្រាមីងជាភាសាខ្មែរ (Khmer Programming Language Engine & Web IDE).</span>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

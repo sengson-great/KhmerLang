@@ -1,0 +1,410 @@
+:root {
+    --bg-dark: #121824;
+    --panel-bg: #1e293b;
+    --editor-bg: #0f172a;
+    --border-color: #334155;
+    --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+    --run-green: #10b981;
+    --run-green-hover: #059669;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --kw-color: #f43f5e;
+    --str-color: #34d399;
+    --num-color: #fbbf24;
+    --comment-color: #64748b;
+    --font-code: 'Fira Code', 'Consolas', monospace;
+    --font-khmer: 'Kantumruy Pro', 'Noto Sans Khmer', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body.dark-theme {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: var(--font-khmer);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Navbar Header */
+.navbar {
+    background-color: var(--panel-bg);
+    border-bottom: 1px solid var(--border-color);
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo {
+    font-size: 28px;
+}
+
+.title-container h1 {
+    font-size: 18px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.badge {
+    background-color: var(--primary-color);
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.preset-selector {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.preset-selector select {
+    background-color: var(--editor-bg);
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-family: var(--font-khmer);
+    font-size: 13px;
+    outline: none;
+    cursor: pointer;
+}
+
+.btn {
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+    font-family: var(--font-khmer);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+}
+
+.btn-run {
+    background-color: var(--run-green);
+    color: white;
+}
+
+.btn-run:hover {
+    background-color: var(--run-green-hover);
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background-color: var(--border-color);
+    color: var(--text-main);
+}
+
+.btn-secondary:hover {
+    background-color: #475569;
+}
+
+/* IDE Layout */
+.ide-container {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background-color: var(--border-color);
+    overflow: hidden;
+}
+
+.panel {
+    background-color: var(--panel-bg);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.panel-header {
+    background-color: #1e293b;
+    border-bottom: 1px solid var(--border-color);
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--text-muted);
+}
+
+.tab.active {
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.editor-info {
+    font-size: 12px;
+    display: flex;
+    gap: 16px;
+}
+
+.shortcut-tip {
+    color: #64748b;
+}
+
+/* Quick Keyword Insert Bar */
+.quick-insert-bar {
+    background-color: #0f172a;
+    border-bottom: 1px solid var(--border-color);
+    padding: 8px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.quick-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    user-select: none;
+}
+
+.keyword-btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.kw-btn {
+    padding: 3px 8px;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    font-family: var(--font-code), var(--font-khmer);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: var(--panel-bg);
+    color: var(--text-main);
+    transition: all 0.15s ease;
+    user-select: none;
+}
+
+.kw-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.kw-decl { border-color: #3b82f6; color: #60a5fa; }
+.kw-decl:hover { background-color: #1e3a8a; }
+
+.kw-io { border-color: #10b981; color: #34d399; }
+.kw-io:hover { background-color: #064e3b; }
+
+.kw-flow { border-color: #f43f5e; color: #fb7185; }
+.kw-flow:hover { background-color: #881337; }
+
+.kw-fn { border-color: #a855f7; color: #c084fc; }
+.kw-fn:hover { background-color: #581c87; }
+
+.kw-oop { border-color: #ec4899; color: #f472b6; }
+.kw-oop:hover { background-color: #831843; }
+
+.kw-val { border-color: #eab308; color: #fde047; }
+.kw-val:hover { background-color: #713f12; }
+
+.kw-sym { border-color: #6366f1; color: #a5b4fc; min-width: 26px; text-align: center; }
+.kw-sym:hover { background-color: #312e81; }
+
+.kw-num { border-color: #0ea5e9; color: #38bdf8; min-width: 26px; text-align: center; }
+.kw-num:hover { background-color: #075985; }
+
+/* Editor Container */
+.editor-container {
+    flex: 1;
+    display: flex;
+    background-color: var(--editor-bg);
+    position: relative;
+    overflow: hidden;
+}
+
+.line-numbers {
+    width: 44px;
+    background-color: #0b1120;
+    color: #475569;
+    padding: 12px 0;
+    font-family: var(--font-code);
+    font-size: 14px;
+    line-height: 22px;
+    text-align: right;
+    padding-right: 12px;
+    user-select: none;
+    border-right: 1px solid var(--border-color);
+}
+
+.editor-wrapper {
+    flex: 1;
+    position: relative;
+}
+
+#codeEditor, #highlighting {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 12px;
+    margin: 0;
+    border: none;
+    font-family: var(--font-code), var(--font-khmer);
+    font-size: 15px;
+    line-height: 22px;
+    tab-size: 4;
+    white-space: pre;
+    overflow: auto;
+}
+
+#codeEditor {
+    color: transparent;
+    background: transparent;
+    caret-color: #60a5fa;
+    z-index: 1;
+    resize: none;
+    outline: none;
+}
+
+#highlighting {
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Syntax Highlighting (Khmer CSS Class Names) */
+.មតិពន្យល់, .token-comment { color: var(--comment-color); font-style: italic; }
+.ពាក្យគន្លឹះ, .token-kw { color: var(--kw-color); font-weight: 600; }
+.អក្សរ, .token-str { color: var(--str-color); }
+.លេខ, .token-num { color: var(--num-color); }
+
+/* Right Panel: Output & Docs */
+.output-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background-color: var(--border-color);
+}
+
+.console-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--panel-bg);
+}
+
+.status-ready { color: var(--run-green); }
+.status-running { color: #f59e0b; }
+.status-error { color: #ef4444; }
+
+.terminal-body {
+    flex: 1;
+    background-color: #0b1120;
+    padding: 16px;
+    font-family: var(--font-code), var(--font-khmer);
+    font-size: 14px;
+    line-height: 20px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+    color: #e2e8f0;
+}
+
+.terminal-welcome {
+    color: var(--text-muted);
+    font-family: var(--font-khmer);
+    line-height: 24px;
+}
+
+.output-success { color: #34d399; }
+.output-error { color: #f87171; font-weight: 500; }
+
+/* Docs Box */
+.docs-box {
+    background-color: var(--panel-bg);
+    max-height: 260px;
+    display: flex;
+    flex-direction: column;
+}
+
+.docs-toggle {
+    cursor: pointer;
+    user-select: none;
+}
+
+.docs-toggle:hover {
+    color: var(--text-main);
+}
+
+.docs-body {
+    padding: 10px 16px;
+    overflow-y: auto;
+    font-size: 13px;
+}
+
+.keywords-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.keywords-table th, .keywords-table td {
+    padding: 6px 10px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.keywords-table th {
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.keywords-table code {
+    background-color: var(--editor-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: var(--font-code), var(--font-khmer);
+    color: var(--kw-color);
+}
+
+/* Footer */
+.footer {
+    background-color: var(--panel-bg);
+    border-top: 1px solid var(--border-color);
+    padding: 6px 20px;
+    font-size: 11px;
+    color: var(--text-muted);
+    text-align: center;
+}
