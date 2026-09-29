@@ -1,0 +1,24 @@
+## Syntax highlighting for KhmerLang in nano
+syntax "khmer" "\.(khmer|km)$"
+comment "#"
+
+# Keywords & Declarations
+color brightred "(^|[[:space:]])(តាំង|អនុគមន៍|ថ្នាក់|វិធី|បង្កើត|ថ្មី|បន្តពី)($|[[:space:]])"
+# Control flow
+color brightmagenta "(^|[[:space:]])(បើ|ឬបើ|ផ្សេងទៀត|ខណៈ|សម្រាប់|ត្រឡប់)($|[[:space:]])"
+# Booleans & Null
+color brightblue "(^|[[:space:]])(ពិត|មិនពិត|ទទេ)($|[[:space:]])"
+# Builtins
+color brightcyan "(^|[[:space:]])(បង្ហាញ|ប្រវែង|ប្រភេទ|បន្ថែម)($|[[:space:]]|\()"
+# OOP this
+color yellow "(^|[[:space:]])(នេះ|ខ្លួនវា)($|[[:space:]]|\.)"
+# Khmer Numerals & Arabic Numbers
+color brightyellow "[0-9]+|[០-៩]+"
+# Strings
+color green "\"[^\"]*\""
+color green "'[^']*'"
+# Comments
+color cyan "#.*$"
+color cyan "//.*$"
+# Punctuations
+color brightwhite "[។៕៖;]"

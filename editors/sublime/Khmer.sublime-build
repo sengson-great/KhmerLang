@@ -1,0 +1,9 @@
+{
+  "cmd": [
+    "khmer",
+    "run",
+    "$file"
+  ],
+  "file_regex": "^(.*?):([0-9]+):([0-9]+): (?:error|warning): (.*)$",
+  "selector": "source.khmer"
+}

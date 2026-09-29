@@ -1,0 +1,37 @@
+{
+  "name": "khmerlang",
+  "displayName": "ភាសាខ្មែរ (KhmerLang) Language Support",
+  "description": "Rich language support, syntax highlighting, and runner for KhmerLang (ភាសាខ្មែរ)",
+  "version": "1.0.0",
+  "publisher": "khmerlang",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "khmer",
+        "aliases": [
+          "KhmerLang",
+          "khmer",
+          "ភាសាខ្មែរ"
+        ],
+        "extensions": [
+          ".khmer",
+          ".km"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "khmer",
+        "scopeName": "source.khmer",
+        "path": "./syntaxes/khmer.tmLanguage.json"
+      }
+    ]
+  }
+}

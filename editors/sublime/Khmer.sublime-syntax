@@ -1,0 +1,52 @@
+%YAML 1.2
+---
+name: KhmerLang
+file_extensions:
+  - khmer
+  - km
+scope: source.khmer
+
+contexts:
+  main:
+    - match: '#.*$'
+      scope: comment.line.number-sign.khmer
+    - match: '//.*$'
+      scope: comment.line.double-slash.khmer
+    - match: '"'
+      scope: punctuation.definition.string.begin.khmer
+      push: string_double
+    - match: "'"
+      scope: punctuation.definition.string.begin.khmer
+      push: string_single
+    - match: '[០-៩]+(\.[០-៩]+)?'
+      scope: constant.numeric.khmer-digits.khmer
+    - match: '\b[0-9]+(\.[0-9]+)?\b'
+      scope: constant.numeric.khmer
+    - match: '(?<![\u1780-\u17FF])(តាំង|អនុគមន៍|ថ្នាក់|វិធី|បង្កើត|ថ្មី|បន្តពី)(?![\u1780-\u17FF])'
+      scope: keyword.declaration.khmer
+    - match: '(?<![\u1780-\u17FF])(បើ|ឬបើ|ផ្សេងទៀត|ខណៈ|សម្រាប់|ត្រឡប់)(?![\u1780-\u17FF])'
+      scope: keyword.control.khmer
+    - match: '(?<![\u1780-\u17FF])(នេះ|ខ្លួនវា)(?![\u1780-\u17FF])'
+      scope: variable.language.this.khmer
+    - match: '(?<![\u1780-\u17FF])(ពិត|មិនពិត|ទទេ)(?![\u1780-\u17FF])'
+      scope: constant.language.khmer
+    - match: '(?<![\u1780-\u17FF])(បង្ហាញ|ប្រវែង|ប្រភេទ|បន្ថែម)(?![\u1780-\u17FF])'
+      scope: support.function.builtin.khmer
+    - match: '[។៕;]'
+      scope: punctuation.terminator.khmer
+
+  string_double:
+    - meta_scope: string.quoted.double.khmer
+    - match: '\\.'
+      scope: constant.character.escape.khmer
+    - match: '"'
+      scope: punctuation.definition.string.end.khmer
+      pop: true
+
+  string_single:
+    - meta_scope: string.quoted.single.khmer
+    - match: '\\.'
+      scope: constant.character.escape.khmer
+    - match: "'"
+      scope: punctuation.definition.string.end.khmer
+      pop: true

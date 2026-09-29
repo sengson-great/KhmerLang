@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="km" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ភាសាខ្មែរ (KhmerLang) — ឯកសារណែនាំផ្លូវការ | Official Documentation</title>
+    <meta name="description" content="ឯកសារណែនាំផ្លូវការនៃភាសាប្រូក្រាមីងខ្មែរ (KhmerLang) — ភាសាប្រូក្រាមីងកម្រិតខ្ពស់គាំទ្រ OOP, លេខខ្មែរ ០-៩ និងមាន Web & Flutter IDE។">
+    <meta name="keywords" content="KhmerLang, ភាសាខ្មែរ, Khmer Programming Language, Coding in Khmer, OOP in Khmer">
+    <meta property="og:title" content="ភាសាខ្មែរ (KhmerLang) — ឯកសារណែនាំផ្លូវការ">
+    <meta property="og:description" content="រៀនសរសេរកូដជាភាសាខ្មែរដោយផ្ទាល់ ជាមួយវេយ្យាករណ៍ច្បាស់លាស់ គាំទ្រ OOP និងរ៉ាន់កូដលើ Web Browser ភ្លាមៗ!">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Kantumruy+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ===================================================================
+         Top Navigation Bar
+         =================================================================== -->
+    <header class="docs-header" id="docs-header">
+        <div class="brand-wrapper">
+            <button class="header-action-btn mobile-menu-toggle" id="mobile-toggle-btn" aria-label="បើកម៉ឺនុយ">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+            <a href="#intro" style="display:flex; align-items:center; gap:0.75rem; text-decoration:none;">
+                <div class="brand-logo-badge">ក</div>
+                <div class="brand-text">
+                    <div class="brand-title">
+                        ភាសាខ្មែរ
+                        <span class="brand-version-badge">v1.0.0</span>
+                    </div>
+                    <div class="brand-subtitle">Khmer Programming Language</div>
+                </div>
+            </a>
+        </div>
+
+        <div class="header-center-search">
+            <button class="search-trigger-btn" id="search-trigger-btn" aria-label="ស្វែងរកឯកសារ">
+                <div class="search-trigger-content">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    <span>ស្វែងរកឯកសារ (Search docs)...</span>
+                </div>
+                <div class="search-kbd-shortcut">
+                    <kbd>⌘</kbd><kbd>K</kbd>
+                </div>
+            </button>
+        </div>
+
+        <div class="header-actions">
+            <a href="#playground" class="btn-primary-compact" id="nav-btn-playground">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                <span>សាកល្បងកូដ</span>
+            </a>
+            <button class="header-action-btn" id="theme-toggle-btn" aria-label="ប្តូរ Dark/Light Mode" title="ប្តូរ Dark/Light Theme">
+                <svg id="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+                <svg id="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+            </button>
+            <a href="https://github.com/sengson-great/KhmerLang" target="_blank" rel="noopener noreferrer" class="header-action-btn" aria-label="GitHub Repository" title="GitHub">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+        </div>
+    </header>
+
+    <!-- ===================================================================
+         Main Documentation Layout
+         =================================================================== -->
+    <div class="docs-container">
+
+        <!-- Left Navigation Sidebar -->
+        <nav class="docs-sidebar" id="docs-sidebar" aria-label="ឯកសារណែនាំ">
+            
+            <div class="sidebar-nav-group">
+                <div class="sidebar-nav-title">🚀 ចាប់ផ្ដើមដំបូង (Getting Started)</div>
+                <ul class="sidebar-nav-list">
+                    <li><a href="#intro" class="sidebar-nav-link active">សេចក្តីផ្តើម (Overview)</a></li>
+                    <li><a href="#install" class="sidebar-nav-link">ការដំឡើង & ការចាប់ផ្តើម (Setup)</a></li>
+                    <li><a href="#hello-world" class="sidebar-nav-link">កម្មវិធីដំបូង (Hello World)</a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-nav-group">
+                <div class="sidebar-nav-title">💡 មូលដ្ឋានគ្រឹះ (Language Basics)</div>
+                <ul class="sidebar-nav-list">
+                    <li><a href="#variables" class="sidebar-nav-link">អថេរ & ប្រភេទតម្លៃ (Variables)</a></li>
+                    <li><a href="#numerals" class="sidebar-nav-link">លេខខ្មែរ & ប្រមាណវិធី (Math)</a></li>
+                    <li><a href="#punctuations" class="sidebar-nav-link">សញ្ញាវណ្ណយុត្តិ (Punctuations)</a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-nav-group">
+                <div class="sidebar-nav-title">🔀 លំហូរការងារ (Control Flow)</div>
+                <ul class="sidebar-nav-list">
+                    <li><a href="#conditionals" class="sidebar-nav-link">លក្ខខណ្ឌ បើ / ឬបើ / ផ្សេងទៀត</a></li>
+                    <li><a href="#while-loop" class="sidebar-nav-link">រង្វិលជុំ ខណៈ (While Loop)</a></li>
+                    <li><a href="#for-loop" class="sidebar-nav-link">រង្វិលជុំ សម្រាប់ (For Loop)</a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-nav-group">
+                <div class="sidebar-nav-title">⚡ អនុគមន៍ (Functions)</div>
+                <ul class="sidebar-nav-list">
+                    <li><a href="#functions" class="sidebar-nav-link">ការបង្កើតអនុគមន៍ (Declaration)</a></li>
+                    <li><a href="#recursion" class="sidebar-nav-link">Recursion (កូដ Fibonacci)</a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-nav-group">
+                <div class="sidebar-nav-title">🏛️ សរសេរកូដតាមវត្ថុ (OOP)</div>
+                <ul class="sidebar-nav-list">
+                    <li><a href="#classes" class="sidebar-nav-link">ថ្នាក់ & Constructor (`បង្កើត`)</a></li>
+                    <li><a href="#methods" class="sidebar-nav-link">វិធីសាស្ត្រ & ពាក្យ `នេះ`</a></li>
+                    <li><a href="#inheritance" class="sidebar-nav-link">ការបន្តវេន (`បន្តពី`)</a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-nav-group">
+                <div class="sidebar-nav-title">🛠️ ឧបករណ៍ & ឯកសារយោង</div>
+                <ul class="sidebar-nav-list">
+                    <li><a href="#builtins" class="sidebar-nav-link">អនុគមន៍ស្ដង់ដារ (Builtins)</a></li>
+                    <li><a href="#ides" class="sidebar-nav-link">Flutter & Web IDEs</a></li>
+                    <li><a href="#cheat-sheet" class="sidebar-nav-link">តារាងពាក្យគន្លឹះ (Cheat Sheet)</a></li>
+                    <li><a href="#playground" class="sidebar-nav-link"><span style="color:var(--accent-primary); font-weight:700;">🎮 ស្ថានីយសាកល្បងកូដ</span> <span class="sidebar-badge badge-new">ផ្ទាល់</span></a></li>
+                </ul>
+            </div>
+
+        </nav>
+
+        <!-- Center Main Content -->
+        <main class="docs-main-content">
+            <div class="content-wrapper">
+
+                <!-- Hero Header -->
+                <div class="hero-banner">
+                    <div class="hero-tag">
+                        <span>✨ ភាសាប្រូក្រាមីងខ្មែរដំបូងគេបង្អស់គាំទ្រ OOP ពេញលេញ</span>
+                    </div>
+                    <h1 class="doc-title">ឯកសារណែនាំផ្លូវការ — ភាសាខ្មែរ (KhmerLang)</h1>
+                    <p class="hero-lead">
+                        <strong>KhmerLang (ភាសាខ្មែរ)</strong> គឺជាភាសាប្រូក្រាមីងកម្រិតខ្ពស់ដែលត្រូវបានរចនាឡើងជាមួយវាក្យសព្ទ និងពាក្យគន្លឹះជាភាសាខ្មែរពិតប្រាកដ។ វាផ្ដល់នូវភាពងាយស្រួលក្នុងការសិក្សា សរសេរកូដតាមបែប Object-Oriented Programming (OOP) និងគាំទ្រលេខខ្មែរ (០-៩) ដោយផ្ទាល់។
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#hello-world" class="btn-primary-compact" style="padding: 0.65rem 1.25rem; font-size: 0.95rem;">
+                            🚀 ចាប់ផ្តើមរៀនឥឡូវនេះ
+                        </a>
+                        <a href="#playground" class="btn-secondary">
+                            🎮 សាកល្បងកូដលើ Web Browser
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Section: Introduction -->
+                <section class="doc-section" id="intro">
+                    <h2 class="section-heading">
+                        សេចក្តីផ្តើម (Introduction)
+                        <a href="#intro" class="heading-anchor">#</a>
+                    </h2>
+                    <p>
+                        ភាសាខ្មែរ (KhmerLang) ត្រូវបានបង្កើតឡើងដើម្បីកាត់បន្ថយរបាំងភាសាក្នុងវិស័យវិទ្យាសាស្ត្រកុំព្យូទ័រនៅកម្ពុជា។ សិស្ស និស្សិត និងអ្នករៀនដំបូងអាចយល់ច្បាស់អំពីតក្កវិជ្ជានៃកូដ (Logic) តាមរយៈការប្រើពាក្យខ្មែរធម្មជាតិ ដូចជា <code>តាំង</code>, <code>បង្ហាញ</code>, <code>បើ</code>, <code>ខណៈ</code>, <code>ថ្នាក់</code> និង <code>អនុគមន៍</code>។
+                    </p>
+
+                    <div class="callout callout-info">
+                        <div class="callout-icon">💡</div>
+                        <div class="callout-content">
+                            <strong>ចំណុចពិសេស៖</strong> រាល់កូដឧទាហរណ៍ទាំងអស់ក្នុងឯកសារនេះ អ្នកអាចចុចប៊ូតុង <strong>▷ រ៉ាន់កូដ (Run)</strong> ដើម្បីដំណើរការកូដ និងទស្សនាលទ្ធផលជាក់ស្ដែងលើ Browser បានភ្លាមៗដោយមិនបាច់ដំឡើងអ្វីទាំងអស់!
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section: Installation & Setup -->
+                <section class="doc-section" id="install">
+                    <h2 class="section-heading">
+                        ការដំឡើង & ការចាប់ផ្តើម (Installation & Setup)
+                        <a href="#install" class="heading-anchor">#</a>
+                    </h2>
+                    <p>
+                        ការចាប់ផ្តើមសរសេរកូដជាមួយ <strong>KhmerLang (ភាសាខ្មែរ)</strong> មានភាពងាយស្រួល និងរហ័ស។ អ្នកប្រើប្រាស់អាចជ្រើសរើសការដំឡើងតាមរយៈ <strong>Command Line Tool (CLI)</strong> សម្រាប់ដំណើរការលើម៉ាស៊ីនផ្ទាល់ ឬប្រើប្រាស់កម្មវិធី <strong>Khmer IDE</strong> ដោយមិនចាំបាច់ដំឡើងអ្វីទាំងអស់។
+                    </p>
+
+                    <h3 class="sub-heading">១. តម្រូវការប្រព័ន្ធ (Prerequisites)</h3>
+                    <p>មុនពេលចាប់ផ្តើមដំឡើង សូមប្រាកដថាម៉ាស៊ីនរបស់អ្នកមានលក្ខខណ្ឌដូចខាងក្រោម៖</p>
+                    <ul>
+                        <li><strong>ប្រព័ន្ធប្រតិបត្តិការ៖</strong> គាំទ្រ macOS, Linux, និង Windows (WSL / PowerShell)</li>
+                        <li><strong>Python 3.8 ឬខ្ពស់ជាងនេះ៖</strong> សម្រាប់ដំណើរការ Interpreter ដើមរបស់ភាសា</li>
+                        <li><strong>Git៖</strong> សម្រាប់ទាញយកប្រភពកូដ ឬ Releases</li>
+                    </ul>
+
+                    <h3 class="sub-heading">២. ការដំឡើង CLI សម្រាប់អ្នកប្រើប្រាស់ទូទៅ (Universal One-Line Install)</h3>
+                    <p>
+                        អ្នកប្រើប្រាស់គ្រប់រូបអាចដំឡើង <code>khmer</code> CLI លើម៉ាស៊ីនរបស់ខ្លួនដោយផ្ទាល់តាមរយៈពាក្យបញ្ជាតែមួយបន្ទាត់៖
+                    </p>
+
+                    <div class="code-card">
+                        <div class="code-card-header">
+                            <div class="code-card-meta">
+                                <span class="code-card-lang">BASH</span>
+                                <span class="code-card-title">macOS / Linux (Terminal)</span>
+                            </div>
+                            <div class="code-card-actions">
+                                <button class="btn-code-action btn-copy-code" data-code="curl -fsSL https://raw.githubusercontent.com/sengson-great/KhmerLang/main/install.sh | bash">ចម្លង</button>
+                            </div>
+                        </div>
+                        <div class="code-content-wrapper">
+                            <pre class="code-block"><code><span class="com"># ដំឡើងស្វ័យប្រវត្តលើ macOS និង Linux (រួមទាំង PATH & VS Code Extension)</span>
+curl -fsSL https://raw.githubusercontent.com/sengson-great/KhmerLang/main/install.sh | bash</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="code-card">
+                        <div class="code-card-header">
+                            <div class="code-card-meta">
+                                <span class="code-card-lang">POWERSHELL</span>
+                                <span class="code-card-title">Windows (PowerShell)</span>
+                            </div>
+                            <div class="code-card-actions">
+                                <button class="btn-code-action btn-copy-code" data-code="irm https://raw.githubusercontent.com/sengson-great/KhmerLang/main/install.ps1 | iex">ចម្លង</button>
+                            </div>
+                        </div>
+                        <div class="code-content-wrapper">
+                            <pre class="code-block"><code><span class="com"># ដំឡើងលើ Windows តាមរយៈ PowerShell</span>
+irm https://raw.githubusercontent.com/sengson-great/KhmerLang/main/install.ps1 | iex</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="code-card">
+                        <div class="code-card-header">
+                            <div class="code-card-meta">
+                                <span class="code-card-lang">PIP</span>
+                                <span class="code-card-title">Python Pip (All Platforms)</span>
+                            </div>
+                            <div class="code-card-actions">
+                                <button class="btn-code-action btn-copy-code" data-code="pip install git+https://github.com/sengson-great/KhmerLang.git">ចម្លង</button>
+                            </div>
+                        </div>
+                        <div class="code-content-wrapper">
+                            <pre class="code-block"><code><span class="com"># ឬដំឡើងតាមរយៈ Python Package Manager</span>
+pip install git+https://github.com/sengson-great/KhmerLang.git</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="sub-heading">៣. របៀបបង្កើត និងដំណើរការឯកសារកូដរបស់អ្នក</h3>
+                    <p>
+                        ឯកសារកូដភាសាខ្មែរត្រូវប្រើកន្ទុយ <code>.khmer</code>។ អ្នកអាចបង្កើតឯកសារថ្មីដោយប្រើ Text Editor ណាមួយដែលអ្នកពេញចិត្ត (ដូចជា VS Code, Cursor, ឬ Nano)៖
+                    </p>
+
+                    <div class="code-card">
+                        <div class="code-card-header">
+                            <div class="code-card-meta">
+                                <span class="code-card-lang">KHMER</span>
+                                <span class="code-card-title">កម្មវិធីរបស់ខ្ញុំ (my_app.khmer)</span>
+                            </div>
+                            <div class="code-card-actions">
+                                <button class="btn-code-action btn-copy-code" data-code="តាំង ឈ្មោះ = &quot;អ្នកប្រើប្រាស់&quot;
+បង្ហាញ(&quot;សូមស្វាគមន៍មកកាន់ពិភពសរសេរកូដជាភាសាខ្មែរ!&quot;)">ចម្លង</button>
+                            </div>
+                        </div>
+                        <div class="code-content-wrapper">
+                            <pre class="code-block"><code><span class="kw">តាំង</span> ឈ្មោះ = <span class="str">"អ្នកប្រើប្រាស់"</span>
+<span class="builtin">បង្ហាញ</span>(<span class="str">"សូមស្វាគមន៍មកកាន់ពិភពសរសេរកូដជាភាសាខ្មែរ!"</span>)
+<span class="builtin">បង្ហាញ</span>(<span class="str">"សួស្តី"</span>, ឈ្មោះ)</code></pre>
+                        </div>
+                    </div>
+
+                    <p>បន្ទាប់មកដំណើរការឯកសាររបស់អ្នកនៅក្នុង Terminal៖</p>
+
+                    <div class="code-card">
+                        <div class="code-card-header">
+                            <div class="code-card-meta">
+                                <span class="code-card-lang">BASH</span>
+                                <span class="code-card-title">Run Your Script</span>
+                            </div>
+                            <div class="code-card-actions">
+                                <button class="btn-code-action btn-copy-code" data-code="khmer my_app.khmer">ចម្លង</button>
+                            </div>
+                        </div>
+                        <div class="code-content-wrapper">
+                            <pre class="code-block"><code>khmer my_app.khmer</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="sub-heading">៤. ការប្រើប្រាស់ Interactive REPL</h3>
+                    <p>
+                        ប្រសិនបើអ្នកចង់សាកល្បងសរសេរកូដ ឬគណនាបន្ទាត់នីមួយៗភ្លាមៗ អ្នកគ្រាន់តែវាយពាក្យបញ្ជា <code>khmer</code> ដោយមិនបាច់បញ្ជាក់ឈ្មោះឯកសារនោះទេ ដើម្បីបើក Interactive REPL Shell៖
+                    </p>
+
+                    <div class="code-card">
+                        <div class="code-card-header">
+                            <div class="code-card-meta">
+                                <span class="code-card-lang">BASH / REPL</span>
+                                <span class="code-card-title">Interactive Console</span>
+                            </div>
+                            <div class="code-card-actions">
+                                <button class="btn-code-action btn-copy-code" data-code="khmer">ចម្លង</button>
+                            </div>
+                        </div>
+                        <div class="code-content-wrapper">
+                            <pre class="code-block"><code>$ khmer
+ភាសាខ្មែរ (KhmerLang) v1.0.0 REPL
+វាយ 'ចាកចេញ' ឬចុច Ctrl+D ដើម្បីចាកចេញ។
+
+>>> <span class="kw">តាំង</span> ពិន្ទុ = ៩៥;
+>>> <span class="builtin">បង្ហាញ</span>(<span class="str">"ពិន្ទុសរុប:"</span>, ពិន្ទុ);
+ពិន្ទុសរុប: ៩៥
+>>> <span class="kw">តាំង</span> ទ្វេដង = ពិន្ទុ * ២;
+>>> <span class="builtin">បង្ហាញ</span>(ទ្វេដង);
+១៩០</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="sub-heading">៥. ការប្រើប្រាស់ជាមួយគ្រប់ Text Editor ទាំងអស់ (VS Code, Vim, Sublime, Nano)</h3>
+                    <p>
+                        KhmerLang CLI ផ្ដល់ឧបករណ៍ជំនួយស្រាប់សម្រាប់ភ្ជាប់ទៅកាន់ Text Editor ណាមួយដែលអ្នកពេញចិត្ត៖
+                    </p>
+
+                    <div class="code-card">
+                        <div class="code-card-header">
+                            <div class="code-card-meta">
+                                <span class="code-card-lang">BASH</span>
+                                <span class="code-card-title">Editor Integration Commands</span>
+                            </div>
+                            <div class="code-card-actions">
+                                <button class="btn-code-action btn-copy-code" data-code="khmer editor vscode
+khmer watch my_app.khmer">ចម្លង</button>
+                            </div>
+                        </div>
+                        <div class="code-content-wrapper">
+                            <pre class="code-block"><code><span class="com"># ដំឡើង Syntax Highlighting សម្រាប់ VS Code / Cursor ដោយស្វ័យប្រវត្ត</span>
+khmer editor vscode
+
+<span class="com"># ឬបង្កើត Config សម្រាប់ Vim / Neovim, Sublime Text, ឬ GNU Nano</span>
+khmer editor vim
+khmer editor sublime
+khmer editor nano
+
+<span class="com"># មុខងារ Live-Reload: តាមដាន និងរ៉ាន់កូដស្វ័យប្រវត្តិពេលអ្នកចុច Save ក្នុង Editor ណាមួយ</span>
+khmer watch my_app.khmer
+
+<span class="com"># ពិនិត្យកំហុសវេយ្យាករណ៍ដោយមិនបាច់រ៉ាន់កូដ (Linter)</span>
+khmer check my_app.khmer</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="sub-heading">៦. ជម្រើសសរសេរកូដតាម GUI & Web IDE</h3>
+                    <p>ក្រៅពីការប្រើប្រាស់ Terminal CLI អ្នកក៏អាចជ្រើសរើសបរិស្ថានអភិវឌ្ឍន៍ដែលងាយស្រួលបំផុតសម្រាប់អ្នក៖</p>
+
+                    <ul>
+                        <li>
+                            <strong>Web Playground (សាកល្បងភ្លាមៗតាម Web Browser)៖</strong> 
+                            អ្នកមិនចាំបាច់ដំឡើងអ្វីទាំងអស់ក្នុងម៉ាស៊ីនឡើយ! គ្រាន់តែរមូរទៅកាន់ផ្នែក <a href="#playground">🎮 ស្ថានីយសាកល្បងកូដផ្ទាល់</a> នៅខាងក្រោមនៃទំព័រនេះ ដើម្បីសរសេរ និងរ៉ាន់កូដខ្មែរលើ Browser របស់អ្នកបានភ្លាមៗ។
+                        </li>
+                        <li>
+                            <strong>Khmer IDE (កម្មវិធី Desktop សម្រាប់ macOS / Windows)៖</strong> 
+                            កម្មវិធី IDE ដើមដែលបង្កើតឡើងជាមួយ Flutter ផ្ដល់នូវ Virtual Khmer Keypad សម្រាប់វាយពាក្យគន្លឹះខ្មែររហ័ស, Syntax Highlighting, Tabs គ្រប់គ្រងឯកសារច្រើន, AST Visualizer, និង Terminal ក្នុងស្រុក។
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- Section: Hello World -->
+                <section class="doc-section" id="hello-world">
+                    <h2 class="section-heading">
+                        កម្មវិធីដំបូង (First Program: សួស្តីពិភពលោក)
+                        <a href="#hello-world" class="heading-anchor">#</a>
+                    </h2>
+                    <p>
+                        កម្មវិធីប្រពៃណីដំបូងគេបង្អស់ក្នុងការរៀនសរសេរកូដ គឺការបង្ហាញពាក្យ "សួស្តីពិភពលោក" (Hello World) ទៅលើអេក្រង់ ដោយប្រើពាក្យគន្លឹះ <code>បង្ហាញ(...)</code>៖
+                    </p>
+
+                    <!-- Runnable Snippet 1 -->
+                    <div class="code-card" id="snippet-hello">
+                        <div class="code-card-header">
+                            <div class="code-card-meta">
+                                <span class="code-card-lang">KHMER</span>
+                                <span class="code-card-title">hello_world.khmer</span>
+                            </div>
+                            <div class="code-card-actions">
+                                <button class="btn-code-action btn-copy-code">ចម្លង</button>
+                                <button class="btn-code-action btn-code-run">▷ រ៉ាន់កូដ</button>
+                            </div>
+                        </div>
+                        <div class="code-content-wrapper">
+                            <pre class="code-block"><code class="snippet-source"><span class="com"># កម្មវិធីដំបូងរបស់ខ្ញុំក្នុងភាសាខ្មែរ</span>
+<span class="builtin">បង្ហាញ</span>(<span class="str">"សួស្តីពិភពលោក!"</span>)
+<span class="builtin">បង្ហាញ</span>(<span class="str">"សូមស្វាគមន៍មកកាន់ KhmerLang v1.0"</span>)</code></pre>
+                        </div>
+                        <div class="code-output-drawer">
+                            <div class="code-output-header">
+                                <span class="code-output-title">ស្ថានីយលទ្ធផល (Terminal Output)</span>
+                                <span class="code-output-time"></span>
+                            </div>
+                            <div class="code-output-body"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section: Variables and Data Types -->
+                <section class="doc-section" id="variables">
+                    <h2 class="section-heading">
+                        អថេរ និងប្រភេទតម្លៃ (Variables & Data Types)
+                        <a href="#variables" class="heading-anchor">#</a>
+                    </h2>
+                    <p>
+                        នៅក្នុងភាសាខ្មែរ យើងប្រើពាក្យគន្លឹះ <code>តាំង</code> (Let) ដើម្បីប្រកាសអថេរ។ អថេរក្នុង KhmerLang គឺ dynamic-typed មានន័យថាអ្នកអាចផ្ទុកទិន្នន័យជា លេខ, អក្សរ (String), Boolean, ឬ Null បានដោយសេរី។
+                    </p>
+
+                    <ul>
+                        <li><strong>លេខ (Numbers):</strong> គាំទ្រទាំងលេខអារ៉ាប់ (<code>10</code>, <code>3.14</code>) និងលេខខ្មែរ (<code>១០</code>, <code>៣.១៤</code>)។</li>
+                        <li><strong>អក្សរ (Strings):</strong> សរសេរនៅចន្លោះសញ្ញាសម្រង់ <code>"..."</code> ឬ <code>'...'</code>។</li>
+                        <li><strong>ប៊ូលីន (Booleans):</strong> ប្រើពាក្យគន្លឹះ <code>ពិត</code> (True) និង <code>មិនពិត</code> (False)។</li>
+                        <li><strong>ទទេ (Null):</strong> ប្រើពាក្យគន្លឹះ <code>ទទេ</code> សម្រាប់តម្លៃដែលគ្មានទិន្នន័យ។</li>
+                    </ul>
+
+                    <!-- Runnable Snippet 2 -->
+                    <div class="code-card" id="snippet-vars">
+                        <div class="code-card-header">
+                            <div class="code-card-meta">
+                                <span class="code-card-lang">KHMER</span>
+                                <span class="code-card-title">variables.khmer</span>
+                            </div>
+                            <div class="code-card-actions">
+                                <button class="btn-code-action btn-copy-code">ចម្លង</button>
+                                <button class="btn-code-action btn-code-run">▷ រ៉ាន់កូដ</button>
+                            </div>
+                        </div>
+                        <div class="code-content-wrapper">
+                            <pre class="code-block"><code class="snippet-source"><span class="com"># ប្រកាសអថេរផ្សេងៗ</span>
+<span class="kw">តាំង</span> ឈ្មោះ = <span class="str">"វ៉េងឈួង"</span>
+<span class="kw">តាំង</span> អាយុ = ២១
+<span class="kw">តាំង</span> ជាសិស្ស = <span class="kw">ពិត</span>
+<span class="kw">តាំង</span> ការងារ = <span class="kw">ទទេ</span>
+
+<span class="builtin">បង្ហាញ</span>(<span class="str">"ឈ្មោះ:"</span>, ឈ្មោះ)
+<span class="builtin">បង្ហាញ</span>(<span class="str">"អាយុ:"</span>, អាយុ)
+<span class="builtin">បង្ហាញ</span>(<span class="str">"ស្ថានភាពជានិស្សិត:"</span>, ជាសិស្ស)
+<span class="builtin">បង្ហាញ</span>(<span class="str">"ការងារបច្ចុប្បន្ន:"</span>, ការងារ)</code></pre>
+                        </div>
+                        <div class="code-output-drawer">
+                            <div class="code-output-header">
+                                <span class="code-output-title">ស្ថានីយលទ្ធផល (Terminal Output)</span>
+                                <span class="code-output-time"></span>
+                            </div>
+                            <div class="code-output-body"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section: Numerals & Operators -->
+                <section class="doc-section" id="numerals">
+                    <h2 class="section-heading">
+                        លេខខ្មែរ & ប្រមាណវិធី (Khmer Numerals & Math)
+                        <a href="#numerals" class="heading-anchor">#</a>
+                    </h2>
+                    <p>
+                        ចំណុចអស្ចារ្យបំផុតរបស់ KhmerLang គឺការគាំទ្រលេខខ្មែរ <strong>០, ១, ២, ៣, ៤, ៥, ៦, ៧, ៨, ៩</strong> ជាលេខពិតប្រាកដក្នុងកម្រិត Lexer និង Parser។ អ្នកអាចយកលេខខ្មែរមកបូក ដក គុណ ចែក ឬប្រៀបធៀបបានដោយរលូន!
+                    </p>
+
+                    <div class="table-responsive">
+                        <table class="doc-table">
+                            <thead>
+                                <tr>
+                                    <th>ប្រមាណវិធី (Operator)</th>
+                                    <th>អត្ថន័យ (Description)</th>
+                                    <th>ឧទាហរណ៍ (Example)</th>
+                                    <th>លទ្ធផល (Result)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>+</code></td>
+                                    <td>បូកលេខ ឬភ្ជាប់អក្សរ</td>
+                                    <td><code>១០ + ៥</code></td>
+                                    <td><code>១៥</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>-</code></td>
+                                    <td>ដកលេខ</td>
+                                    <td><code>២០ - ៧</code></td>
+                                    <td><code>១៣</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>*</code></td>
+                                    <td>គុណលេខ</td>
+                                    <td><code>៦ * ៤</code></td>
+                                    <td><code>២៤</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>/</code></td>
+                                    <td>ចែកលេខ</td>
+                                    <td><code>៥០ / ២</code></td>
+                                    <td><code>២៥</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>%</code></td>
+                                    <td>សំណល់នៃការចែក (Modulo)</td>
+                                    <td><code>១០ % ៣</code></td>
+                                    <td><code>១</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>==</code>, <code>!=</code></td>
+                                    <td>ស្មើគ្នា, មិនស្មើគ្នា</td>
+                                    <td><code>៥ == ៥</code></td>
+                                    <td><code>ពិត</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>និង</code>, <code>ឬ</code>, <code>មិន</code></td>
+                                    <td>តក្កវិជ្ជា AND, OR, NOT</td>
+                                    <td><code>(៥ > ២) និង (៣ < ៤)</code></td>
+                                    <td><code>ពិត</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Runnable Snippet 3 -->
+                    <div class="code-card" id="snippet-math">
+                        <div class="code-card-header">
+                            <div class="code-card-meta">
+                                <span class="code-card-lang">KHMER</span>
+                                <span class="code-card-title">khmer_math.khmer</span>
+                            </div>
+                            <div class="code-card-actions">
+                                <button class="btn-code-action btn-copy-code">ចម្លង</button>
+                                <button class="btn-code-action btn-code-run">▷ រ៉ាន់កូដ</button>
+                            </div>
+                        </div>
+                        <div class="code-content-wrapper">
+                            <pre class="code-block"><code class="snippet-source"><span class="com"># ប្រមាណវិធីជាមួយលេខខ្មែរ</span>
+<span class="kw">តាំង</span> ក = ១៥
+<span class="kw">តាំង</span> ខ = ៥
+
+<span class="builtin">បង្ហាញ</span>(<span class="str">"ផលបូក:"</span>, ក + ខ)
+<span class="builtin">បង្ហាញ</span>(<span class="str">"ផលដក:"</span>, ក - ខ)
+<span class="builtin">បង្ហាញ</span>(<span class="str">"ផលគុណ:"</span>, ក * ខ)
+<span class="builtin">បង្ហាញ</span>(<span class="str">"ផលចែក:"</span>, ក / ខ)
+<span class="builtin">បង្ហាញ</span>(<span class="str">"តើ ក ធំជាង ខ ឬទេ?"</span>, ក > ខ)</code></pre>
+                        </div>
+                        <div class="code-output-drawer">
+                            <div class="code-output-header">
+                                <span class="code-output-title">ស្ថានីយលទ្ធផល (Terminal Output)</span>
+                                <span class="code-output-time"></span>
+                            </div>
+                            <div class="code-output-body"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section: Punctuations -->
+                <section class="doc-section" id="punctuations">
+                    <h2 class="section-heading">
+                        សញ្ញាវណ្ណយុត្តិ & បញ្ចប់បន្ទាត់ (Punctuations)
+                        <a href="#punctuations" class="heading-anchor">#</a>
+                    </h2>
+                    <p>
+                        KhmerLang បត់បែនតាមរចនាប័ទ្មខ្មែរ ដោយអនុញ្ញាតឱ្យប្រើសញ្ញាវណ្ណយុត្តិខ្មែរសម្រាប់បញ្ចប់ប្រយោគ ឬកំណត់លក្ខខណ្ឌ៖
+                    </p>
+                    <ul>
+                        <li><code>។</code> (ខណ្ឌ) ឬ <code>;</code> (Semicolon)៖ ប្រើសម្រាប់បញ្ចប់ប្រយោគ (Statement Terminator)។ ក៏អាចរំលងបានដែរប្រសិនបើចុះបន្ទាត់ថ្មី។</li>
+                        <li><code>៕</code> (បរិយោសាន)៖ សញ្ញាបញ្ចប់កថាខណ្ឌ ឬបញ្ចប់កម្មវិធី។</li>
+                        <li><code>៖</code> (គូសពីរចុច)៖ ប្រើសម្រាប់កំណត់ប្លុកកូដ ឬវិធីសាស្ត្រ។</li>
+                    </ul>
+
+                    <!-- Runnable Snippet 4 -->
+                    <div class="code-card" id="snippet-punc">
+                        <div class="code-card-header">
+                            <div class="code-card-meta">
+                                <span class="code-card-lang">KHMER</span>
+                                <span class="code-card-title">punctuations.khmer</span>
+                            </div>
+                            <div class="code-card-actions">
+                                <button class="btn-code-action btn-copy-code">ចម្លង</button>
+                                <button class="btn-code-action btn-code-run">▷ រ៉ាន់កូដ</button>
+                            </div>
+                        </div>
+                        <div class="code-content-wrapper">
+                            <pre class="code-block"><code class="snippet-source"><span class="com"># ការប្រើសញ្ញាខណ្ឌខ្មែរ (។)</span>
+<span class="kw">តាំង</span> ពិន្ទុ = ៩៥។
+<span class="kw">តាំង</span> និទ្ទេស = <span class="str">"A"</span>។
+
+<span class="builtin">បង្ហាញ</span>(<span class="str">"ទទួលបានពិន្ទុ:"</span>, ពិន្ទុ)។
+<span class="builtin">បង្ហាញ</span>(<span class="str">"និទ្ទេស:"</span>, និទ្ទេស)។</code></pre>
+                        </div>
+                        <div class="code-output-drawer">
+                            <div class="code-output-header">
+                                <span class="code-output-title">ស្ថានីយលទ្ធផល (Terminal Output)</span>
+                                <span class="code-output-time"></span>
+                            </div>
+                            <div class="code-output-body"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section: Conditionals -->
+                <section class="doc-section" id="conditionals">
+                    <h2 class="section-heading">
+                        លក្ខខណ្ឌ បើ...ឬបើ...ផ្សេងទៀត (Conditionals)
+                        <a href="#conditionals" class="heading-anchor">#</a>
+                    </h2>
+                    <p>
+                        ការសម្រេចចិត្តក្នុងកូដត្រូវបានគ្រប់គ្រងដោយពាក្យគន្លឹះ <code>បើ</code> (if), <code>ឬបើ</code> (else if), និង <code>ផ្សេងទៀត</code> (else)៖
+                    </p>
+
+                    <!-- Runnable Snippet 5 -->
+                    <div class="code-card" id="snippet-if">
+                        <div class="code-card-header">
+                            <div class="code-card-meta">
+                                <span class="code-card-lang">KHMER</span>
+                                <span class="code-card-title">conditions.khmer</span>
+                            </div>
+                            <div class="code-card-actions">
+                                <button class="btn-code-action btn-copy-code">ចម្លង</button>
+                                <button class="btn-code-action btn-code-run">▷ រ៉ាន់កូដ</button>
+                            </div>
+                        </div>
+                        <div class="code-content-wrapper">
+                            <pre class="code-block"><code class="snippet-source"><span class="kw">តាំង</span> ពិន្ទុ = ៨២
+
+<span class="kw">បើ</span> (ពិន្ទុ >= ៩០) {
+    <span class="builtin">បង្ហាញ</span>(<span class="str">"និទ្ទេស A — ល្អប្រសើរណាស់!"</span>)
+} <span class="kw">ឬបើ</span> (ពិន្ទុ >= ៨០) {
+    <span class="builtin">បង្ហាញ</span>(<span class="str">"និទ្ទេស B — ល្អណាស់!"</span>)
+} <span class="kw">ឬបើ</span> (ពិន្ទុ >= ៧០) {
+    <span class="builtin">បង្ហាញ</span>(<span class="str">"និទ្ទេស C — ល្អបង្គួរ!"</span>)
+} <span class="kw">ផ្សេងទៀត</span> {
+    <span class="builtin">បង្ហាញ</span>(<span class="str">"ត្រូវខិតខំប្រឹងប្រែងបន្ថែមទៀត!"</span>)
+}</code></pre>
+                        </div>
+                        <div class="code-output-drawer">
+                            <div class="code-output-header">
+                                <span class="code-output-title">ស្ថានីយលទ្ធផល (Terminal Output)</span>
+                                <span class="code-output-time"></span>
+                            </div>
+                            <div class="code-output-body"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section: Loops -->
+                <section class="doc-section" id="while-loop">
+                    <h2 class="section-heading">
+                        រង្វិលជុំ ខណៈ (While Loops)
+                        <a href="#while-loop" class="heading-anchor">#</a>
+                    </h2>
+                    <p>
+                        រង្វិលជុំ <code>ខណៈ</code> (while loop) ដំណើរការកូដសារឡើងវិញដរាបណាលក្ខខណ្ឌនៅតែមានតម្លៃ <code>ពិត</code>៖
+                    </p>
+
+                    <!-- Runnable Snippet 6 -->
+                    <div class="code-card" id="snippet-while">
+                        <div class="code-card-header">
+                            <div class="code-card-meta">
+                                <span class="code-card-lang">KHMER</span>
+                                <span class="code-card-title">while_loop.khmer</span>
+                            </div>
+                            <div class="code-card-actions">
+                                <button class="btn-code-action btn-copy-code">ចម្លង</button>
+                                <button class="btn-code-action btn-code-run">▷ រ៉ាន់កូដ</button>
+                            </div>
+                        </div>
+                        <div class="code-content-wrapper">
+                            <pre class="code-block"><code class="snippet-source"><span class="com"># រាប់ថយក្រោយពី ៥ ដល់ ១</span>
+<span class="kw">តាំង</span> ចំនួន = ៥
+
+<span class="kw">ខណៈ</span> (ចំនួន > ០) {
+    <span class="builtin">បង្ហាញ</span>(<span class="str">"រាប់ថយក្រោយ:"</span>, ចំនួន)
+    ចំនួន = ចំនួន - ១
+}
+
+<span class="builtin">បង្ហាញ</span>(<span class="str">"🚀 បាញ់បង្ហោះជោគជ័យ!"</span>)</code></pre>
+                        </div>
+                        <div class="code-output-drawer">
+                            <div class="code-output-header">
+                                <span class="code-output-title">ស្ថានីយលទ្ធផល (Terminal Output)</span>
+                                <span class="code-output-time"></span>
+                            </div>
+                            <div class="code-output-body"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section: For Loops -->
+                <section class="doc-section" id="for-loop">
+                    <h2 class="section-heading">
+                        រង្វិលជុំ សម្រាប់ (For Loops)
+                        <a href="#for-loop" class="heading-anchor">#</a>
+                    </h2>
+                    <p>
+                        រង្វិលជុំ <code>សម្រាប់</code> (for loop) ប្រើសម្រាប់ការរាប់ចំនួនជុំដែលមានកំណត់ច្បាស់លាស់៖
+                    </p>
+
+                    <!-- Runnable Snippet 7 -->
+                    <div class="code-card" id="snippet-for">
+                        <div class="code-card-header">
+                            <div class="code-card-meta">
+                                <span class="code-card-lang">KHMER</span>
+                                <span class="code-card-title">for_loop.khmer</span>
+                            </div>
+                            <div class="code-card-actions">
+                                <button class="btn-code-action btn-copy-code">ចម្លង</button>
+                                <button class="btn-code-action btn-code-run">▷ រ៉ាន់កូដ</button>
+                            </div>
+                        </div>
+                        <div class="code-content-wrapper">
+                            <pre class="code-block"><code class="snippet-source"><span class="com"># មេគុណ ៥</span>
+<span class="builtin">បង្ហាញ</span>(<span class="str">"--- តារាងមេគុណ ៥ ---"</span>)
+
+<span class="kw">សម្រាប់</span> (<span class="kw">តាំង</span> i = ១; i <= ៥; i = i + ១) {
+    <span class="builtin">បង្ហាញ</span>(<span class="str">"៥ x"</span>, i, <span class="str">"="</span>, ៥ * i)
+}</code></pre>
+                        </div>
+                        <div class="code-output-drawer">
+                            <div class="code-output-header">
+                                <span class="code-output-title">ស្ថានីយលទ្ធផល (Terminal Output)</span>
+                                <span class="code-output-time"></span>
+                            </div>
+                            <div class="code-output-body"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section: Functions -->
+                <section class="doc-section" id="functions">
+                    <h2 class="section-heading">
+                        ការបង្កើតអនុគមន៍ (Functions)
+                        <a href="#functions" class="heading-anchor">#</a>
+                    </h2>
+                    <p>
+                        អ្នកអាចបង្កើតអនុគមន៍ដោយប្រើពាក្យគន្លឹះ <code>អនុគមន៍</code> និងបញ្ជូនតម្លៃត្រឡប់មកវិញដោយប្រើ <code>ត្រឡប់</code> (return)៖
+                    </p>
+
+                    <!-- Runnable Snippet 8 -->
+                    <div class="code-card" id="snippet-fn">
+                        <div class="code-card-header">
+                            <div class="code-card-meta">
+                                <span class="code-card-lang">KHMER</span>
+                                <span class="code-card-title">functions.khmer</span>
+                            </div>
+                            <div class="code-card-actions">
+                                <button class="btn-code-action btn-copy-code">ចម្លង</button>
+                                <button class="btn-code-action btn-code-run">▷ រ៉ាន់កូដ</button>
+                            </div>
+                        </div>
+                        <div class="code-content-wrapper">
+                            <pre class="code-block"><code class="snippet-source"><span class="com"># អនុគមន៍គណនាផ្ទៃក្រឡាចតុកោណកែង</span>
+<span class="kw">អនុគមន៍</span> គណនាផ្ទៃ(បណ្តោយ, ទទឹង) {
+    <span class="kw">ត្រឡប់</span> បណ្តោយ * ទទឹង
+}
+
+<span class="kw">តាំង</span> ផ្ទៃ = គណនាផ្ទៃ(១០, ៥)
+<span class="builtin">បង្ហាញ</span>(<span class="str">"ផ្ទៃក្រឡាសរុបគឺ:"</span>, ផ្ទៃ, <span class="str">"ម៉ែត្រការ៉េ"</span>)</code></pre>
+                        </div>
+                        <div class="code-output-drawer">
+                            <div class="code-output-header">
+                                <span class="code-output-title">ស្ថានីយលទ្ធផល (Terminal Output)</span>
+                                <span class="code-output-time"></span>
+                            </div>
+                            <div class="code-output-body"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section: Recursion -->
+                <section class="doc-section" id="recursion">
+                    <h2 class="section-heading">
+                        Recursion (កូដ Fibonacci)
+                        <a href="#recursion" class="heading-anchor">#</a>
+                    </h2>
+                    <p>
+                        KhmerLang គាំទ្រការហៅអនុគមន៍ខ្លួនឯង (Recursive Functions) យ៉ាងរលូន៖
+                    </p>
+
+                    <!-- Runnable Snippet 9 -->
+                    <div class="code-card" id="snippet-fibo">
+                        <div class="code-card-header">
+                            <div class="code-card-meta">
+                                <span class="code-card-lang">KHMER</span>
+                                <span class="code-card-title">fibonacci.khmer</span>
+                            </div>
+                            <div class="code-card-actions">
+                                <button class="btn-code-action btn-copy-code">ចម្លង</button>
+                                <button class="btn-code-action btn-code-run">▷ រ៉ាន់កូដ</button>
+                            </div>
+                        </div>
+                        <div class="code-content-wrapper">
+                            <pre class="code-block"><code class="snippet-source"><span class="com"># កូដរកលេខ Fibonacci តាមបែប Recursive</span>
+<span class="kw">អនុគមន៍</span> ហ្វីបូណាឈី(n) {
+    <span class="kw">បើ</span> (n <= ០) {
+        <span class="kw">ត្រឡប់</span> ០
+    }
+    <span class="kw">បើ</span> (n == ១) {
+        <span class="kw">ត្រឡប់</span> ១
+    }
+    <span class="kw">ត្រឡប់</span> ហ្វីបូណាឈី(n - ១) + ហ្វីបូណាឈី(n - ២)
+}
+
+<span class="builtin">បង្ហាញ</span>(<span class="str">"--- លំដាប់ Fibonacci ពី ០ ដល់ ៧ ---"</span>)
+<span class="kw">សម្រាប់</span> (<span class="kw">តាំង</span> i = ០; i <= ៧; i = i + ១) {
+    <span class="builtin">បង្ហាញ</span>(<span class="str">"F("</span>, i, <span class="str">") ="</span>, ហ្វីបូណាឈី(i))
+}</code></pre>
+                        </div>
+                        <div class="code-output-drawer">
+                            <div class="code-output-header">
+                                <span class="code-output-title">ស្ថានីយលទ្ធផល (Terminal Output)</span>
+                                <span class="code-output-time"></span>
+                            </div>
+                            <div class="code-output-body"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section: OOP Classes & Methods -->
+                <section class="doc-section" id="classes">
+                    <h2 class="section-heading">
+                        ថ្នាក់ & Constructor (Object-Oriented Programming)
+                        <a href="#classes" class="heading-anchor">#</a>
+                    </h2>
+                    <p>
+                        KhmerLang គាំទ្រការសរសេរប្រូក្រាមតាមបែប OOP ពេញលេញ។ អ្នកអាចបង្កើតគំរូថ្នាក់ដោយប្រើពាក្យគន្លឹះ <code>ថ្នាក់</code> (Class) និងបង្កើត Constructor សម្រាប់ចាប់ផ្តើមទិន្នន័យដោយប្រើ <code>បង្កើត(...)</code>។
+                    </p>
+                    <p>
+                        ដើម្បីបង្កើត Instance ថ្មីនៃថ្នាក់ យើងប្រើពាក្យគន្លឹះ <code>ថ្មី</code> (New)៖
+                    </p>
+
+                    <!-- Runnable Snippet 10 -->
+                    <div class="code-card" id="snippet-oop-basic">
+                        <div class="code-card-header">
+                            <div class="code-card-meta">
+                                <span class="code-card-lang">KHMER</span>
+                                <span class="code-card-title">person_class.khmer</span>
+                            </div>
+                            <div class="code-card-actions">
+                                <button class="btn-code-action btn-copy-code">ចម្លង</button>
+                                <button class="btn-code-action btn-code-run">▷ រ៉ាន់កូដ</button>
+                            </div>
+                        </div>
+                        <div class="code-content-wrapper">
+                            <pre class="code-block"><code class="snippet-source"><span class="kw">ថ្នាក់</span> មនុស្ស {
+    <span class="kw">បង្កើត</span>(ឈ្មោះ, អាយុ) {
+        <span class="kw">នេះ</span>.ឈ្មោះ = ឈ្មោះ
+        <span class="kw">នេះ</span>.អាយុ = អាយុ
+    }
+
+    <span class="kw">វិធី</span> ណែនាំខ្លួន() {
+        <span class="builtin">បង្ហាញ</span>(<span class="str">"ជម្រាបសួរ! ខ្ញុំឈ្មោះ"</span>, <span class="kw">នេះ</span>.ឈ្មោះ, <span class="str">"អាយុ"</span>, <span class="kw">នេះ</span>.អាយុ, <span class="str">"ឆ្នាំ"</span>)
+    }
+}
+
+<span class="kw">តាំង</span> បុគ្គល១ = <span class="kw">ថ្មី</span> មនុស្ស(<span class="str">"វ៉េងឈួង"</span>, ២១)
+បុគ្គល១.ណែនាំខ្លួន()</code></pre>
+                        </div>
+                        <div class="code-output-drawer">
+                            <div class="code-output-header">
+                                <span class="code-output-title">ស្ថានីយលទ្ធផល (Terminal Output)</span>
+                                <span class="code-output-time"></span>
+                            </div>
+                            <div class="code-output-body"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section: OOP Inheritance -->
+                <section class="doc-section" id="inheritance">
+                    <h2 class="section-heading">
+                        ការបន្តវេនថ្នាក់ (OOP Inheritance: `បន្តពី`)
+                        <a href="#inheritance" class="heading-anchor">#</a>
+                    </h2>
+                    <p>
+                        ការបន្តវេនពីថ្នាក់មេ (Superclass) ត្រូវបានធ្វើឡើងដោយប្រើពាក្យគន្លឹះ <code>បន្តពី</code> (extends)។ ថ្នាក់កូន (Subclass) នឹងទទួលយកលក្ខណៈសម្បត្តិ និងវិធីសាស្ត្រពីថ្នាក់មេដោយស្វ័យប្រវត្តិ៖
+                    </p>
+
+                    <!-- Runnable Snippet 11 -->
+                    <div class="code-card" id="snippet-oop-inher">
+                        <div class="code-card-header">
+                            <div class="code-card-meta">
+                                <span class="code-card-lang">KHMER</span>
+                                <span class="code-card-title">inheritance.khmer</span>
+                            </div>
+                            <div class="code-card-actions">
+                                <button class="btn-code-action btn-copy-code">ចម្លង</button>
+                                <button class="btn-code-action btn-code-run">▷ រ៉ាន់កូដ</button>
+                            </div>
+                        </div>
+                        <div class="code-content-wrapper">
+                            <pre class="code-block"><code class="snippet-source"><span class="kw">ថ្នាក់</span> សត្វ {
+    <span class="kw">បង្កើត</span>(ឈ្មោះ) {
+        <span class="kw">នេះ</span>.ឈ្មោះ = ឈ្មោះ
+    }
+
+    <span class="kw">វិធី</span> ធ្វើសំឡេង() {
+        <span class="builtin">បង្ហាញ</span>(<span class="kw">នេះ</span>.ឈ្មោះ, <span class="str">"កំពុងធ្វើសំឡេង..."</span>)
+    }
+}
+
+<span class="com"># ថ្នាក់ ឆ្កែ បន្តវេនពី ថ្នាក់ សត្វ</span>
+<span class="kw">ថ្នាក់</span> ឆ្កែ <span class="kw">បន្តពី</span> សត្វ {
+    <span class="kw">វិធី</span> ព្រុស() {
+        <span class="builtin">បង្ហាញ</span>(<span class="kw">នេះ</span>.ឈ្មោះ, <span class="str">"ព្រុស: វូស! វូស!"</span>)
+    }
+}
+
+<span class="kw">តាំង</span> គូគី = <span class="kw">ថ្មី</span> ឆ្កែ(<span class="str">"គូគី"</span>)
+គូគី.ធ្វើសំឡេង()
+គូគី.ព្រុស()</code></pre>
+                        </div>
+                        <div class="code-output-drawer">
+                            <div class="code-output-header">
+                                <span class="code-output-title">ស្ថានីយលទ្ធផល (Terminal Output)</span>
+                                <span class="code-output-time"></span>
+                            </div>
+                            <div class="code-output-body"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section: Builtins -->
+                <section class="doc-section" id="builtins">
+                    <h2 class="section-heading">
+                        អនុគមន៍ស្ដង់ដារ (Built-in Functions)
+                        <a href="#builtins" class="heading-anchor">#</a>
+                    </h2>
+                    <p>KhmerLang ផ្ដល់នូវអនុគមន៍ស្ដង់ដារដែលភ្ជាប់មកស្រាប់ជាមួយភាសា៖</p>
+
+                    <div class="table-responsive">
+                        <table class="doc-table">
+                            <thead>
+                                <tr>
+                                    <th>អនុគមន៍ (Builtin)</th>
+                                    <th>ការប្រើប្រាស់ (Usage)</th>
+                                    <th>ការពន្យល់ (Explanation)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>បង្ហាញ(...)</code></td>
+                                    <td><code>បង្ហាញ("តម្លៃ:", x)</code></td>
+                                    <td>បង្ហាញអត្ថបទ ឬតម្លៃអថេរនៅលើស្ថានីយ (Standard Output)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>ប្រវែង(...)</code></td>
+                                    <td><code>ប្រវែង("កម្ពុជា")</code></td>
+                                    <td>គណនាប្រវែងតួអក្សរ ឬចំនួនធាតុក្នុង Array</td>
+                                </tr>
+                                <tr>
+                                    <td><code>ប្រភេទ(...)</code></td>
+                                    <td><code>ប្រភេទ(១២៣)</code></td>
+                                    <td>កំណត់ប្រភេទតម្លៃ (string, number, boolean, null, class, etc.)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>បន្ថែម(...)</code></td>
+                                    <td><code>បន្ថែម(បញ្ជី, ធាតុថ្មី)</code></td>
+                                    <td>បន្ថែមធាតុថ្មីទៅចុងបញ្ចប់នៃបញ្ជី Array</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Section: Tools & IDEs -->
+                <section class="doc-section" id="ides">
+                    <h2 class="section-heading">
+                        ឧបករណ៍អភិវឌ្ឍន៍ (Tools & IDEs)
+                        <a href="#ides" class="heading-anchor">#</a>
+                    </h2>
+                    <p>
+                        ដើម្បីសម្រួលដល់ការសរសេរកូដ ប្រព័ន្ធអេកូឡូស៊ី KhmerLang រួមមានឧបករណ៍ទំនើបៗជាច្រើន៖
+                    </p>
+
+                    <ul>
+                        <li>
+                            <strong>KhmerLang Flutter IDE (Cross-Platform)៖</strong> 
+                            កម្មវិធីសរសេរកូដបង្កើតឡើងដោយ Flutter មានម៉ាស៊ីន Dart Engine ក្នុងស្រុក គាំទ្រការសរសេរលើ macOS, Windows, Linux និង Web ដោយផ្ទាល់ ជាមួយ Virtual Khmer Keyboard, Tabs, AST Inspector និង Output Console។
+                        </li>
+                        <li>
+                            <strong>Programiz-Style Web IDE៖</strong> 
+                            កម្មវិធីសរសេរកូដរចនាប័ទ្ម Programiz ដំណើរការលើ Web Browser ជាមួយ Python Backend Server។
+                        </li>
+                        <li>
+                            <strong>Command Line Interface (CLI) & REPL៖</strong> 
+                            ឧបករណ៍បញ្ជាផ្ទាល់តាមរយៈ Terminal សម្រាប់រ៉ាន់ឯកសារ <code>.khmer</code>។
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- Section: Cheat Sheet -->
+                <section class="doc-section" id="cheat-sheet">
+                    <h2 class="section-heading">
+                        តារាងសង្ខេបពាក្យគន្លឹះ (Khmer Syntax Cheat Sheet)
+                        <a href="#cheat-sheet" class="heading-anchor">#</a>
+                    </h2>
+                    <p>
+                        តារាងយោងសម្រាប់ពាក្យគន្លឹះទាំងអស់នៅក្នុងភាសាខ្មែរ (KhmerLang)៖
+                    </p>
+
+                    <div class="table-responsive">
+                        <table class="doc-table">
+                            <thead>
+                                <tr>
+                                    <th>ពាក្យគន្លឹះ (Keyword)</th>
+                                    <th>សមមូលអង់គ្លេស (Equivalent)</th>
+                                    <th>អត្ថន័យ និងការប្រើប្រាស់</th>
+                                    <th>ឧទាហរណ៍កូដ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>តាំង</code></td>
+                                    <td><code>let / var</code></td>
+                                    <td>ប្រកាសអថេរថ្មី</td>
+                                    <td><code>តាំង x = ១០;</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>បង្ហាញ</code></td>
+                                    <td><code>print / echo</code></td>
+                                    <td>បង្ហាញលទ្ធផលលើអេក្រង់</td>
+                                    <td><code>បង្ហាញ("សួស្តី");</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>បើ</code></td>
+                                    <td><code>if</code></td>
+                                    <td>លក្ខខណ្ឌផ្ទៀងផ្ទាត់ដំបូង</td>
+                                    <td><code>បើ (x > ០) { ... }</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>ឬបើ</code></td>
+                                    <td><code>else if / elif</code></td>
+                                    <td>លក្ខខណ្ឌបន្ទាប់</td>
+                                    <td><code>ឬបើ (x == ០) { ... }</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>ផ្សេងទៀត</code></td>
+                                    <td><code>else</code></td>
+                                    <td>លក្ខខណ្ឌក្រៅពីនេះ</td>
+                                    <td><code>ផ្សេងទៀត { ... }</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>ខណៈ</code></td>
+                                    <td><code>while</code></td>
+                                    <td>រង្វិលជុំផ្ទៀងផ្ទាត់លក្ខខណ្ឌ</td>
+                                    <td><code>ខណៈ (x > ០) { ... }</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>សម្រាប់</code></td>
+                                    <td><code>for</code></td>
+                                    <td>រង្វិលជុំមានចំនួនជុំកំណត់</td>
+                                    <td><code>សម្រាប់ (តាំង i=០; i<៥; i=i+១)</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>អនុគមន៍</code> / <code>វិធី</code></td>
+                                    <td><code>function / def</code></td>
+                                    <td>ប្រកាសអនុគមន៍ ឬវិធីសាស្ត្រ</td>
+                                    <td><code>អនុគមន៍ បូក(ក, ខ) { ... }</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>ត្រឡប់</code></td>
+                                    <td><code>return</code></td>
+                                    <td>បញ្ជូនតម្លៃត្រឡប់ពីអនុគមន៍</td>
+                                    <td><code>ត្រឡប់ ក + ខ</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>ថ្នាក់</code></td>
+                                    <td><code>class</code></td>
+                                    <td>ប្រកាសថ្នាក់ OOP</td>
+                                    <td><code>ថ្នាក់ សិស្ស { ... }</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>បង្កើត</code></td>
+                                    <td><code>constructor / __init__</code></td>
+                                    <td>វិធីសាស្ត្រចាប់ផ្ដើមបង្កើតវត្ថុ</td>
+                                    <td><code>បង្កើត(ឈ្មោះ) { នេះ.ឈ្មោះ = ឈ្មោះ }</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>នេះ</code> / <code>ខ្លួនវា</code></td>
+                                    <td><code>this / self</code></td>
+                                    <td>យោងទៅលើ Object បច្ចុប្បន្ន</td>
+                                    <td><code>នេះ.ឈ្មោះ = "វ៉េងឈួង"</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>ថ្មី</code></td>
+                                    <td><code>new</code></td>
+                                    <td>បង្កើត Instance ថ្មីនៃថ្នាក់</td>
+                                    <td><code>តាំង p = ថ្មី សិស្ស("តារា")</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>បន្តពី</code></td>
+                                    <td><code>extends</code></td>
+                                    <td>បន្តវេនពីថ្នាក់មេ (Inheritance)</td>
+                                    <td><code>ថ្នាក់ ឆ្មា បន្តពី សត្វ</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>ពិត</code></td>
+                                    <td><code>true</code></td>
+                                    <td>តម្លៃប៊ូលីនពិត</td>
+                                    <td><code>តាំង ត្រូវ = ពិត</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>មិនពិត</code></td>
+                                    <td><code>false</code></td>
+                                    <td>តម្លៃប៊ូលីនមិនពិត</td>
+                                    <td><code>តាំង ខុស = មិនពិត</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>ទទេ</code></td>
+                                    <td><code>null / none</code></td>
+                                    <td>តម្លៃទទេគ្មានទិន្នន័យ</td>
+                                    <td><code>តាំង ទិន្នន័យ = ទទេ</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Section: Live Interactive Playground -->
+                <section class="doc-section" id="playground">
+                    <h2 class="section-heading">
+                        🎮 ស្ថានីយសាកល្បងកូដផ្ទាល់ (Live Interactive Playground)
+                        <a href="#playground" class="heading-anchor">#</a>
+                    </h2>
+                    <p>
+                        សរសេរ និងរ៉ាន់កូដ KhmerLang ដោយផ្ទាល់ក្នុង Browser របស់អ្នក! ជ្រើសរើសកូដគំរូ ឬសរសេរកូដផ្ទាល់ខ្លួនរបស់អ្នក រួចចុច <strong>"▷ ដំណើការកូដ (Run)"</strong>៖
+                    </p>
+
+                    <div class="playground-container">
+                        <div class="playground-toolbar">
+                            <div style="display:flex; align-items:center; gap:0.6rem;">
+                                <label for="playground-sample-select" style="font-size:0.8rem; color:var(--text-muted); font-weight:600;">កូដគំរូ:</label>
+                                <select id="playground-sample-select" class="playground-sample-select">
+                                    <option value="hello">១. សួស្តីពិភពលោក (Hello World)</option>
+                                    <option value="math">២. គណនាផលបូកលេខខ្មែរ (Khmer Math)</option>
+                                    <option value="fibo">៣. រកលេខ Fibonacci (Recursion)</option>
+                                    <option value="oop">៤. OOP សត្វ និង ឆ្កែ (Inheritance)</option>
+                                    <option value="grades">៥. គណនាពិន្ទុសិស្ស (Grading System)</option>
+                                </select>
+                            </div>
+
+                            <div class="playground-actions">
+                                <button class="btn-playground-clear" id="btn-playground-clear" title="លុបលទ្ធផល">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                                    <span>លុបលទ្ធផល</span>
+                                </button>
+                                <button class="btn-playground-run" id="btn-playground-run">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                                    <span>▷ ដំណើការកូដ (Run)</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Quick Virtual Keyboard for Khmer Keypad -->
+                        <div class="playground-virtual-keys" id="playground-virtual-keys">
+                            <span style="font-size:0.75rem; color:var(--text-muted); margin-right:0.25rem;">ពាក្យគន្លឹះរហ័ស:</span>
+                            <button class="vk-btn" data-insert="តាំង ">តាំង</button>
+                            <button class="vk-btn" data-insert="បង្ហាញ()">បង្ហាញ()</button>
+                            <button class="vk-btn" data-insert="បើ () {&#10;&#10;}">បើ</button>
+                            <button class="vk-btn" data-insert="ឬបើ () {&#10;&#10;}">ឬបើ</button>
+                            <button class="vk-btn" data-insert="ផ្សេងទៀត {&#10;&#10;}">ផ្សេងទៀត</button>
+                            <button class="vk-btn" data-insert="ខណៈ () {&#10;&#10;}">ខណៈ</button>
+                            <button class="vk-btn" data-insert="សម្រាប់ (តាំង i = ០; i < ៥; i = i + ១) {&#10;&#10;}">សម្រាប់</button>
+                            <button class="vk-btn" data-insert="អនុគមន៍ ឈ្មោះ() {&#10;&#10;}">អនុគមន៍</button>
+                            <button class="vk-btn" data-insert="ត្រឡប់ ">ត្រឡប់</button>
+                            <button class="vk-btn" data-insert="ថ្នាក់ ឈ្មោះ {&#10;&#10;}">ថ្នាក់</button>
+                            <button class="vk-btn" data-insert="បង្កើត() {&#10;&#10;}">បង្កើត</button>
+                            <button class="vk-btn" data-insert="វិធី ឈ្មោះ() {&#10;&#10;}">វិធី</button>
+                            <button class="vk-btn" data-insert="នេះ.">នេះ.</button>
+                            <button class="vk-btn" data-insert="ថ្មី ">ថ្មី</button>
+                            <button class="vk-btn" data-insert="បន្តពី ">បន្តពី</button>
+                            <button class="vk-btn" data-insert="ពិត">ពិត</button>
+                            <button class="vk-btn" data-insert="មិនពិត">មិនពិត</button>
+                            <button class="vk-btn" data-insert="ទទេ">ទទេ</button>
+                            <button class="vk-btn" data-insert="។">។</button>
+                            <button class="vk-btn" data-insert="៕">៕</button>
+                        </div>
+
+                        <div class="playground-grid">
+                            <div class="playground-editor-pane">
+                                <textarea id="playground-editor" class="playground-textarea" spellcheck="false" placeholder="សរសេរកូដខ្មែរនៅទីនេះ..."></textarea>
+                            </div>
+                            <div class="playground-console-pane">
+                                <div class="console-pane-header">
+                                    <span class="console-pane-title">ស្ថានីយលទ្ធផល (Console Output)</span>
+                                    <span id="playground-exec-time" style="font-size:0.75rem; color:var(--text-muted);">រួចរាល់</span>
+                                </div>
+                                <div class="console-pane-body" id="playground-output">សូមចុចប៊ូតុង "▷ ដំណើការកូដ (Run)" ដើម្បីមើលលទ្ធផល...</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+
+        <!-- Right Rail Table of Contents (On this page) -->
+        <aside class="docs-toc" id="docs-toc" aria-label="មាតិកាទំព័រនេះ">
+            <div class="toc-title">មាតិកាទំព័រនេះ</div>
+            <ul class="toc-list" id="toc-list">
+                <li><a href="#intro" class="toc-link active">សេចក្តីផ្តើម</a></li>
+                <li><a href="#install" class="toc-link">ការដំឡើង & ការចាប់ផ្តើម</a></li>
+                <li><a href="#hello-world" class="toc-link">កម្មវិធីដំបូង</a></li>
+                <li><a href="#variables" class="toc-link">អថេរ & ប្រភេទតម្លៃ</a></li>
+                <li><a href="#numerals" class="toc-link">លេខខ្មែរ & ប្រមាណវិធី</a></li>
+                <li><a href="#punctuations" class="toc-link">សញ្ញាវណ្ណយុត្តិ</a></li>
+                <li><a href="#conditionals" class="toc-link">លក្ខខណ្ឌ បើ/ឬបើ/ផ្សេងទៀត</a></li>
+                <li><a href="#while-loop" class="toc-link">រង្វិលជុំ ខណៈ</a></li>
+                <li><a href="#for-loop" class="toc-link">រង្វិលជុំ សម្រាប់</a></li>
+                <li><a href="#functions" class="toc-link">ការបង្កើតអនុគមន៍</a></li>
+                <li><a href="#recursion" class="toc-link">Recursion (Fibonacci)</a></li>
+                <li><a href="#classes" class="toc-link">ថ្នាក់ & Constructor</a></li>
+                <li><a href="#inheritance" class="toc-link">ការបន្តវេន (`បន្តពី`)</a></li>
+                <li><a href="#builtins" class="toc-link">អនុគមន៍ស្ដង់ដារ</a></li>
+                <li><a href="#ides" class="toc-link">ឧបករណ៍ & IDEs</a></li>
+                <li><a href="#cheat-sheet" class="toc-link">តារាងពាក្យគន្លឹះ</a></li>
+                <li><a href="#playground" class="toc-link">🎮 ស្ថានីយសាកល្បងកូដ</a></li>
+            </ul>
+        </aside>
+
+    </div>
+
+    <!-- ===================================================================
+         Search Modal Dialog (Cmd+K)
+         =================================================================== -->
+    <div class="search-modal-backdrop" id="search-modal-backdrop">
+        <div class="search-modal-card" id="search-modal-card" role="dialog" aria-modal="true" aria-label="ស្វែងរកក្នុងឯកសារ">
+            <div class="search-input-header">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <input type="text" id="search-modal-input" class="search-modal-input" placeholder="វាយពាក្យគន្លឹះ ឬប្រធានបទដែលចង់ស្វែងរក..." autocomplete="off">
+                <kbd style="font-size:0.75rem; background:var(--bg-surface-elevated); padding:0.2rem 0.5rem; border-radius:4px; border:1px solid var(--border-subtle); color:var(--text-muted);">ESC</kbd>
+            </div>
+            <ul class="search-results-list" id="search-results-list">
+                <!-- Search items populated dynamically by docs.js -->
+            </ul>
+            <div class="search-modal-footer">
+                <span>រុករកដោយប្រើ <strong>↑</strong> <strong>↓</strong> និងចុច <strong>Enter</strong> ដើម្បីជ្រើសរើស</span>
+                <span>KhmerLang Docs Search</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="docs-footer">
+        <p>ភាសាខ្មែរ (KhmerLang) — រក្សាសិទ្ធិគ្រប់យ៉ាង © 2026 ដោយ Veng Chhuong និងសហគមន៍អ្នកអភិវឌ្ឍន៍កម្ពុជា</p>
+        <p style="margin-top:0.4rem; font-size:0.8rem;">
+            បង្កើតឡើងដោយមោទនភាពសម្រាប់អ្នកអភិវឌ្ឍន៍ខ្មែរទាំងអស់គ្នា | 
+            <a href="https://github.com/sengson-great/KhmerLang" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
+        </p>
+    </footer>
+
+    <!-- JavaScript Engine & Docs Interactivity -->
+    <script src="khmer_lang_engine.js"></script>
+    <script src="docs.js"></script>
+</body>
+</html>

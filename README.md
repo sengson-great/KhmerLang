@@ -38,27 +38,80 @@
 
 ---
 
-## 🚀 របៀបដំណើការ (How to Run)
+## 🚀 របៀបដំឡើង និងដំណើការ (Installation & Quickstart)
 
-### ១. ដំណើការ Programiz-Style Web IDE (Web Playground)
-ដើម្បីបើកកម្មវិធីសរសេរកូដលើ Web Browser:
+### ១. ដំឡើងភាសាខ្មែរលើកុំព្យូទ័ររបស់អ្នក (Universal One-Line Installer)
+អ្នកប្រើប្រាស់ទូទៅអាចដំឡើង **KhmerLang CLI** ដោយផ្ទាល់ជាមួយពាក្យបញ្ជាតែមួយបន្ទាត់៖
+
+* **លើ macOS & Linux (Terminal)**:
+  ```bash
+  curl -fsSL https://raw.githubusercontent.com/sengson-great/KhmerLang/main/install.sh | bash
+  ```
+
+* **លើ Windows (PowerShell)**:
+  ```powershell
+  irm https://raw.githubusercontent.com/sengson-great/KhmerLang/main/install.ps1 | iex
+  ```
+
+* **ឬដំឡើងតាមរយៈ Python Pip (គ្រប់ OS ទាំងអស់)**:
+  ```bash
+  pip install git+https://github.com/sengson-great/KhmerLang.git
+  ```
+
+---
+
+### ២. ការប្រើប្រាស់ជាមួយ Text Editor ណាមួយតាមរយៈ CLI (Use With Any Text Editor)
+បន្ទាប់ពីដំឡើងរួច KhmerLang អាចប្រើប្រាស់ជាមួយគ្រប់ Text Editor ទាំងអស់ (VS Code, Cursor, Vim, Neovim, Sublime Text, Nano, Zed, ឬ Terminal)៖
+
 ```bash
-python3 server.py 8000
-```
-បន្ទាប់មកបើក Web Browser រួចចូលទៅកាន់: **`http://localhost:8000`**
+# ១. ដំឡើង Syntax Highlighting សម្រាប់ Editor របស់អ្នក
+khmer editor vscode        # សម្រាប់ VS Code / Cursor
+khmer editor vim           # សម្រាប់ Vim / Neovim
+khmer editor sublime       # សម្រាប់ Sublime Text
+khmer editor nano          # សម្រាប់ GNU Nano
 
-### ២. ដំណើការតាម Terminal / CLI
+# ៣. បង្កើតគម្រោងថ្មី (Scaffold Project ជាមួយ VS Code Tasks ស្រាប់)
+khmer init my_project
+cd my_project
+
+# ៤. រ៉ាន់កូដឯកសាររបស់អ្នក
+khmer main.khmer
+# ឬ: khmer run main.khmer
+
+# ៥. ពិនិត្យវេយ្យាករណ៍ដោយមិនរ៉ាន់ (Syntax Check / Linter)
+khmer check main.khmer
+
+# ៦. មុខងារ Live-Reload តាមដាន និងរ៉ាន់កូដស្វ័យប្រវត្តិពេល Save ក្នុង Editor
+khmer watch main.khmer
+
+# ៧. រ៉ាន់កូដ String ផ្ទាល់ ឬតាមរយៈ Pipe / Stdin
+khmer -e 'បង្ហាញ("សួស្តីពី CLI!");'
+cat main.khmer | khmer -
+
+# ៨. បើក REPL សម្រាប់សរសេរកូដភ្លាមៗ
+khmer
+```
+
+
+### ៣. ដំណើការ Flutter IDE សម្រាប់ភាសាខ្មែរ (Cross-Platform Flutter IDE)
+កម្មវិធីសរសេរកូដបែបទំនើបបង្កើតឡើងដោយ Flutter មានម៉ាស៊ីន Dart Engine ក្នុងស្រុក (រ៉ាន់ភ្លាមៗ មិនបាច់មាន Server):
 ```bash
-# ដំណើការឯកសារកូដខ្មែរ OOP
-./bin/khmer examples/oop.khmer
+cd khmer_ide
 
-# ដំណើការឯកសារគំរូផ្សេងៗ
-./bin/khmer examples/hello.khmer
-./bin/khmer examples/functions.khmer
+# ដំណើការលើ Desktop (macOS)
+flutter run -d macos
 
-# បើក REPL សម្រាប់សរសេរកូដភ្លាមៗ
-./bin/khmer
+# ឬដំណើការលើ Web Browser (Chrome)
+flutter run -d chrome
 ```
+
+### ៤. បើកគេហទំព័រឯកសារណែនាំផ្លូវការ (Official Documentation Website)
+គេហទំព័រឯកសារណែនាំផ្លូវការ (Documentation Website) បង្កើតឡើងដោយរចនាប័ទ្មទំនើប មានម៉ាស៊ីន Client-side JS Engine សម្រាប់រ៉ាន់កូដគំរូនីមួយៗលើ Browser ដោយផ្ទាល់ រួមទាំងមាន **Live Interactive Playground**, **Search Modal (⌘K)**, និង **Dark/Light Mode**:
+```bash
+# ដំណើការគេហទំព័រឯកសារតាម Browser
+python3 -m http.server 8088 --directory docs
+```
+បន្ទាប់មកបើក Web Browser រួចចូលទៅកាន់: **`http://localhost:8088`** ឬបើកឯកសារ `docs/index.html` ដោយផ្ទាល់។
 
 ---
 

@@ -2,8 +2,9 @@
 import sys
 import os
 
-# Add parent directory to python path
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+# Add parent directory of real file to python path (resolves symlinks)
+real_dir = os.path.dirname(os.path.realpath(__file__))
+sys.path.insert(0, os.path.abspath(os.path.join(real_dir, '..')))
 
 from khmer_lang.cli import main
 
