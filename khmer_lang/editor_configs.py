@@ -465,17 +465,6 @@ def install_vscode_extension(target_dir: str = None) -> str:
     return target_dir
 
 
-def get_vscode_terminal_font_config() -> Dict[str, Any]:
-    """Returns recommended font and line-height settings for Khmer in VS Code."""
-    return {
-        "terminal.integrated.fontFamily": "'Noto Sans Khmer', 'Kantumruy Pro', 'JetBrains Mono', Menlo, monospace",
-        "terminal.integrated.lineHeight": 1.35,
-        "terminal.integrated.fontSize": 14,
-        "editor.fontFamily": "'Noto Sans Khmer', 'Kantumruy Pro', 'JetBrains Mono', Menlo, monospace",
-        "editor.lineHeight": 24,
-    }
-
-
 def find_vscode_settings_path() -> str:
     """Finds user's VS Code settings.json path across macOS, Linux, and Windows."""
     import platform
@@ -490,28 +479,38 @@ def find_vscode_settings_path() -> str:
         return os.path.join(home, ".config", "Code", "User", "settings.json")
 
 
-def configure_vscode_terminal_fonts(settings_path: str = None) -> bool:
-    """Safely adds or updates Khmer terminal font configuration in VS Code settings.json."""
+def restore_vscode_settings(settings_path: str = None) -> list:
+    """Removes Khmer terminal/editor font overrides and restores clean defaults."""
     if not settings_path:
         settings_path = find_vscode_settings_path()
 
-    current: Dict[str, Any] = {}
-    if os.path.exists(settings_path):
-        try:
-            with open(settings_path, "r", encoding="utf-8") as f:
-                current = json.load(f)
-        except Exception:
-            current = {}
-    else:
-        os.makedirs(os.path.dirname(settings_path), exist_ok=True)
+    if not os.path.exists(settings_path):
+        return []
 
-    recommended = get_vscode_terminal_font_config()
-    current.update(recommended)
+    try:
+        with open(settings_path, "r", encoding="utf-8") as f:
+            current = json.load(f)
+    except Exception:
+        return []
 
-    with open(settings_path, "w", encoding="utf-8") as f:
-        json.dump(current, f, indent=2, ensure_ascii=False)
+    keys_to_remove = [
+        "terminal.integrated.fontFamily",
+        "terminal.integrated.lineHeight",
+        "terminal.integrated.fontSize",
+        "editor.fontFamily",
+        "editor.lineHeight",
+    ]
+    removed = []
+    for k in keys_to_remove:
+        if k in current:
+            del current[k]
+            removed.append(k)
 
-    return True
+    if removed:
+        with open(settings_path, "w", encoding="utf-8") as f:
+            json.dump(current, f, indent=2, ensure_ascii=False)
+
+    return removed
 
 
 def detect_khmer_fonts() -> list:

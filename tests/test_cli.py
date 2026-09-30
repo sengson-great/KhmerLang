@@ -10,8 +10,7 @@ from khmer_lang.editor_configs import (
     get_sublime_syntax,
     get_nano_syntax,
     install_vscode_extension,
-    get_vscode_terminal_font_config,
-    configure_vscode_terminal_fonts,
+    restore_vscode_settings,
     detect_khmer_fonts
 )
 
@@ -65,24 +64,20 @@ class TestCLIFeatures(unittest.TestCase):
         nano_syn = get_nano_syntax()
         self.assertIn('syntax "khmer"', nano_syn)
 
-    def test_vscode_terminal_font_config(self):
-        conf = get_vscode_terminal_font_config()
-        self.assertIn("terminal.integrated.fontFamily", conf)
-        self.assertIn("terminal.integrated.lineHeight", conf)
-        self.assertGreaterEqual(conf["terminal.integrated.lineHeight"], 1.3)
-
-    def test_configure_vscode_terminal_fonts(self):
+    def test_restore_vscode_settings(self):
         temp_dir = tempfile.mkdtemp()
         try:
             settings_path = os.path.join(temp_dir, "settings.json")
-            res = configure_vscode_terminal_fonts(settings_path)
-            self.assertTrue(res)
-            self.assertTrue(os.path.exists(settings_path))
             import json
+            with open(settings_path, "w", encoding="utf-8") as f:
+                json.dump({"terminal.integrated.fontFamily": "fake", "editor.fontFamily": "fake", "other": True}, f)
+            removed = restore_vscode_settings(settings_path)
+            self.assertEqual(len(removed), 2)
             with open(settings_path, "r", encoding="utf-8") as f:
                 data = json.load(f)
-            self.assertIn("terminal.integrated.fontFamily", data)
-            self.assertEqual(data["terminal.integrated.lineHeight"], 1.35)
+            self.assertNotIn("terminal.integrated.fontFamily", data)
+            self.assertNotIn("editor.fontFamily", data)
+            self.assertTrue(data.get("other"))
         finally:
             shutil.rmtree(temp_dir)
 

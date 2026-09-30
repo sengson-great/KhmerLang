@@ -18,7 +18,7 @@ from khmer_lang.editor_configs import (
     get_sublime_build,
     get_nano_syntax,
     install_vscode_extension,
-    configure_vscode_terminal_fonts,
+    restore_vscode_settings,
     find_vscode_settings_path,
     detect_khmer_fonts
 )
@@ -412,22 +412,18 @@ def handle_editor_cmd(subcommand: str, extra_args: list):
 
 
 def handle_terminal_cmd(args: list):
-    """Diagnoses terminal fonts, renders test clusters, and guides or fixes terminal settings."""
-    if "--fix" in args or "--fix-vscode" in args:
+    """Diagnoses terminal fonts, renders test clusters, and explains terminal mechanics."""
+    if "--reset" in args or "--restore" in args or "--fix" in args:
         settings_path = find_vscode_settings_path()
-        try:
-            configure_vscode_terminal_fonts(settings_path)
-            print("✓ បានកែសម្រួលការកំណត់ Font សម្រាប់ VS Code Terminal រួចរាល់!")
-            print(f"  ទីតាំងកំណត់ / Settings file: {settings_path}")
-            print("  ការកំណត់ដែលបានបន្ថែម:")
-            print("    • terminal.integrated.fontFamily: 'Noto Sans Khmer', 'Kantumruy Pro', 'JetBrains Mono', Menlo, monospace")
-            print("    • terminal.integrated.lineHeight: 1.35")
-            print("    • terminal.integrated.fontSize: 14")
-            print("\nសូមបើក Terminal ថ្មីក្នុង VS Code (Kill & New Terminal) ដើម្បីដំណើរការ។")
-            return
-        except Exception as e:
-            print(f"កំហុស/Error configuring VS Code: {e}", file=sys.stderr)
-            sys.exit(1)
+        removed = restore_vscode_settings(settings_path)
+        if removed:
+            print("✓ បានលុបការកំណត់ Font override និងស្តារការកំណត់ដើមឡើងវិញ (Restored default settings):")
+            for r in removed:
+                print(f"  - បានលុប {r}")
+            print("\nសូមបើក Terminal ថ្មីក្នុង VS Code ដើម្បីត្រឡប់ទៅសភាពដើមវិញ (Default clean monospace).")
+        else:
+            print("✓ ការកំណត់ VS Code របស់អ្នកស្ថិតក្នុងសភាពធម្មតាស្រាប់ហើយ (Clean defaults).")
+        return
 
     print("=" * 60)
     print("  ឧបករណ៍ត្រួតពិនិត្យ Terminal សម្រាប់ភាសាខ្មែរ (Khmer Terminal Guide)")
@@ -450,7 +446,6 @@ def handle_terminal_cmd(args: list):
             print(f"   ... និង {len(fonts) - 8} ពុម្ពអក្សរផ្សេងទៀត")
     else:
         print("   ⚠ មិនទាន់រកឃើញពុម្ពអក្សរ Noto Sans Khmer ឬ Kantumruy Pro ទេ។")
-        print("   សូមដោនឡូតពី Google Fonts: https://fonts.google.com/specimen/Noto+Sans+Khmer")
 
     # 3. Visual rendering test
     print("\n3. តេស្តការបង្ហាញអក្សរខ្មែរ (Visual Rendering Test):")
@@ -460,33 +455,17 @@ def handle_terminal_cmd(args: list):
     print("   │ ជើង   : ក្ក ខ្ម គ្ម ច្ច ញ្ជ ដ្ដ ណ្ត ត្ត ថ្ម ទ្ធ ម្ភ ស្រី ស្ត្រី   │")
     print("   │ ពាក្យ  : ភាសាខ្មែរ កម្ពុជា សួស្តី ខ្ញុំបាទ សេចក្តីស្រឡាញ់ │")
     print("   └────────────────────────────────────────────────────────┘")
-    print("   (ចំណាំ៖ បើឃើញរង្វង់មូលចំនុចៗ ◌្ ឬស្រៈដាច់ពីតួអក្សរ មានន័យថា Terminal មិនទាន់ស្គាល់ Font ឬ Ligature ទេ)")
+    print("   (ចំណាំ៖ បើឃើញរង្វង់មូលចំនុចៗ ◌្ ឬស្រៈដាច់ មានន័យថា Terminal មិនស្គាល់ HarfBuzz CTL)")
 
-    # 4. Step-by-step instructions
-    print("\n4. វិធីដោះស្រាយតាមប្រភេទ Terminal (How to fix):")
-    print("\n   [ក] VS Code / Cursor Integrated Terminal:")
-    print("       រ៉ាន់ពាក្យបញ្ជានេះដើម្បីកំណត់ស្វ័យប្រវត្ត:")
-    print("       $ khmer terminal --fix")
-    print("       ឬបើក settings.json ហើយបន្ថែម:")
-    print('       "terminal.integrated.fontFamily": "\'Noto Sans Khmer\', \'Kantumruy Pro\', monospace",')
-    print('       "terminal.integrated.lineHeight": 1.35')
-
-    print("\n   [ខ] iTerm2 (macOS):")
-    print("       1. ចូល Settings (⌘,) -> Profiles -> Text")
-    print("       2. គូសធីក 'Use a different font for non-ASCII text'")
-    print("       3. ជ្រើសរើស Font: 'Noto Sans Khmer' ឬ 'Kantumruy Pro'")
-    print("       4. ដំឡើង 'Vertical Spacing' ទៅ 115% - 125% (ដើម្បីកុំឱ្យបាត់ជើងអក្សរ)")
-    print("       5. គូសធីក 'Use Unicode Version 9+ widths' និង 'Use ligatures'")
-
-    print("\n   [គ] macOS Terminal.app:")
-    print("       1. ចូល Settings (⌘,) -> Profiles -> Text")
-    print("       2. ចុច 'Change Font...' -> ជ្រើសរើស Font ដែលមានអក្សរខ្មែរ")
-    print("       3. កែសម្រួល Line Spacing ទៅ 1.2 - 1.3")
-
-    print("\n   [ឃ] Modern HarfBuzz Terminals (Rendering ស្អាតបំផុត):")
-    print("       • Ghostty (https://ghostty.org) - មាន HarfBuzz Text Shaping ពីកំណើត")
-    print("       • Kitty (https://sw.kovidgoyal.net/kitty/)")
-    print("       • WezTerm (https://wezfurlong.org/wezterm/)")
+    # 4. Honest explanation of terminal limitations
+    print("\n4. ហេតុអ្វីបានជា Terminal ទូទៅមើលអក្សរខ្មែរមិនសូវស្អាត?")
+    print("   • Terminal (ដូចជា VS Code xterm.js និង macOS Terminal.app) ផ្អែកលើ")
+    print("     ក្រឡាចត្រង្គ Monospace (Fixed-width grid) សម្រាប់អក្សរឡាតាំង។")
+    print("   • អក្សរខ្មែរជាអក្សរ Proportional & Complex Script (ជើង និងស្រៈតម្រួតគ្នា)។")
+    print("   • ការបង្ខំដាក់ Font ខ្មែរលើ Terminal ធ្វើឱ្យអក្សរឡាតាំង (English/Code) រួញ និងជាន់គ្នា។")
+    print("   • ជម្រើសដែលស្អាតបំផុត:")
+    print("     - បើកសរសេរកូដក្នុង GUI / IDE (Web Playground, VS Code Editor, Khmer IDE)")
+    print("     - ឬប្រើ Terminal ទំនើបដែលមាន HarfBuzz Native Shaping (Ghostty, Kitty)")
     print("=" * 60)
 
 
@@ -555,7 +534,7 @@ def print_help():
 
 ការកំណត់ Terminal & Font / Terminal & Font Tools:
   khmer terminal                : ពិនិត្យ Font និងការកំណត់ Terminal សម្រាប់ភាសាខ្មែរ
-  khmer terminal --fix          : កំណត់ Font និង Line-Height ស្វ័យប្រវត្តក្នុង VS Code
+  khmer terminal --reset        : លុបការកំណត់ Font override និងស្តារការកំណត់ដើមក្នុង VS Code
 
 ការត្រួតពិនិត្យ / Diagnostics:
   khmer tokens <file.khmer>     : បង្ហាញតារាង Tokens (Token stream)
