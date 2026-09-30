@@ -9,7 +9,10 @@ from khmer_lang.editor_configs import (
     get_vim_syntax,
     get_sublime_syntax,
     get_nano_syntax,
-    install_vscode_extension
+    install_vscode_extension,
+    get_vscode_terminal_font_config,
+    configure_vscode_terminal_fonts,
+    detect_khmer_fonts
 )
 
 
@@ -61,6 +64,31 @@ class TestCLIFeatures(unittest.TestCase):
 
         nano_syn = get_nano_syntax()
         self.assertIn('syntax "khmer"', nano_syn)
+
+    def test_vscode_terminal_font_config(self):
+        conf = get_vscode_terminal_font_config()
+        self.assertIn("terminal.integrated.fontFamily", conf)
+        self.assertIn("terminal.integrated.lineHeight", conf)
+        self.assertGreaterEqual(conf["terminal.integrated.lineHeight"], 1.3)
+
+    def test_configure_vscode_terminal_fonts(self):
+        temp_dir = tempfile.mkdtemp()
+        try:
+            settings_path = os.path.join(temp_dir, "settings.json")
+            res = configure_vscode_terminal_fonts(settings_path)
+            self.assertTrue(res)
+            self.assertTrue(os.path.exists(settings_path))
+            import json
+            with open(settings_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            self.assertIn("terminal.integrated.fontFamily", data)
+            self.assertEqual(data["terminal.integrated.lineHeight"], 1.35)
+        finally:
+            shutil.rmtree(temp_dir)
+
+    def test_detect_khmer_fonts(self):
+        fonts = detect_khmer_fonts()
+        self.assertIsInstance(fonts, list)
 
 
 if __name__ == "__main__":

@@ -17,7 +17,10 @@ from khmer_lang.editor_configs import (
     get_sublime_syntax,
     get_sublime_build,
     get_nano_syntax,
-    install_vscode_extension
+    install_vscode_extension,
+    configure_vscode_terminal_fonts,
+    find_vscode_settings_path,
+    detect_khmer_fonts
 )
 
 
@@ -96,6 +99,11 @@ def main():
     if cmd == "editor":
         sub = args[1] if len(args) > 1 else "list"
         handle_editor_cmd(sub, args[2:])
+        return
+
+    # Terminal font & rendering diagnostics: khmer terminal [--fix]
+    if cmd in ("terminal", "term", "doctor"):
+        handle_terminal_cmd(args[1:])
         return
 
     # Run REPL explicitly: khmer repl
@@ -403,19 +411,106 @@ def handle_editor_cmd(subcommand: str, extra_args: list):
     print(f"កំហុស/Error: មិនស្គាល់ពាក្យបញ្ជា editor '{subcommand}'. វាយ 'khmer editor list' ដើម្បីមើលបញ្ជី។", file=sys.stderr)
 
 
-def run_repl():
-    """Runs the interactive REPL shell."""
-    print(f"==================================================")
+def handle_terminal_cmd(args: list):
+    """Diagnoses terminal fonts, renders test clusters, and guides or fixes terminal settings."""
+    if "--fix" in args or "--fix-vscode" in args:
+        settings_path = find_vscode_settings_path()
+        try:
+            configure_vscode_terminal_fonts(settings_path)
+            print("✓ បានកែសម្រួលការកំណត់ Font សម្រាប់ VS Code Terminal រួចរាល់!")
+            print(f"  ទីតាំងកំណត់ / Settings file: {settings_path}")
+            print("  ការកំណត់ដែលបានបន្ថែម:")
+            print("    • terminal.integrated.fontFamily: 'Noto Sans Khmer', 'Kantumruy Pro', 'JetBrains Mono', Menlo, monospace")
+            print("    • terminal.integrated.lineHeight: 1.35")
+            print("    • terminal.integrated.fontSize: 14")
+            print("\nសូមបើក Terminal ថ្មីក្នុង VS Code (Kill & New Terminal) ដើម្បីដំណើរការ។")
+            return
+        except Exception as e:
+            print(f"កំហុស/Error configuring VS Code: {e}", file=sys.stderr)
+            sys.exit(1)
+
+    print("=" * 60)
+    print("  ឧបករណ៍ត្រួតពិនិត្យ Terminal សម្រាប់ភាសាខ្មែរ (Khmer Terminal Guide)")
+    print("=" * 60)
+
+    # 1. Detect environment
+    term_prog = os.environ.get("TERM_PROGRAM", "Standard / Unknown")
+    term = os.environ.get("TERM", "unknown")
+    print(f"\n1. បរិស្ថានបច្ចុប្បន្ន (Current Environment):")
+    print(f"   • កម្មវិធី Terminal: {term_prog}")
+    print(f"   • ប្រភេទ TERM: {term}")
+
+    # 2. Detect installed Khmer fonts
+    fonts = detect_khmer_fonts()
+    print(f"\n2. ពុម្ពអក្សរខ្មែរដែលបានរកឃើញក្នុងម៉ាស៊ីន (Detected Khmer Fonts):")
+    if fonts:
+        for f in fonts[:8]:
+            print(f"   ✓ {f}")
+        if len(fonts) > 8:
+            print(f"   ... និង {len(fonts) - 8} ពុម្ពអក្សរផ្សេងទៀត")
+    else:
+        print("   ⚠ មិនទាន់រកឃើញពុម្ពអក្សរ Noto Sans Khmer ឬ Kantumruy Pro ទេ។")
+        print("   សូមដោនឡូតពី Google Fonts: https://fonts.google.com/specimen/Noto+Sans+Khmer")
+
+    # 3. Visual rendering test
+    print("\n3. តេស្តការបង្ហាញអក្សរខ្មែរ (Visual Rendering Test):")
+    print("   ┌────────────────────────────────────────────────────────┐")
+    print("   │ ព្យញ្ជនៈ : ក ខ គ ឃ ង ច ឆ ជ ឈ ញ ដ ឋ ឌ ឍ ណ ត ថ ទ ធ ន...    │")
+    print("   │ ស្រៈ   : ា ិ ី ឹ ឺ ុ ូ ួ ើ ឿ ៀ េ ែ ៃ ោ ៅ ុំ ំ ាំ ះ ៈ      │")
+    print("   │ ជើង   : ក្ក ខ្ម គ្ម ច្ច ញ្ជ ដ្ដ ណ្ត ត្ត ថ្ម ទ្ធ ម្ភ ស្រី ស្ត្រី   │")
+    print("   │ ពាក្យ  : ភាសាខ្មែរ កម្ពុជា សួស្តី ខ្ញុំបាទ សេចក្តីស្រឡាញ់ │")
+    print("   └────────────────────────────────────────────────────────┘")
+    print("   (ចំណាំ៖ បើឃើញរង្វង់មូលចំនុចៗ ◌្ ឬស្រៈដាច់ពីតួអក្សរ មានន័យថា Terminal មិនទាន់ស្គាល់ Font ឬ Ligature ទេ)")
+
+    # 4. Step-by-step instructions
+    print("\n4. វិធីដោះស្រាយតាមប្រភេទ Terminal (How to fix):")
+    print("\n   [ក] VS Code / Cursor Integrated Terminal:")
+    print("       រ៉ាន់ពាក្យបញ្ជានេះដើម្បីកំណត់ស្វ័យប្រវត្ត:")
+    print("       $ khmer terminal --fix")
+    print("       ឬបើក settings.json ហើយបន្ថែម:")
+    print('       "terminal.integrated.fontFamily": "\'Noto Sans Khmer\', \'Kantumruy Pro\', monospace",')
+    print('       "terminal.integrated.lineHeight": 1.35')
+
+    print("\n   [ខ] iTerm2 (macOS):")
+    print("       1. ចូល Settings (⌘,) -> Profiles -> Text")
+    print("       2. គូសធីក 'Use a different font for non-ASCII text'")
+    print("       3. ជ្រើសរើស Font: 'Noto Sans Khmer' ឬ 'Kantumruy Pro'")
+    print("       4. ដំឡើង 'Vertical Spacing' ទៅ 115% - 125% (ដើម្បីកុំឱ្យបាត់ជើងអក្សរ)")
+    print("       5. គូសធីក 'Use Unicode Version 9+ widths' និង 'Use ligatures'")
+
+    print("\n   [គ] macOS Terminal.app:")
+    print("       1. ចូល Settings (⌘,) -> Profiles -> Text")
+    print("       2. ចុច 'Change Font...' -> ជ្រើសរើស Font ដែលមានអក្សរខ្មែរ")
+    print("       3. កែសម្រួល Line Spacing ទៅ 1.2 - 1.3")
+
+    print("\n   [ឃ] Modern HarfBuzz Terminals (Rendering ស្អាតបំផុត):")
+    print("       • Ghostty (https://ghostty.org) - មាន HarfBuzz Text Shaping ពីកំណើត")
+    print("       • Kitty (https://sw.kovidgoyal.net/kitty/)")
+    print("       • WezTerm (https://wezfurlong.org/wezterm/)")
+    print("=" * 60)
+
+
+def run_repl(prompt_style: str = "ascii"):
+    """Runs the interactive REPL shell with safe readline prompt navigation."""
+    try:
+        import readline
+    except ImportError:
+        pass
+
+    prompt_str = "khmer> " if prompt_style == "ascii" else "ខ្មែរ> "
+
+    print("==================================================")
     print(f"  ភាសាខ្មែរ (KhmerLang) v{__version__} REPL")
-    print(f"  វាយ 'ចាកចេញ' ឬ 'exit' ឬ 'quit' ដើម្បីចាកចេញ")
-    print(f"==================================================")
+    print("  វាយ 'ចាកចេញ' ឬ 'exit' ដើម្បីចាកចេញ / Type 'exit' to quit")
+    print("  គន្លឹះ: បើអក្សរខ្មែរមិនស្អាតលើ Terminal សូមរ៉ាន់: khmer terminal")
+    print("==================================================")
 
     global_env = create_global_environment()
     interpreter = Interpreter(global_env=global_env)
 
     while True:
         try:
-            line = input("ខ្មែរ> ")
+            line = input(prompt_str)
             if line.strip() in ("ចាកចេញ", "exit", "quit"):
                 break
             if not line.strip():
@@ -457,6 +552,10 @@ def print_help():
   khmer editor sublime          : បង្កើត Syntax & Build System សម្រាប់ Sublime Text
   khmer editor nano             : ដំឡើង Syntax Highlighting ទៅកាន់ GNU Nano
   khmer editor export [dir]     : Export Editor Configs ទាំងអស់
+
+ការកំណត់ Terminal & Font / Terminal & Font Tools:
+  khmer terminal                : ពិនិត្យ Font និងការកំណត់ Terminal សម្រាប់ភាសាខ្មែរ
+  khmer terminal --fix          : កំណត់ Font និង Line-Height ស្វ័យប្រវត្តក្នុង VS Code
 
 ការត្រួតពិនិត្យ / Diagnostics:
   khmer tokens <file.khmer>     : បង្ហាញតារាង Tokens (Token stream)
