@@ -1,0 +1,14 @@
+name: khmer_lang
+description: "KhmerLang (ភាសាខ្មែរ) — The Khmer Programming Language CLI, Compiler, and Toolchain"
+version: 1.0.0
+homepage: https://github.com/sengson-great/KhmerLang
+repository: https://github.com/sengson-great/KhmerLang
+
+environment:
+  sdk: ^3.0.0
+
+dev_dependencies:
+  test: ^1.24.0
+
+executables:
+  khmer: khmer
