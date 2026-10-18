@@ -1,12 +1,29 @@
-#!/usr/bin/env python3
-import sys
-import os
+#!/usr/bin/env bash
+# ==============================================================================
+# KhmerLang (ភាសាខ្មែរ) — CLI Launcher (Powered by Dart)
+# ==============================================================================
 
-# Add parent directory of real file to python path (resolves symlinks)
-real_dir = os.path.dirname(os.path.realpath(__file__))
-sys.path.insert(0, os.path.abspath(os.path.join(real_dir, '..')))
+# Resolve symlinks to get real directory
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do
+    DIR="$(cd -P "$(dirname "$SOURCE")" >/dev/null 2>&1 && pwd)"
+    SOURCE="$(readlink "$SOURCE")"
+    [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
+done
+SCRIPT_DIR="$(cd -P "$(dirname "$SOURCE")" >/dev/null 2>&1 && pwd)"
+ROOT_DIR="$(cd "$SCRIPT_DIR/.." >/dev/null 2>&1 && pwd)"
 
-from khmer_lang.cli import main
+# 1. If compiled native binary exists, run it for instant sub-millisecond execution
+if [ -x "$SCRIPT_DIR/khmer_bin" ]; then
+    exec "$SCRIPT_DIR/khmer_bin" "$@"
+fi
 
-if __name__ == "__main__":
-    main()
+# 2. Run via Dart SDK
+if command -v dart &>/dev/null; then
+    exec dart run "$SCRIPT_DIR/khmer.dart" "$@"
+fi
+
+# 3. Fallback error message if Dart is missing
+echo -e "\033[31mកំហុស/Error: មិនបានរកឃើញ Dart SDK ឡើយ / Dart SDK was not found.\033[0m" >&2
+echo "សូមដំឡើង Dart SDK (https://dart.dev/get-dart) ឬរ៉ាន់ install.sh ដើម្បីដំឡើងស្វ័យប្រវត្តិ។" >&2
+exit 1

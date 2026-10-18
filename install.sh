@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ==============================================================================
-# KhmerLang (ភាសាខ្មែរ) — Universal Cross-Platform Installer
+# KhmerLang (ភាសាខ្មែរ) — Universal Cross-Platform Installer (Powered by Dart)
 # Enables ANY user on macOS, Linux, or Windows (WSL) to install KhmerLang globally.
 #
 # One-line remote installation:
@@ -33,32 +33,27 @@ echo " | . \| | | | | | | | |  __/ |   | |__| (_| | | | | (_| |   "
 echo " |_|\_\_| |_|_| |_| |_|\___|_|   |_____\__,_|_| |_|\__, |   "
 echo "                                                   |___/    "
 echo -e "${RESET}"
-echo -e "${BOLD}🇰🇭 កំពុងដំឡើងភាសាខ្មែរ (Installing KhmerLang)...${RESET}"
+echo -e "${BOLD}🇰🇭 កំពុងដំឡើងភាសាខ្មែរ (Installing KhmerLang with Dart Engine)...${RESET}"
 echo "------------------------------------------------------------"
 
-# 1. Detect Python 3
-PYTHON_BIN=""
-for py in python3 python; do
-    if command -v "$py" &> /dev/null; then
-        if "$py" -c "import sys; exit(0 if sys.version_info >= (3, 8) else 1)" 2>/dev/null; then
-            PYTHON_BIN="$py"
-            break
-        fi
-    fi
-done
+# 1. Detect Dart SDK
+DART_BIN=""
+if command -v dart &> /dev/null; then
+    DART_BIN="dart"
+fi
 
-if [ -z "$PYTHON_BIN" ]; then
-    echo -e "${RED}❌ មិនបានរកឃើញ Python 3.8 ឬខ្ពស់ជាងនេះឡើយ / Python 3.8+ was not found.${RESET}"
-    echo "សូមដំឡើង Python 3.8+ ជាមុនសិន / Please install Python 3.8 or higher:"
-    echo "  • macOS:          brew install python3"
-    echo "  • Ubuntu/Debian:  sudo apt update && sudo apt install -y python3 python3-pip git"
-    echo "  • Fedora:         sudo dnf install -y python3 python3-pip git"
-    echo "  • Arch Linux:     sudo pacman -S python git"
+if [ -z "$DART_BIN" ]; then
+    echo -e "${RED}❌ មិនបានរកឃើញ Dart SDK ឡើយ / Dart SDK was not found.${RESET}"
+    echo "សូមដំឡើង Dart SDK ជាមុនសិន / Please install Dart SDK (https://dart.dev/get-dart):"
+    echo "  • macOS (Homebrew):   brew install dart-sdk"
+    echo "  • Ubuntu/Debian:      sudo apt update && sudo apt install -y apt-transport-https && sudo apt install -y dart"
+    echo "  • Arch Linux:         sudo pacman -S dart"
+    echo "  • ឬទាញយកពី:          https://dart.dev/get-dart"
     exit 1
 fi
 
-PY_VERSION=$("$PYTHON_BIN" -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}')")
-echo -e "✓ បានរកឃើញ Python: ${GREEN}$PYTHON_BIN (v$PY_VERSION)${RESET}"
+DART_VERSION=$(dart --version 2>&1 | head -n 1)
+echo -e "✓ បានរកឃើញ Dart SDK: ${GREEN}$DART_VERSION${RESET}"
 
 # 2. Determine source location (Local repository vs Remote curl | bash)
 SCRIPT_SOURCE="${BASH_SOURCE[0]:-$0}"
@@ -66,10 +61,10 @@ IS_LOCAL=false
 
 if [ -f "$SCRIPT_SOURCE" ]; then
     CANDIDATE_ROOT="$(cd "$(dirname "$SCRIPT_SOURCE")" && pwd)"
-    if [ -f "$CANDIDATE_ROOT/khmer_lang/cli.py" ]; then
+    if [ -f "$CANDIDATE_ROOT/bin/khmer.dart" ]; then
         IS_LOCAL=true
         LOCAL_ROOT="$CANDIDATE_ROOT"
-    elif [ -f "$CANDIDATE_ROOT/../khmer_lang/cli.py" ]; then
+    elif [ -f "$CANDIDATE_ROOT/../bin/khmer.dart" ]; then
         IS_LOCAL=true
         LOCAL_ROOT="$(cd "$CANDIDATE_ROOT/.." && pwd)"
     fi
@@ -99,13 +94,22 @@ else
     FINAL_APP_DIR="$INSTALL_DIR"
 fi
 
-# 3. Create the global executable runner in ~/.local/bin/khmer
+cd "$FINAL_APP_DIR"
+
+# 3. Compile or link native binary
 KHMER_TARGET="$BIN_DIR/khmer"
-chmod +x "$FINAL_APP_DIR/bin/khmer"
-rm -f "$KHMER_TARGET"
-ln -sf "$FINAL_APP_DIR/bin/khmer" "$KHMER_TARGET"
-chmod +x "$KHMER_TARGET"
-echo -e "✓ បានបង្កើតពាក្យបញ្ជាកម្រិតសកល (Global executable): ${GREEN}$KHMER_TARGET${RESET}"
+echo "⚡ កំពុង Compile Native Binary សម្រាប់ល្បឿនលឿនបំផុត (AOT Native Compilation)..."
+
+if dart compile exe "$FINAL_APP_DIR/bin/khmer.dart" -o "$KHMER_TARGET" &>/dev/null; then
+    chmod +x "$KHMER_TARGET"
+    echo -e "✓ បាន Compile Native Executable ជោគជ័យ: ${GREEN}$KHMER_TARGET${RESET}"
+else
+    # Fallback to symlinking launcher script
+    chmod +x "$FINAL_APP_DIR/bin/khmer"
+    rm -f "$KHMER_TARGET"
+    ln -sf "$FINAL_APP_DIR/bin/khmer" "$KHMER_TARGET"
+    echo -e "✓ បានភ្ជាប់ពាក្យបញ្ជា Launcher: ${GREEN}$KHMER_TARGET${RESET}"
+fi
 
 # Try system-wide symlink in /usr/local/bin if writable
 if [ -w "/usr/local/bin" ] && [ ! -e "/usr/local/bin/khmer" ]; then

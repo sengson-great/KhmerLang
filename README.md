@@ -53,10 +53,15 @@
   irm https://raw.githubusercontent.com/sengson-great/KhmerLang/main/install.ps1 | iex
   ```
 
-* **ឬដំឡើងតាមរយៈ Python Pip (គ្រប់ OS ទាំងអស់)**:
+* **ឬដំឡើងតាមរយៈ Dart Toolchain (គ្រប់ OS ទាំងអស់)**:
   ```bash
-  pip install git+https://github.com/sengson-great/KhmerLang.git
+  # ដំណើរការផ្ទាល់ជាមួយ Dart
+  dart run bin/khmer.dart examples/hello.khmer
+
+  # ឬ Compile ទៅជា Native AOT Binary សម្រាប់ដំណើរការលឿនបំផុត
+  dart compile exe bin/khmer.dart -o bin/khmer_bin
   ```
+
 
 ---
 

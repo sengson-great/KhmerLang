@@ -184,7 +184,7 @@
                     <p>មុនពេលចាប់ផ្តើមដំឡើង សូមប្រាកដថាម៉ាស៊ីនរបស់អ្នកមានលក្ខខណ្ឌដូចខាងក្រោម៖</p>
                     <ul>
                         <li><strong>ប្រព័ន្ធប្រតិបត្តិការ៖</strong> គាំទ្រ macOS, Linux, និង Windows (WSL / PowerShell)</li>
-                        <li><strong>Python 3.8 ឬខ្ពស់ជាងនេះ៖</strong> សម្រាប់ដំណើរការ Interpreter ដើមរបស់ភាសា</li>
+                        <li><strong>Dart SDK (3.0+)៖</strong> សម្រាប់ដំណើរការ Engine និង Native Compiler របស់ភាសា</li>
                         <li><strong>Git៖</strong> សម្រាប់ទាញយកប្រភពកូដ ឬ Releases</li>
                     </ul>
 
@@ -204,7 +204,7 @@
                             </div>
                         </div>
                         <div class="code-content-wrapper">
-                            <pre class="code-block"><code><span class="com"># ដំឡើងស្វ័យប្រវត្តលើ macOS និង Linux (រួមទាំង PATH & VS Code Extension)</span>
+                            <pre class="code-block"><code><span class="com"># ដំឡើងស្វ័យប្រវត្តលើ macOS និង Linux (រួមទាំង PATH, AOT Native Binary &amp; VS Code Extension)</span>
 curl -fsSL https://raw.githubusercontent.com/sengson-great/KhmerLang/main/install.sh | bash</code></pre>
                         </div>
                     </div>
@@ -228,16 +228,19 @@ irm https://raw.githubusercontent.com/sengson-great/KhmerLang/main/install.ps1 |
                     <div class="code-card">
                         <div class="code-card-header">
                             <div class="code-card-meta">
-                                <span class="code-card-lang">PIP</span>
-                                <span class="code-card-title">Python Pip (All Platforms)</span>
+                                <span class="code-card-lang">DART</span>
+                                <span class="code-card-title">Dart Toolchain / Native Compilation</span>
                             </div>
                             <div class="code-card-actions">
-                                <button class="btn-code-action btn-copy-code" data-code="pip install git+https://github.com/sengson-great/KhmerLang.git">ចម្លង</button>
+                                <button class="btn-code-action btn-copy-code" data-code="dart compile exe bin/khmer.dart -o bin/khmer_bin">ចម្លង</button>
                             </div>
                         </div>
                         <div class="code-content-wrapper">
-                            <pre class="code-block"><code><span class="com"># ឬដំឡើងតាមរយៈ Python Package Manager</span>
-pip install git+https://github.com/sengson-great/KhmerLang.git</code></pre>
+                            <pre class="code-block"><code><span class="com"># Compile ទៅជា Native AOT Binary ដោយផ្ទាល់</span>
+dart compile exe bin/khmer.dart -o bin/khmer_bin
+
+<span class="com"># ឬដំណើរការកូដផ្ទាល់</span>
+dart run bin/khmer.dart main.khmer</code></pre>
                         </div>
                     </div>
 

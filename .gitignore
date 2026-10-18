@@ -6,3 +6,5 @@ dist/
 build/
 .DS_Store
 .dart_tool/
+bin/khmer_bin
+bin/*.exe
