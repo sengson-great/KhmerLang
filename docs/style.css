@@ -1201,3 +1201,26 @@ pre.code-block code {
         justify-content: center;
     }
 }
+
+.brand-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+}
+
+.search-kbd-esc-btn {
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+.search-kbd-esc-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--border-strong);
+}
+

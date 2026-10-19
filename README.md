@@ -111,7 +111,7 @@ flutter run -d chrome
 ```
 
 ### ៤. បើកគេហទំព័រឯកសារណែនាំផ្លូវការ (Official Documentation Website)
-គេហទំព័រឯកសារណែនាំផ្លូវការ (Documentation Website) បង្កើតឡើងដោយរចនាប័ទ្មទំនើប មានម៉ាស៊ីន Client-side JS Engine សម្រាប់រ៉ាន់កូដគំរូនីមួយៗលើ Browser ដោយផ្ទាល់ រួមទាំងមាន **Live Interactive Playground**, **Search Modal (⌘K)**, និង **Dark/Light Mode**:
+គេហទំព័រឯកសារណែនាំផ្លូវការ (Documentation Website) ត្រូវបានសរសេរឡើងវិញដោយប្រើ **Jaspr (Dart Web Framework)** ជាមួយ **Static Site Generation (SSG)** និង **SEO កម្រិតខ្ពស់** (Schema.org JSON-LD, OpenGraph, Twitter Cards, Sitemap XML, Semantic HTML5)។ វាភ្ជាប់ជាមួយម៉ាស៊ីន Dart Engine ផ្ទាល់សម្រាប់រ៉ាន់កូដគំរូនីមួយៗលើ Web Browser ដោយមិនចាំបាច់មាន Backend Server ឡើយ រួមទាំងមាន **Live Interactive Playground**, **Search Modal (⌘K)**, និង **Dark/Light Mode**:
 ```bash
 # ដំណើការគេហទំព័រឯកសារតាម Browser
 python3 -m http.server 8088 --directory docs

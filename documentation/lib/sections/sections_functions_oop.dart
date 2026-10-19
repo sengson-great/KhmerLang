@@ -1,0 +1,96 @@
+import 'package:jaspr/dom.dart';
+import 'package:jaspr/jaspr.dart';
+
+import '../components/code_card.dart';
+
+class FunctionsOopSections extends StatelessComponent {
+  const FunctionsOopSections({super.key});
+
+  @override
+  Component build(BuildContext context) {
+    return .fragment([
+      // Section: Functions
+      section(classes: 'doc-section', id: 'functions', [
+        h2(classes: 'section-heading', [
+          text('ការបង្កើតអនុគមន៍ (Functions) '),
+          a(href: '#functions', classes: 'heading-anchor', [text('#')]),
+        ]),
+        p([
+          text('អ្នកអាចបង្កើតអនុគមន៍ដោយប្រើពាក្យគន្លឹះ '),
+          code([text('អនុគមន៍')]),
+          text(' និងបញ្ជូនតម្លៃត្រឡប់មកវិញដោយប្រើ '),
+          code([text('ត្រឡប់')]),
+          text(' (return)៖'),
+        ]),
+
+        const CodeCard(
+          title: 'functions.khmer',
+          lang: 'KHMER',
+          code: '# អនុគមន៍គណនាផ្ទៃក្រឡាចតុកោណកែង\nអនុគមន៍ គណនាផ្ទៃ(បណ្តោយ, ទទឹង) {\n    ត្រឡប់ បណ្តោយ * ទទឹង\n}\n\nតាំង ផ្ទៃ = គណនាផ្ទៃ(១០, ៥)\nបង្ហាញ("ផ្ទៃក្រឡាសរុបគឺ:", ផ្ទៃ, "ម៉ែត្រការ៉េ")',
+        ),
+      ]),
+
+      // Section: Recursion
+      section(classes: 'doc-section', id: 'recursion', [
+        h2(classes: 'section-heading', [
+          text('Recursion (កូដ Fibonacci) '),
+          a(href: '#recursion', classes: 'heading-anchor', [text('#')]),
+        ]),
+        p([
+          text('KhmerLang គាំទ្រការហៅអនុគមន៍ខ្លួនឯង (Recursive Functions) យ៉ាងរលូន៖'),
+        ]),
+
+        const CodeCard(
+          title: 'fibonacci.khmer',
+          lang: 'KHMER',
+          code: '# កូដរកលេខ Fibonacci តាមបែប Recursive\nអនុគមន៍ ហ្វីបូណាឈី(n) {\n    បើ (n <= ០) {\n        ត្រឡប់ ០\n    }\n    បើ (n == ១) {\n        ត្រឡប់ ១\n    }\n    ត្រឡប់ ហ្វីបូណាឈី(n - ១) + ហ្វីបូណាឈី(n - ២)\n}\n\nបង្ហាញ("--- លំដាប់ Fibonacci ពី ០ ដល់ ៧ ---")\nសម្រាប់ (តាំង i = ០; i <= ៧; i = i + ១) {\n    បង្ហាញ("F(", i, ") =", ហ្វីបូណាឈី(i))\n}',
+        ),
+      ]),
+
+      // Section: OOP Classes & Methods
+      section(classes: 'doc-section', id: 'classes', [
+        h2(classes: 'section-heading', [
+          text('ថ្នាក់ & Constructor (Object-Oriented Programming) '),
+          a(href: '#classes', classes: 'heading-anchor', [text('#')]),
+        ]),
+        p([
+          text('KhmerLang គាំទ្រការសរសេរប្រូក្រាមតាមបែប OOP ពេញលេញ។ អ្នកអាចបង្កើតគំរូថ្នាក់ដោយប្រើពាក្យគន្លឹះ '),
+          code([text('ថ្នាក់')]),
+          text(' (Class) និងបង្កើត Constructor សម្រាប់ចាប់ផ្តើមទិន្នន័យដោយប្រើ '),
+          code([text('បង្កើត(...)')]),
+          text('។'),
+        ]),
+        p([
+          text('ដើម្បីបង្កើត Instance ថ្មីនៃថ្នាក់ យើងប្រើពាក្យគន្លឹះ '),
+          code([text('ថ្មី')]),
+          text(' (New)៖'),
+        ]),
+
+        const CodeCard(
+          title: 'person_class.khmer',
+          lang: 'KHMER',
+          code: 'ថ្នាក់ មនុស្ស {\n    បង្កើត(ឈ្មោះ, អាយុ) {\n        នេះ.ឈ្មោះ = ឈ្មោះ\n        នេះ.អាយុ = អាយុ\n    }\n\n    វិធី ណែនាំខ្លួន() {\n        បង្ហាញ("ជម្រាបសួរ! ខ្ញុំឈ្មោះ", នេះ.ឈ្មោះ, "អាយុ", នេះ.អាយុ, "ឆ្នាំ")\n    }\n}\n\nតាំង បុគ្គល១ = ថ្មី មនុស្ស("វ៉េងឈួង", ២១)\nបុគ្គល១.ណែនាំខ្លួន()',
+        ),
+      ]),
+
+      // Section: OOP Inheritance
+      section(classes: 'doc-section', id: 'inheritance', [
+        h2(classes: 'section-heading', [
+          text('ការបន្តវេនថ្នាក់ (OOP Inheritance: `បន្តពី`) '),
+          a(href: '#inheritance', classes: 'heading-anchor', [text('#')]),
+        ]),
+        p([
+          text('ការបន្តវេនពីថ្នាក់មេ (Superclass) ត្រូវបានធ្វើឡើងដោយប្រើពាក្យគន្លឹះ '),
+          code([text('បន្តពី')]),
+          text(' (extends)។ ថ្នាក់កូន (Subclass) នឹងទទួលយកលក្ខណៈសម្បត្តិ និងវិធីសាស្ត្រពីថ្នាក់មេដោយស្វ័យប្រវត្តិ៖'),
+        ]),
+
+        const CodeCard(
+          title: 'inheritance.khmer',
+          lang: 'KHMER',
+          code: 'ថ្នាក់ សត្វ {\n    បង្កើត(ឈ្មោះ) {\n        នេះ.ឈ្មោះ = ឈ្មោះ\n    }\n\n    វិធី ធ្វើសំឡេង() {\n        បង្ហាញ(នេះ.ឈ្មោះ, "កំពុងធ្វើសំឡេង...")\n    }\n}\n\n# ថ្នាក់ ឆ្កែ បន្តវេនពី ថ្នាក់ សត្វ\nថ្នាក់ ឆ្កែ បន្តពី សត្វ {\n    វិធី ព្រុស() {\n        បង្ហាញ(នេះ.ឈ្មោះ, "ព្រុស: វូស! វូស!")\n    }\n}\n\nតាំង គូគី = ថ្មី ឆ្កែ("គូគី")\nគូគី.ធ្វើសំឡេង()\nគូគី.ព្រុស()',
+        ),
+      ]),
+    ]);
+  }
+}
