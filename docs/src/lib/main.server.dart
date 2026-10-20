@@ -11,7 +11,7 @@ void main() {
     options: defaultServerOptions,
   );
 
-  runApp(Document(
+  runApp(const Document(
     lang: 'km',
     base: null,
     title: 'ភាសាខ្មែរ (KhmerLang) — ឯកសារណែនាំផ្លូវការ | Official Documentation',
@@ -70,6 +70,6 @@ void main() {
 }''',
       ),
     ],
-    body: const App(),
+    body: App(),
   ));
 }

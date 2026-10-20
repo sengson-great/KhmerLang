@@ -9,7 +9,7 @@ List<Component> highlightKhmerCode(String code) {
     final line = lines[i];
     result.addAll(_highlightLine(line));
     if (i < lines.length - 1) {
-      result.add(text('\n'));
+      result.add(const Component.text('\n'));
     }
   }
 
@@ -18,7 +18,7 @@ List<Component> highlightKhmerCode(String code) {
 
 List<Component> _highlightLine(String line) {
   if (line.trim().startsWith('#')) {
-    return [span(classes: 'com', [text(line)])];
+    return [span(classes: 'com', [Component.text(line)])];
   }
 
   final components = <Component>[];
@@ -34,7 +34,7 @@ List<Component> _highlightLine(String line) {
         components.addAll(_tokenizeText(buffer.toString()));
         buffer.clear();
       }
-      components.add(span(classes: 'com', [text(line.substring(idx))]));
+      components.add(span(classes: 'com', [Component.text(line.substring(idx))]));
       break;
     }
 
@@ -55,7 +55,7 @@ List<Component> _highlightLine(String line) {
         }
       }
       if (idx < line.length) idx++; // include closing quote
-      components.add(span(classes: 'str', [text(line.substring(start, idx))]));
+      components.add(span(classes: 'str', [Component.text(line.substring(start, idx))]));
       continue;
     }
 
@@ -82,7 +82,7 @@ List<Component> _tokenizeText(String chunk) {
       result.add(_styleWord(word));
     }
     if (matchIdx < matches.length) {
-      result.add(text(matches[matchIdx].group(0) ?? ''));
+      result.add(Component.text(matches[matchIdx].group(0) ?? ''));
       matchIdx++;
     }
   }
@@ -102,12 +102,12 @@ Component _styleWord(String word) {
   };
 
   if (keywords.contains(word)) {
-    return span(classes: 'kw', [text(word)]);
+    return span(classes: 'kw', [Component.text(word)]);
   } else if (builtins.contains(word)) {
-    return span(classes: 'builtin', [text(word)]);
+    return span(classes: 'builtin', [Component.text(word)]);
   } else if (RegExp(r'^[០-៩0-9]+(\.[០-៩0-9]+)?$').hasMatch(word)) {
-    return span(classes: 'num', [text(word)]);
+    return span(classes: 'num', [Component.text(word)]);
   }
 
-  return text(word);
+  return Component.text(word);
 }

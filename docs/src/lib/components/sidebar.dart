@@ -25,53 +25,53 @@ class Sidebar extends StatelessComponent {
         _buildNavGroup(
           title: '🚀 ចាប់ផ្ដើមដំបូង (Getting Started)',
           items: [
-            _NavItem('intro', 'សេចក្តីផ្តើម (Overview)'),
-            _NavItem('install', 'ការដំឡើង & ការចាប់ផ្តើម (Setup)'),
-            _NavItem('hello-world', 'កម្មវិធីដំបូង (Hello World)'),
+            const _NavItem('intro', 'សេចក្តីផ្តើម (Overview)'),
+            const _NavItem('install', 'ការដំឡើង & ការចាប់ផ្តើម (Setup)'),
+            const _NavItem('hello-world', 'កម្មវិធីដំបូង (Hello World)'),
           ],
         ),
 
         _buildNavGroup(
           title: '💡 មូលដ្ឋានគ្រឹះ (Language Basics)',
           items: [
-            _NavItem('variables', 'អថេរ & ប្រភេទតម្លៃ (Variables)'),
-            _NavItem('numerals', 'លេខខ្មែរ & ប្រមាណវិធី (Math)'),
-            _NavItem('punctuations', 'សញ្ញាវណ្ណយុត្តិ (Punctuations)'),
+            const _NavItem('variables', 'អថេរ & ប្រភេទតម្លៃ (Variables)'),
+            const _NavItem('numerals', 'លេខខ្មែរ & ប្រមាណវិធី (Math)'),
+            const _NavItem('punctuations', 'សញ្ញាវណ្ណយុត្តិ (Punctuations)'),
           ],
         ),
 
         _buildNavGroup(
           title: '🔀 លំហូរការងារ (Control Flow)',
           items: [
-            _NavItem('conditionals', 'លក្ខខណ្ឌ បើ / ឬបើ / ផ្សេងទៀត'),
-            _NavItem('while-loop', 'រង្វិលជុំ ខណៈ (While Loop)'),
-            _NavItem('for-loop', 'រង្វិលជុំ សម្រាប់ (For Loop)'),
+            const _NavItem('conditionals', 'លក្ខខណ្ឌ បើ / ឬបើ / ផ្សេងទៀត'),
+            const _NavItem('while-loop', 'រង្វិលជុំ ខណៈ (While Loop)'),
+            const _NavItem('for-loop', 'រង្វិលជុំ សម្រាប់ (For Loop)'),
           ],
         ),
 
         _buildNavGroup(
           title: '⚡ អនុគមន៍ (Functions)',
           items: [
-            _NavItem('functions', 'ការបង្កើតអនុគមន៍ (Declaration)'),
-            _NavItem('recursion', 'Recursion (កូដ Fibonacci)'),
+            const _NavItem('functions', 'ការបង្កើតអនុគមន៍ (Declaration)'),
+            const _NavItem('recursion', 'Recursion (កូដ Fibonacci)'),
           ],
         ),
 
         _buildNavGroup(
           title: '🏛️ សរសេរកូដតាមវត្ថុ (OOP)',
           items: [
-            _NavItem('classes', 'ថ្នាក់ & Constructor (`បង្កើត`)'),
-            _NavItem('inheritance', 'ការបន្តវេន (`បន្តពី`)'),
+            const _NavItem('classes', 'ថ្នាក់ & Constructor (`បង្កើត`)'),
+            const _NavItem('inheritance', 'ការបន្តវេន (`បន្តពី`)'),
           ],
         ),
 
         _buildNavGroup(
           title: '🛠️ ឧបករណ៍ & ឯកសារយោង',
           items: [
-            _NavItem('builtins', 'អនុគមន៍ស្ដង់ដារ (Builtins)'),
-            _NavItem('ides', 'Flutter & Web IDEs'),
-            _NavItem('cheat-sheet', 'តារាងពាក្យគន្លឹះ (Cheat Sheet)'),
-            _NavItem(
+            const _NavItem('builtins', 'អនុគមន៍ស្ដង់ដារ (Builtins)'),
+            const _NavItem('ides', 'Flutter & Web IDEs'),
+            const _NavItem('cheat-sheet', 'តារាងពាក្យគន្លឹះ (Cheat Sheet)'),
+            const _NavItem(
               'playground',
               '🎮 ស្ថានីយសាកល្បងកូដ',
               isHighlight: true,
@@ -88,7 +88,7 @@ class Sidebar extends StatelessComponent {
     required List<_NavItem> items,
   }) {
     return div(classes: 'sidebar-nav-group', [
-      div(classes: 'sidebar-nav-title', [text(title)]),
+      div(classes: 'sidebar-nav-title', [Component.text(title)]),
       ul(classes: 'sidebar-nav-list', [
         for (final item in items)
           li([
@@ -99,16 +99,16 @@ class Sidebar extends StatelessComponent {
               [
                 if (item.isHighlight)
                   span(
-                    styles: Styles(
-                      color: const Color('#38bdf8'),
+                    styles: const Styles(
+                      color: Color('#38bdf8'),
                       fontWeight: FontWeight.bold,
                     ),
-                    [text(item.title)],
+                    [Component.text(item.title)],
                   )
                 else
-                  text(item.title),
+                  Component.text(item.title),
                 if (item.badge != null)
-                  span(classes: 'sidebar-badge badge-new', [text(item.badge!)]),
+                  span(classes: 'sidebar-badge badge-new', [Component.text(item.badge!)]),
               ],
             ),
           ]),

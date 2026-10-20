@@ -85,8 +85,8 @@ class _CodeCardState extends State<CodeCard> {
     return div(classes: 'code-card', [
       div(classes: 'code-card-header', [
         div(classes: 'code-card-meta', [
-          span(classes: 'code-card-lang', [text(component.lang)]),
-          span(classes: 'code-card-title', [text(component.title)]),
+          span(classes: 'code-card-lang', [Component.text(component.lang)]),
+          span(classes: 'code-card-title', [Component.text(component.title)]),
         ]),
         div(classes: 'code-card-actions', [
           button(
@@ -98,7 +98,7 @@ class _CodeCardState extends State<CodeCard> {
                   )
                 : null,
             events: {'click': (e) => _handleCopy()},
-            [text(_copied ? '✓ បានចម្លង!' : 'ចម្លង')],
+            [Component.text(_copied ? '✓ បានចម្លង!' : 'ចម្លង')],
           ),
           if (_effectiveCanRun)
             button(
@@ -106,7 +106,7 @@ class _CodeCardState extends State<CodeCard> {
               attributes: _isRunning ? {'disabled': 'true'} : null,
               events: {'click': (e) => _handleRun()},
               [
-                text(_isRunning ? '⏳ កំពុងដំណើរការ...' : '▷ រ៉ាន់កូដ'),
+                Component.text(_isRunning ? '⏳ កំពុងដំណើរការ...' : '▷ រ៉ាន់កូដ'),
               ],
             ),
         ]),
@@ -118,7 +118,7 @@ class _CodeCardState extends State<CodeCard> {
             if (component.lang == 'KHMER')
               ...highlightKhmerCode(component.code)
             else
-              text(component.code),
+              Component.text(component.code),
           ]),
         ]),
       ]),
@@ -126,8 +126,8 @@ class _CodeCardState extends State<CodeCard> {
       if (_isOutputVisible)
         div(classes: 'code-output-drawer visible', [
           div(classes: 'code-output-header', [
-            span(classes: 'code-output-title', [
-              text('ស្ថានីយលទ្ធផល (Terminal Output)'),
+            const span(classes: 'code-output-title', [
+              Component.text('ស្ថានីយលទ្ធផល (Terminal Output)'),
             ]),
             span(
               classes: 'code-output-time',
@@ -135,19 +135,19 @@ class _CodeCardState extends State<CodeCard> {
                 color: const Color('#94a3b8'),
                 fontSize: 0.75.rem,
               ),
-              [text('${_durationMs}ms')],
+              [Component.text('${_durationMs}ms')],
             ),
           ]),
           div(
             classes: 'code-output-body',
             styles: _isError
-                ? Styles(
-                    color: const Color('#f87171'),
+                ? const Styles(
+                    color: Color('#f87171'),
                   )
-                : Styles(
-                    color: const Color('#34d399'),
+                : const Styles(
+                    color: Color('#34d399'),
                   ),
-            [text(_output)],
+            [Component.text(_output)],
           ),
         ]),
     ]);

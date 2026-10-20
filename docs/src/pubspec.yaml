@@ -1,6 +1,7 @@
 name: khmer_docs
 description: Official Documentation for KhmerLang built with Jaspr
 version: 1.0.0
+publish_to: none
 
 environment:
   sdk: ^3.10.0
@@ -8,8 +9,9 @@ environment:
 dependencies:
   jaspr: ^0.23.5
   khmer_lang:
-    path: ../
+    path: ../../cli
 
+  web: any
 dev_dependencies:
   build_runner: ^2.15.1
   build_web_compilers: <4.8.1

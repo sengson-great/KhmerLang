@@ -165,7 +165,7 @@ class _PlaygroundState extends State<Playground> {
     return div(classes: 'playground-container', [
       div(classes: 'playground-toolbar', [
         div(
-          styles: Styles(
+          styles: const Styles(
             display: Display.flex,
             alignItems: AlignItems.center,
           ),
@@ -176,7 +176,7 @@ class _PlaygroundState extends State<Playground> {
                 color: const Color('#94a3b8'),
                 fontWeight: FontWeight.bold,
               ),
-              [text('កូដគំរូ: ')],
+              [const Component.text('កូដគំរូ: ')],
             ),
             select(
               classes: 'playground-sample-select',
@@ -185,27 +185,27 @@ class _PlaygroundState extends State<Playground> {
                 option(
                   value: 'hello',
                   selected: _currentSample == 'hello',
-                  [text('១. សួស្តីពិភពលោក (Hello World)')],
+                  [const Component.text('១. សួស្តីពិភពលោក (Hello World)')],
                 ),
                 option(
                   value: 'math',
                   selected: _currentSample == 'math',
-                  [text('២. គណនាផលបូកលេខខ្មែរ (Khmer Math)')],
+                  [const Component.text('២. គណនាផលបូកលេខខ្មែរ (Khmer Math)')],
                 ),
                 option(
                   value: 'fibo',
                   selected: _currentSample == 'fibo',
-                  [text('៣. រកលេខ Fibonacci (Recursion)')],
+                  [const Component.text('៣. រកលេខ Fibonacci (Recursion)')],
                 ),
                 option(
                   value: 'oop',
                   selected: _currentSample == 'oop',
-                  [text('៤. OOP សត្វ និង ឆ្កែ (Inheritance)')],
+                  [const Component.text('៤. OOP សត្វ និង ឆ្កែ (Inheritance)')],
                 ),
                 option(
                   value: 'grades',
                   selected: _currentSample == 'grades',
-                  [text('៥. គណនាពិន្ទុសិស្ស (Grading System)')],
+                  [const Component.text('៥. គណនាពិន្ទុសិស្ស (Grading System)')],
                 ),
               ],
             ),
@@ -218,7 +218,7 @@ class _PlaygroundState extends State<Playground> {
             attributes: {'title': 'ពិនិត្យវេយ្យាករណ៍'},
             events: {'click': (e) => _checkSyntax()},
             [
-              span([text('✓ ពិនិត្យ (Check)')]),
+              const span([Component.text('✓ ពិនិត្យ (Check)')]),
             ],
           ),
           button(
@@ -226,7 +226,7 @@ class _PlaygroundState extends State<Playground> {
             attributes: {'title': 'លុបលទ្ធផល'},
             events: {'click': (e) => _clearOutput()},
             [
-              svg(
+              const svg(
                 attributes: {
                   'width': '14',
                   'height': '14',
@@ -239,14 +239,14 @@ class _PlaygroundState extends State<Playground> {
                   path([], attributes: {'d': 'M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2'}),
                 ],
               ),
-              span([text('លុប')]),
+              const span([Component.text('លុប')]),
             ],
           ),
           button(
             classes: 'btn-playground-run',
             events: {'click': (e) => _runCode()},
             [
-              svg(
+              const svg(
                 attributes: {
                   'width': '15',
                   'height': '15',
@@ -257,7 +257,7 @@ class _PlaygroundState extends State<Playground> {
                   polygon([], attributes: {'points': '5 3 19 12 5 21 5 3'}),
                 ],
               ),
-              span([text('▷ ដំណើការកូដ (Run)')]),
+              const span([Component.text('▷ ដំណើការកូដ (Run)')]),
             ],
           ),
         ]),
@@ -270,7 +270,7 @@ class _PlaygroundState extends State<Playground> {
             color: const Color('#94a3b8'),
             margin: Margin.only(right: 0.25.rem),
           ),
-          [text('ពាក្យគន្លឹះរហ័ស:')],
+          [const Component.text('ពាក្យគន្លឹះរហ័ស:')],
         ),
         _vkBtn('តាំង ', 'តាំង'),
         _vkBtn('បង្ហាញ()', 'បង្ហាញ()'),
@@ -307,28 +307,28 @@ class _PlaygroundState extends State<Playground> {
                 _code = '${e.target?.value ?? ""}';
               },
             },
-            [text(_code)],
+            [Component.text(_code)],
           ),
         ]),
         div(classes: 'playground-console-pane', [
           div(classes: 'console-pane-header', [
-            span(classes: 'console-pane-title', [
-              text('ស្ថានីយលទ្ធផល (Console Output)'),
+            const span(classes: 'console-pane-title', [
+              Component.text('ស្ថានីយលទ្ធផល (Console Output)'),
             ]),
             span(
               styles: Styles(
                 fontSize: 0.75.rem,
                 color: const Color('#94a3b8'),
               ),
-              [text(_execStatus)],
+              [Component.text(_execStatus)],
             ),
           ]),
           div(
             classes: 'console-pane-body',
             styles: _isError
-                ? Styles(color: const Color('#f87171'))
-                : Styles(color: const Color('#34d399')),
-            [text(_output)],
+                ? const Styles(color: Color('#f87171'))
+                : const Styles(color: Color('#34d399')),
+            [Component.text(_output)],
           ),
         ]),
       ]),
@@ -339,7 +339,7 @@ class _PlaygroundState extends State<Playground> {
     return button(
       classes: 'vk-btn',
       events: {'click': (e) => _insertKey(snippet)},
-      [text(label)],
+      [Component.text(label)],
     );
   }
 }

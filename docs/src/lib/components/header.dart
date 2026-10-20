@@ -26,7 +26,7 @@ class Header extends StatelessComponent {
           attributes: {'aria-label': 'បើកម៉ឺនុយ'},
           events: {'click': (e) => onToggleMobileMenu()},
           [
-            svg(
+            const svg(
               attributes: {
                 'width': '20',
                 'height': '20',
@@ -41,18 +41,18 @@ class Header extends StatelessComponent {
             ),
           ],
         ),
-        a(
+        const a(
           href: '#intro',
           classes: 'brand-link',
           [
-            div(classes: 'brand-logo-badge', [text('ក')]),
+            div(classes: 'brand-logo-badge', [Component.text('ក')]),
             div(classes: 'brand-text', [
               div(classes: 'brand-title', [
-                text('ភាសាខ្មែរ '),
-                span(classes: 'brand-version-badge', [text('v1.0.0')]),
+                Component.text('ភាសាខ្មែរ '),
+                span(classes: 'brand-version-badge', [Component.text('v1.0.0')]),
               ]),
               div(classes: 'brand-subtitle', [
-                text('Khmer Programming Language'),
+                Component.text('Khmer Programming Language'),
               ]),
             ]),
           ],
@@ -66,7 +66,7 @@ class Header extends StatelessComponent {
           attributes: {'aria-label': 'ស្វែងរកឯកសារ (Search Docs)'},
           events: {'click': (e) => onOpenSearch()},
           [
-            div(classes: 'search-trigger-content', [
+            const div(classes: 'search-trigger-content', [
               svg(
                 attributes: {
                   'width': '16',
@@ -81,7 +81,7 @@ class Header extends StatelessComponent {
                   path([], attributes: {'d': 'm21 21-4.3-4.3'}),
                 ],
               ),
-              span([text('ស្វែងរកឯកសារ (Search docs)...')]),
+              span([Component.text('ស្វែងរកឯកសារ (Search docs)...')]),
             ]),
             div(classes: 'search-kbd-shortcut', [
               kbd('⌘'),
@@ -92,7 +92,7 @@ class Header extends StatelessComponent {
       ]),
 
       div(classes: 'header-actions', [
-        a(
+        const a(
           href: '#playground',
           classes: 'btn-primary-compact',
           id: 'nav-btn-playground',
@@ -108,7 +108,7 @@ class Header extends StatelessComponent {
                 polygon([], attributes: {'points': '5 3 19 12 5 21 5 3'}),
               ],
             ),
-            span([text('សាកល្បងកូដ')]),
+            span([Component.text('សាកល្បងកូដ')]),
           ],
         ),
 
@@ -122,7 +122,7 @@ class Header extends StatelessComponent {
           events: {'click': (e) => onToggleTheme()},
           [
             if (isDarkMode)
-              svg(
+              const svg(
                 id: 'theme-icon-moon',
                 attributes: {
                   'width': '18',
@@ -137,7 +137,7 @@ class Header extends StatelessComponent {
                 ],
               )
             else
-              svg(
+              const svg(
                 id: 'theme-icon-sun',
                 attributes: {
                   'width': '18',
@@ -155,7 +155,7 @@ class Header extends StatelessComponent {
           ],
         ),
 
-        a(
+        const a(
           href: 'https://github.com/sengson-great/KhmerLang',
           classes: 'header-action-btn',
           attributes: {

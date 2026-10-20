@@ -38,6 +38,29 @@
 
 ---
 
+## 📂 រចនាសម្ព័ន្ធគម្រោង (Project Architecture)
+
+គម្រោងត្រូវបានរៀបចំជា ៣ ថតធំៗយ៉ាងមានរបៀបរៀបរយ៖
+```
+Khmer-programming-language/
+├── 📂 cli/               # KhmerLang Native Engine, Interpreter, Compiler, REPL & CLI Tools
+│   ├── bin/             # CLI executables & launchers (khmer.dart, khmer)
+│   ├── lib/             # Core Engine (Lexer, Parser, AST, Interpreter, Runner)
+│   ├── examples/        # កូដគំរូភាសាខ្មែរ (.khmer)
+│   ├── test/            # Dart Unit Tests
+│   └── install.sh       # CLI Installer Script
+├── 📂 docs/              # គេហទំព័រឯកសារណែនាំផ្លូវការ (Official Documentation Website)
+│   ├── index.html       # Built Static Site (ត្រៀមសម្រាប់ GitHub Pages)
+│   ├── src/             # កូដប្រភពគេហទំព័រឯកសារបង្កើតដោយ Jaspr Framework
+│   └── build_docs.sh    # Script សម្រាប់ build ឯកសារណែនាំ
+└── 📂 ide/               # កម្មវិធីសរសេរកូដ និង Plugin សម្រាប់ Editor
+    ├── khmer_ide/       # Flutter Cross-Platform Desktop/Web/Mobile IDE
+    ├── web/             # Lightweight Programiz-Style Web IDE
+    └── editors/         # TextMate Syntax Grammars (VS Code, Vim, Sublime, Nano)
+```
+
+---
+
 ## 🚀 របៀបដំឡើង និងដំណើការ (Installation & Quickstart)
 
 ### ១. ដំឡើងភាសាខ្មែរលើកុំព្យូទ័ររបស់អ្នក (Universal One-Line Installer)
@@ -56,12 +79,11 @@
 * **ឬដំឡើងតាមរយៈ Dart Toolchain (គ្រប់ OS ទាំងអស់)**:
   ```bash
   # ដំណើរការផ្ទាល់ជាមួយ Dart
-  dart run bin/khmer.dart examples/hello.khmer
+  dart run cli/bin/khmer.dart cli/examples/hello.khmer
 
   # ឬ Compile ទៅជា Native AOT Binary សម្រាប់ដំណើរការលឿនបំផុត
-  dart compile exe bin/khmer.dart -o bin/khmer_bin
+  dart compile exe cli/bin/khmer.dart -o cli/bin/khmer_bin
   ```
-
 
 ---
 
@@ -101,7 +123,7 @@ khmer
 ### ៣. ដំណើការ Flutter IDE សម្រាប់ភាសាខ្មែរ (Cross-Platform Flutter IDE)
 កម្មវិធីសរសេរកូដបែបទំនើបបង្កើតឡើងដោយ Flutter មានម៉ាស៊ីន Dart Engine ក្នុងស្រុក (រ៉ាន់ភ្លាមៗ មិនបាច់មាន Server):
 ```bash
-cd khmer_ide
+cd ide/khmer_ide
 
 # ដំណើការលើ Desktop (macOS)
 flutter run -d macos
@@ -159,6 +181,9 @@ python3 -m http.server 8088 --directory docs
 ## 🧪 ការសាកល្បង Unit Tests
 
 ```bash
-python3 -m unittest discover -s tests
+# Dart Engine & CLI Tests
+cd cli && dart test
+
+# Python Engine Tests (Legacy)
+python3 -m unittest discover -s cli/tests
 ```
-# KhmerLang

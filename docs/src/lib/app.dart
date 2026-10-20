@@ -92,13 +92,13 @@ class AppState extends State<App> {
           onSelectSection: _onSelectSection,
         ),
 
-        main_(classes: 'docs-main-content', [
+        const main_(classes: 'docs-main-content', [
           div(classes: 'content-wrapper', [
-            const GettingStartedSections(),
-            const BasicsSections(),
-            const ControlFlowSections(),
-            const FunctionsOopSections(),
-            const ReferenceSections(),
+            GettingStartedSections(),
+            BasicsSections(),
+            ControlFlowSections(),
+            FunctionsOopSections(),
+            ReferenceSections(),
           ]),
         ]),
 

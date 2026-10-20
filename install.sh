@@ -61,9 +61,15 @@ IS_LOCAL=false
 
 if [ -f "$SCRIPT_SOURCE" ]; then
     CANDIDATE_ROOT="$(cd "$(dirname "$SCRIPT_SOURCE")" && pwd)"
-    if [ -f "$CANDIDATE_ROOT/bin/khmer.dart" ]; then
+    if [ -f "$CANDIDATE_ROOT/cli/bin/khmer.dart" ]; then
         IS_LOCAL=true
         LOCAL_ROOT="$CANDIDATE_ROOT"
+    elif [ -f "$CANDIDATE_ROOT/bin/khmer.dart" ]; then
+        IS_LOCAL=true
+        LOCAL_ROOT="$CANDIDATE_ROOT"
+    elif [ -f "$CANDIDATE_ROOT/../cli/bin/khmer.dart" ]; then
+        IS_LOCAL=true
+        LOCAL_ROOT="$(cd "$CANDIDATE_ROOT/.." && pwd)"
     elif [ -f "$CANDIDATE_ROOT/../bin/khmer.dart" ]; then
         IS_LOCAL=true
         LOCAL_ROOT="$(cd "$CANDIDATE_ROOT/.." && pwd)"
@@ -100,14 +106,23 @@ cd "$FINAL_APP_DIR"
 KHMER_TARGET="$BIN_DIR/khmer"
 echo "⚡ កំពុង Compile Native Binary សម្រាប់ល្បឿនលឿនបំផុត (AOT Native Compilation)..."
 
-if dart compile exe "$FINAL_APP_DIR/bin/khmer.dart" -o "$KHMER_TARGET" &>/dev/null; then
+ENTRY_POINT="$FINAL_APP_DIR/cli/bin/khmer.dart"
+if [ ! -f "$ENTRY_POINT" ]; then
+    ENTRY_POINT="$FINAL_APP_DIR/bin/khmer.dart"
+fi
+LAUNCHER_SCRIPT="$FINAL_APP_DIR/cli/bin/khmer"
+if [ ! -f "$LAUNCHER_SCRIPT" ]; then
+    LAUNCHER_SCRIPT="$FINAL_APP_DIR/bin/khmer"
+fi
+
+if dart compile exe "$ENTRY_POINT" -o "$KHMER_TARGET" &>/dev/null; then
     chmod +x "$KHMER_TARGET"
     echo -e "✓ បាន Compile Native Executable ជោគជ័យ: ${GREEN}$KHMER_TARGET${RESET}"
 else
     # Fallback to symlinking launcher script
-    chmod +x "$FINAL_APP_DIR/bin/khmer"
+    chmod +x "$LAUNCHER_SCRIPT"
     rm -f "$KHMER_TARGET"
-    ln -sf "$FINAL_APP_DIR/bin/khmer" "$KHMER_TARGET"
+    ln -sf "$LAUNCHER_SCRIPT" "$KHMER_TARGET"
     echo -e "✓ បានភ្ជាប់ពាក្យបញ្ជា Launcher: ${GREEN}$KHMER_TARGET${RESET}"
 fi
 

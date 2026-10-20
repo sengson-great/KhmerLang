@@ -36,7 +36,7 @@ class _SearchModalState extends State<SearchModal> {
   @override
   Component build(BuildContext context) {
     if (!component.isOpen) {
-      return div(styles: Styles(display: Display.none), []);
+      return const div(styles: Styles(display: Display.none), []);
     }
 
     final results = _filteredItems;
@@ -62,7 +62,7 @@ class _SearchModalState extends State<SearchModal> {
           },
           [
             div(classes: 'search-input-header', [
-              svg(
+              const svg(
                 attributes: {
                   'width': '20',
                   'height': '20',
@@ -102,7 +102,7 @@ class _SearchModalState extends State<SearchModal> {
               button(
                 classes: 'search-kbd-esc-btn',
                 events: {'click': (e) => component.onClose()},
-                [text('ESC')],
+                [const Component.text('ESC')],
               ),
             ]),
 
@@ -114,7 +114,7 @@ class _SearchModalState extends State<SearchModal> {
                     textAlign: TextAlign.center,
                     color: const Color('#94a3b8'),
                   ),
-                  [text('រកមិនឃើញលទ្ធផលសម្រាប់ "$_query" ឡើយ។')],
+                  [Component.text('រកមិនឃើញលទ្ធផលសម្រាប់ "$_query" ឡើយ។')],
                 )
               else
                 for (final item in results)
@@ -128,19 +128,19 @@ class _SearchModalState extends State<SearchModal> {
                     },
                     [
                       div(classes: 'search-result-title', [
-                        span([text(item.titleKm)]),
-                        span(classes: 'sidebar-badge', [text(item.category)]),
+                        span([Component.text(item.titleKm)]),
+                        span(classes: 'sidebar-badge', [Component.text(item.category)]),
                       ]),
                       div(classes: 'search-result-desc', [
-                        text(item.titleEn),
+                        Component.text(item.titleEn),
                       ]),
                     ],
                   ),
             ]),
 
-            div(classes: 'search-modal-footer', [
-              span([text('ចុចដើម្បីរុករកដោយផ្ទាល់ទៅកាន់ប្រធានបទ')]),
-              span([text('KhmerLang Docs Search')]),
+            const div(classes: 'search-modal-footer', [
+              span([Component.text('ចុចដើម្បីរុករកដោយផ្ទាល់ទៅកាន់ប្រធានបទ')]),
+              span([Component.text('KhmerLang Docs Search')]),
             ]),
           ],
         ),

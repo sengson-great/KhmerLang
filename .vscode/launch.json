@@ -7,21 +7,28 @@
         
 
         {
-            "name": "khmer_ide",
-            "cwd": "khmer_ide",
+            "name": "Khmer CLI (khmer.dart)",
+            "cwd": "cli",
+            "request": "launch",
+            "type": "dart",
+            "program": "cli/bin/khmer.dart"
+        },
+        {
+            "name": "khmer_ide (Flutter)",
+            "cwd": "ide/khmer_ide",
             "request": "launch",
             "type": "dart"
         },
         {
             "name": "khmer_ide (profile mode)",
-            "cwd": "khmer_ide",
+            "cwd": "ide/khmer_ide",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
             "name": "khmer_ide (release mode)",
-            "cwd": "khmer_ide",
+            "cwd": "ide/khmer_ide",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"

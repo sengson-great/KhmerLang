@@ -38,7 +38,7 @@ class TableOfContents extends StatelessComponent {
       id: 'docs-toc',
       attributes: {'aria-label': 'មាតិកាទំព័រនេះ'},
       [
-        div(classes: 'toc-title', [text('មាតិកាទំព័រនេះ')]),
+        const div(classes: 'toc-title', [Component.text('មាតិកាទំព័រនេះ')]),
         ul(classes: 'toc-list', id: 'toc-list', [
           for (final item in items)
             li([
@@ -46,7 +46,7 @@ class TableOfContents extends StatelessComponent {
                 href: '#${item.id}',
                 classes: 'toc-link${activeSectionId == item.id ? ' active' : ''}',
                 events: {'click': (e) => onSelectSection(item.id)},
-                [text(item.label)],
+                [Component.text(item.label)],
               ),
             ]),
         ]),

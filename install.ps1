@@ -28,8 +28,14 @@ if (-not (Test-Path $binDir)) {
 }
 
 $isLocal = $false
-if ($PSScriptRoot -and (Test-Path "$PSScriptRoot\bin\khmer.dart")) {
+if ($PSScriptRoot -and (Test-Path "$PSScriptRoot\cli\bin\khmer.dart")) {
+    $sourceDir = "$PSScriptRoot\cli"
+    $isLocal = $true
+} elseif ($PSScriptRoot -and (Test-Path "$PSScriptRoot\bin\khmer.dart")) {
     $sourceDir = $PSScriptRoot
+    $isLocal = $true
+} elseif ($PSScriptRoot -and (Test-Path "$PSScriptRoot\..\cli\bin\khmer.dart")) {
+    $sourceDir = (Resolve-Path "$PSScriptRoot\..\cli").Path
     $isLocal = $true
 } elseif ($PSScriptRoot -and (Test-Path "$PSScriptRoot\..\bin\khmer.dart")) {
     $sourceDir = (Resolve-Path "$PSScriptRoot\..").Path
@@ -57,13 +63,18 @@ if ($PSScriptRoot -and (Test-Path "$PSScriptRoot\bin\khmer.dart")) {
 Write-Host "⚡ កំពុង Compile Native Binary (AOT Native Compilation)..." -ForegroundColor Cyan
 $targetExe = "$binDir\khmer.exe"
 
-Push-Location $sourceDir
+$cliDir = $sourceDir
+if (Test-Path "$sourceDir\cli\bin\khmer.dart") {
+    $cliDir = "$sourceDir\cli"
+}
+
+Push-Location $cliDir
 try {
-    & dart compile exe "$sourceDir\bin\khmer.dart" -o $targetExe
+    & dart compile exe "$cliDir\bin\khmer.dart" -o $targetExe
     Write-Host "✓ បាន Compile Native Executable ជោគជ័យ: $targetExe" -ForegroundColor Green
 } catch {
-    Copy-Item "$sourceDir\bin\khmer.bat" "$binDir\khmer.bat" -Force
-    Copy-Item "$sourceDir\bin\khmer.ps1" "$binDir\khmer.ps1" -Force
+    Copy-Item "$cliDir\bin\khmer.bat" "$binDir\khmer.bat" -Force
+    Copy-Item "$cliDir\bin\khmer.ps1" "$binDir\khmer.ps1" -Force
     Write-Host "✓ បានចម្លង Launcher ទៅកាន់: $binDir" -ForegroundColor Green
 } finally {
     Pop-Location
