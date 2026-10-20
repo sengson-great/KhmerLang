@@ -23,14 +23,71 @@ class _SearchModalState extends State<SearchModal> {
   String _query = '';
 
   List<SearchItem> get _filteredItems {
-    final q = _query.trim().toLowerCase();
-    if (q.isEmpty) return searchIndex;
-    return searchIndex.where((item) {
-      return item.titleKm.toLowerCase().contains(q) ||
-          item.titleEn.toLowerCase().contains(q) ||
-          item.category.toLowerCase().contains(q) ||
-          item.keywords.toLowerCase().contains(q);
-    }).toList();
+    final rawQ = _query.trim().toLowerCase();
+    if (rawQ.isEmpty) return searchIndex;
+
+    // Normalize query: support multi-word, space-separated, and unspaced Khmer queries
+    final cleanQ = rawQ.replaceAll(RegExp(r'\s+'), ' ');
+    final noSpacesQ = rawQ.replaceAll(' ', '');
+    final tokens = cleanQ.split(' ').where((w) => w.isNotEmpty).toList();
+
+    final scored = <(SearchItem, int)>[];
+
+    for (final item in searchIndex) {
+      final titleKmNorm = item.titleKm.toLowerCase();
+      final titleKmNoSpace = titleKmNorm.replaceAll(' ', '');
+      final titleEnNorm = item.titleEn.toLowerCase();
+      final categoryNorm = item.category.toLowerCase();
+      final keywordsNorm = item.keywords.toLowerCase();
+      final keywordsNoSpace = keywordsNorm.replaceAll(' ', '');
+      final descNorm = item.description.toLowerCase();
+
+      final fullHaystack = '$titleKmNorm $titleEnNorm $categoryNorm $keywordsNorm $descNorm';
+      final fullHaystackNoSpace = '$titleKmNoSpace $keywordsNoSpace';
+
+      int score = 0;
+
+      // 1. Exact phrase match (Highest priority)
+      if (titleKmNorm.contains(cleanQ) || titleEnNorm.contains(cleanQ)) {
+        score += 100;
+      } else if (titleKmNoSpace.contains(noSpacesQ)) {
+        score += 90;
+      } else if (fullHaystack.contains(cleanQ)) {
+        score += 70;
+      } else if (fullHaystackNoSpace.contains(noSpacesQ)) {
+        score += 60;
+      }
+
+      // 2. Multi-token / related words matching
+      int matchedTokens = 0;
+      for (final token in tokens) {
+        if (token.isEmpty) continue;
+        if (titleKmNorm.contains(token) || titleEnNorm.contains(token)) {
+          matchedTokens += 3;
+        } else if (keywordsNorm.contains(token) || descNorm.contains(token)) {
+          matchedTokens += 2;
+        } else if (titleKmNoSpace.contains(token) || keywordsNoSpace.contains(token)) {
+          matchedTokens += 1;
+        }
+      }
+
+      if (tokens.isNotEmpty && matchedTokens > 0) {
+        score += matchedTokens * 15;
+        // High bonus if all searched words are found across the topic
+        final allMatched = tokens.every((t) =>
+            fullHaystack.contains(t) || fullHaystackNoSpace.contains(t));
+        if (allMatched) {
+          score += 50;
+        }
+      }
+
+      if (score > 0) {
+        scored.add((item, score));
+      }
+    }
+
+    scored.sort((first, second) => second.$2.compareTo(first.$2));
+    return scored.map((e) => e.$1).toList();
   }
 
   @override
@@ -132,7 +189,9 @@ class _SearchModalState extends State<SearchModal> {
                         span(classes: 'sidebar-badge', [Component.text(item.category)]),
                       ]),
                       div(classes: 'search-result-desc', [
-                        Component.text(item.titleEn),
+                        Component.text(item.description.isNotEmpty
+                            ? '${item.titleEn} — ${item.description}'
+                            : item.titleEn),
                       ]),
                     ],
                   ),
