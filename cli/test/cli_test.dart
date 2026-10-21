@@ -94,7 +94,7 @@ void main() {
     test('khmer --version outputs Dart Native info', () async {
       final res = await Process.run('bin/khmer', ['--version']);
       expect(res.exitCode, equals(0));
-      expect(res.stdout, contains('KhmerLang (ភាសាខ្មែរ) version 1.0.0 [Dart Native]'));
+      expect(res.stdout, contains('ខ្មែរចារ (KhmerChar) version 1.0.0 [Dart Native]'));
     });
 
     test('khmer -e runs inline expression', () async {

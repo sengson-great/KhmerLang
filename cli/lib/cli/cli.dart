@@ -33,7 +33,7 @@ Future<void> runCli(List<String> args) async {
   }
 
   if (cmd == '-v' || cmd == '--version' || cmd == 'version') {
-    stdout.writeln('KhmerLang (ភាសាខ្មែរ) version $khmerLangVersion [Dart Native]');
+    stdout.writeln('ខ្មែរចារ (KhmerChar) version $khmerLangVersion [Dart Native]');
     return;
   }
 
@@ -313,7 +313,7 @@ void runInit(String projectPath) {
 
   final mainKhmerFile = File('${targetDir.path}/main.khmer');
   if (!mainKhmerFile.existsSync()) {
-    const sampleCode = '''# កម្មវិធី KhmerLang ដំបូងរបស់ខ្ញុំ
+    const sampleCode = '''# កម្មវិធី ខ្មែរចារ (KhmerChar) ដំបូងរបស់ខ្ញុំ
 តាំង អ្នកប្រើប្រាស់ = "អ្នកអភិវឌ្ឍន៍ខ្មែរ"
 បង្ហាញ("ជម្រាបសួរ", អ្នកប្រើប្រាស់)
 បង្ហាញ("សូមស្វាគមន៍មកកាន់ពិភពសរសេរកូដជាភាសាខ្មែរ!")
@@ -335,7 +335,7 @@ void runInit(String projectPath) {
     tasksFile.writeAsStringSync(encoder.convert(getVsCodeTasks()));
   }
 
-  stdout.writeln('✓ បានបង្កើតគម្រោង KhmerLang ជោគជ័យក្នុង: ${targetDir.path}');
+  stdout.writeln('✓ បានបង្កើតគម្រោង ខ្មែរចារ (KhmerChar) ជោគជ័យក្នុង: ${targetDir.path}');
   stdout.writeln('  ├── main.khmer            (ឯកសារកូដគំរូដំបូង)');
   stdout.writeln('  └── .vscode/tasks.json    (ការកំណត់ Run Task សម្រាប់ VS Code / Cursor)');
   stdout.writeln('\nរបៀបដំណើរការ:');
@@ -348,7 +348,7 @@ void runInit(String projectPath) {
 void handleEditorCmd(String subcommand, List<String> extraArgs) {
   if (subcommand == 'list' || subcommand == 'help' || subcommand == '--help') {
     stdout.writeln('''
-ឧបករណ៍កំណត់កម្មវិធីសរសេរកូដ / KhmerLang Editor Configurations:
+ឧបករណ៍កំណត់កម្មវិធីសរសេរកូដ / ខ្មែរចារ (KhmerChar) Editor Configurations:
   khmer editor vscode        : ដំឡើង extension ទៅក្នុង VS Code / Cursor
   khmer editor vim           : បង្ហាញ ឬបង្កើត config សម្រាប់ Vim / Neovim
   khmer editor sublime       : បង្ហាញ ឬបង្កើត config សម្រាប់ Sublime Text
@@ -362,7 +362,7 @@ void handleEditorCmd(String subcommand, List<String> extraArgs) {
     final target = extraArgs.isNotEmpty ? extraArgs[0] : null;
     try {
       final installedPath = installVsCodeExtension(target);
-      stdout.writeln('✓ បានដំឡើង KhmerLang extension សម្រាប់ VS Code/Cursor ជោគជ័យ!');
+      stdout.writeln('✓ បានដំឡើង ខ្មែរចារ (KhmerChar) extension សម្រាប់ VS Code/Cursor ជោគជ័យ!');
       stdout.writeln('  ទីតាំង/Location: $installedPath');
       stdout.writeln('  សូម Restart ឬ Reload VS Code ដើម្បីដំណើរការ Syntax Highlighting ពេញលេញ។');
     } catch (e) {
@@ -457,7 +457,7 @@ void handleEditorCmd(String subcommand, List<String> extraArgs) {
 }
 
 void printHelp() {
-  stdout.writeln('''KhmerLang (ភាសាខ្មែរ) CLI v$khmerLangVersion [Dart Native Engine]
+  stdout.writeln('''ខ្មែរចារ (KhmerChar) CLI v$khmerLangVersion [Dart Native Engine]
 
 ការប្រើប្រាស់ទូទៅ / Usage:
   khmer <file.khmer>            : ដំណើរការឯកសារកូដ / Run script file

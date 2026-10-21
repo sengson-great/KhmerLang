@@ -38,7 +38,7 @@ class ExamplesDialog extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '💡 បណ្ណាល័យកូដគំរូខ្មែរ (KhmerLang Examples)',
+                          '💡 បណ្ណាល័យកូដគំរូ ខ្មែរចារ (KhmerChar Examples)',
                           style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.bold,

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-echo "🚀 Building KhmerLang Documentation in Jaspr..."
+echo "🚀 Building ខ្មែរចារ (KhmerChar) Documentation in Jaspr..."
 cd "$(dirname "$0")"
 
 # Ensure dependencies

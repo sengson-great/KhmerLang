@@ -15,7 +15,7 @@ class ReferenceSections extends StatelessComponent {
           Component.text('អនុគមន៍ស្ដង់ដារ (Built-in Functions) '),
           a(href: '#builtins', classes: 'heading-anchor', [Component.text('#')]),
         ]),
-        p([Component.text('KhmerLang ផ្ដល់នូវអនុគមន៍ស្ដង់ដារដែលភ្ជាប់មកស្រាប់ជាមួយភាសា៖')]),
+        p([Component.text('ខ្មែរចារ (KhmerChar) ផ្ដល់នូវអនុគមន៍ស្ដង់ដារដែលភ្ជាប់មកស្រាប់ជាមួយភាសា៖')]),
 
         div(classes: 'table-responsive', [
           table(classes: 'doc-table', [
@@ -59,12 +59,12 @@ class ReferenceSections extends StatelessComponent {
           a(href: '#ides', classes: 'heading-anchor', [Component.text('#')]),
         ]),
         p([
-          Component.text('ដើម្បីសម្រួលដល់ការសរសេរកូដ ប្រព័ន្ធអេកូឡូស៊ី KhmerLang រួមមានឧបករណ៍ទំនើបៗជាច្រើន៖'),
+          Component.text('ដើម្បីសម្រួលដល់ការសរសេរកូដ ប្រព័ន្ធអេកូឡូស៊ី ខ្មែរចារ (KhmerChar) រួមមានឧបករណ៍ទំនើបៗជាច្រើន៖'),
         ]),
 
         ul([
           li([
-            strong([Component.text('KhmerLang Flutter IDE (Cross-Platform)៖ ')]),
+            strong([Component.text('ខ្មែរចារ Khmer IDE (Cross-Platform)៖ ')]),
             Component.text('កម្មវិធីសរសេរកូដបង្កើតឡើងដោយ Flutter មានម៉ាស៊ីន Dart Engine ក្នុងស្រុក គាំទ្រការសរសេរលើ macOS, Windows, Linux និង Web ដោយផ្ទាល់ ជាមួយ Virtual Khmer Keyboard, Tabs, AST Inspector និង Output Console។'),
           ]),
           li([
@@ -87,7 +87,7 @@ class ReferenceSections extends StatelessComponent {
           a(href: '#cheat-sheet', classes: 'heading-anchor', [Component.text('#')]),
         ]),
         p([
-          Component.text('តារាងយោងសម្រាប់ពាក្យគន្លឹះទាំងអស់នៅក្នុងភាសាខ្មែរ (KhmerLang)៖'),
+          Component.text('តារាងយោងសម្រាប់ពាក្យគន្លឹះទាំងអស់នៅក្នុង ខ្មែរចារ (KhmerChar)៖'),
         ]),
 
         div(classes: 'table-responsive', [
@@ -215,7 +215,7 @@ class ReferenceSections extends StatelessComponent {
           a(href: '#playground', classes: 'heading-anchor', [Component.text('#')]),
         ]),
         p([
-          Component.text('សរសេរ និងរ៉ាន់កូដ KhmerLang ដោយផ្ទាល់ក្នុង Browser របស់អ្នក! ជ្រើសរើសកូដគំរូ ឬសរសេរកូដផ្ទាល់ខ្លួនរបស់អ្នក រួចចុច '),
+          Component.text('សរសេរ និងរ៉ាន់កូដ ខ្មែរចារ (KhmerChar) ដោយផ្ទាល់ក្នុង Browser របស់អ្នក! ជ្រើសរើសកូដគំរូ ឬសរសេរកូដផ្ទាល់ខ្លួនរបស់អ្នក រួចចុច '),
           strong([Component.text(' "▷ ដំណើការកូដ (Run)" ')]),
           Component.text('៖'),
         ]),

@@ -18,7 +18,7 @@ class BasicsSections extends StatelessComponent {
         p([
           Component.text('នៅក្នុងភាសាខ្មែរ យើងប្រើពាក្យគន្លឹះ '),
           code([Component.text('តាំង')]),
-          Component.text(' (Let) ដើម្បីប្រកាសអថេរ។ អថេរក្នុង KhmerLang គឺ dynamic-typed មានន័យថាអ្នកអាចផ្ទុកទិន្នន័យជា លេខ, អក្សរ (String), Boolean, ឬ Null បានដោយសេរី។'),
+          Component.text(' (Let) ដើម្បីប្រកាសអថេរ។ អថេរក្នុង ខ្មែរចារ (KhmerChar) គឺ dynamic-typed មានន័យថាអ្នកអាចផ្ទុកទិន្នន័យជា លេខ, អក្សរ (String), Boolean, ឬ Null បានដោយសេរី។'),
         ]),
         ul([
           li([
@@ -71,7 +71,7 @@ class BasicsSections extends StatelessComponent {
           a(href: '#numerals', classes: 'heading-anchor', [Component.text('#')]),
         ]),
         p([
-          Component.text('ចំណុចអស្ចារ្យបំផុតរបស់ KhmerLang គឺការគាំទ្រលេខខ្មែរ '),
+          Component.text('ចំណុចអស្ចារ្យបំផុតរបស់ ខ្មែរចារ (KhmerChar) គឺការគាំទ្រលេខខ្មែរ '),
           strong([Component.text('០, ១, ២, ៣, ៤, ៥, ៦, ៧, ៨, ៩')]),
           Component.text(' ជាលេខពិតប្រាកដក្នុងកម្រិត Lexer និង Parser។ អ្នកអាចយកលេខខ្មែរមកបូក ដក គុណ ចែក ឬប្រៀបធៀបបានដោយរលូន!'),
         ]),
@@ -147,7 +147,7 @@ class BasicsSections extends StatelessComponent {
           a(href: '#punctuations', classes: 'heading-anchor', [Component.text('#')]),
         ]),
         p([
-          Component.text('KhmerLang បត់បែនតាមរចនាប័ទ្មខ្មែរ ដោយអនុញ្ញាតឱ្យប្រើសញ្ញាវណ្ណយុត្តិខ្មែរសម្រាប់បញ្ចប់ប្រយោគ ឬកំណត់លក្ខខណ្ឌ៖'),
+          Component.text('ខ្មែរចារ (KhmerChar) បត់បែនតាមរចនាប័ទ្មខ្មែរ ដោយអនុញ្ញាតឱ្យប្រើសញ្ញាវណ្ណយុត្តិខ្មែរសម្រាប់បញ្ចប់ប្រយោគ ឬកំណត់លក្ខខណ្ឌ៖'),
         ]),
         ul([
           li([

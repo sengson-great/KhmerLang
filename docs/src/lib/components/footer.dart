@@ -8,7 +8,7 @@ class Footer extends StatelessComponent {
   Component build(BuildContext context) {
     return footer(classes: 'docs-footer', [
       const p([
-        Component.text('ភាសាខ្មែរ (KhmerLang) — រក្សាសិទ្ធិគ្រប់យ៉ាង © 2026 ដោយ Veng Chhuong និងសហគមន៍អ្នកអភិវឌ្ឍន៍កម្ពុជា'),
+        Component.text('ខ្មែរចារ (KhmerChar) — រក្សាសិទ្ធិគ្រប់យ៉ាង © 2026 ដោយ Veng Chhuong និងសហគមន៍អ្នកអភិវឌ្ឍន៍កម្ពុជា'),
       ]),
       p(
         styles: Styles(

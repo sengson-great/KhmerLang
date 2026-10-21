@@ -45,7 +45,7 @@ class _KhmerLangIdeAppState extends State<KhmerLangIdeApp> {
     final themeColors = AppThemes.getTheme(_currentThemeMode);
 
     return MaterialApp(
-      title: 'ភាសាខ្មែរ IDE • KhmerLang IDE',
+      title: 'ខ្មែរចារ IDE • KhmerChar IDE',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: _currentThemeMode == AppThemeMode.cleanLight

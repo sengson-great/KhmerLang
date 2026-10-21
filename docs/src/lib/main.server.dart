@@ -14,20 +14,21 @@ void main() {
   runApp(const Document(
     lang: 'km',
     base: null,
-    title: 'ភាសាខ្មែរ (KhmerLang) — ឯកសារណែនាំផ្លូវការ | Official Documentation',
+    title: 'ខ្មែរចារ (KhmerChar) — ឯកសារណែនាំផ្លូវការ | Official Documentation',
     meta: {
-      'description': 'ឯកសារណែនាំផ្លូវការនៃភាសាប្រូក្រាមីងខ្មែរ (KhmerLang) — ភាសាប្រូក្រាមីងកម្រិតខ្ពស់គាំទ្រ OOP, លេខខ្មែរ ០-៩ និងមាន Web & Flutter IDE។',
-      'keywords': 'KhmerLang, ភាសាខ្មែរ, Khmer Programming Language, Coding in Khmer, OOP in Khmer, Dart, Compiler',
+      'google-site-verification': 'DIbYz5r3yoEXbyqtxynQvp7ti5lWkpoj1Q9CtY7Ab-Q',
+      'description': 'ឯកសារណែនាំផ្លូវការនៃភាសាប្រូក្រាមីង ខ្មែរចារ (KhmerChar) — ភាសាប្រូក្រាមីងកម្រិតខ្ពស់គាំទ្រ OOP, លេខខ្មែរ ០-៩ និងមាន Web & Flutter IDE។',
+      'keywords': 'KhmerChar, ខ្មែរចារ, KhmerLang, ភាសាខ្មែរ, Khmer Programming Language, Coding in Khmer, OOP in Khmer, Dart, Compiler',
       'viewport': 'width=device-width, initial-scale=1.0',
-      'author': 'KhmerLang Team',
+      'author': 'KhmerChar Team',
       'robots': 'index, follow',
-      'og:title': 'ភាសាខ្មែរ (KhmerLang) — ឯកសារណែនាំផ្លូវការ',
-      'og:description': 'រៀនសរសេរកូដជាភាសាខ្មែរដោយផ្ទាល់ ជាមួយវេយ្យាករណ៍ច្បាស់លាស់ គាំទ្រ OOP និងរ៉ាន់កូដលើ Web Browser ភ្លាមៗ!',
+      'og:title': 'ខ្មែរចារ (KhmerChar) — ឯកសារណែនាំផ្លូវការ',
+      'og:description': 'រៀនសរសេរកូដជាភាសាខ្មែរចារ (KhmerChar) ដោយផ្ទាល់ ជាមួយវេយ្យាករណ៍ច្បាស់លាស់ គាំទ្រ OOP និងរ៉ាន់កូដលើ Web Browser ភ្លាមៗ!',
       'og:type': 'website',
       'og:url': 'https://sengson-great.github.io/KhmerLang/',
       'twitter:card': 'summary_large_image',
-      'twitter:title': 'ភាសាខ្មែរ (KhmerLang) — ឯកសារណែនាំផ្លូវការ',
-      'twitter:description': 'រៀនសរសេរកូដជាភាសាខ្មែរដោយផ្ទាល់ ជាមួយវេយ្យាករណ៍ច្បាស់លាស់ គាំទ្រ OOP និងរ៉ាន់កូដលើ Web Browser ភ្លាមៗ!',
+      'twitter:title': 'ខ្មែរចារ (KhmerChar) — ឯកសារណែនាំផ្លូវការ',
+      'twitter:description': 'រៀនសរសេរកូដជាភាសាខ្មែរចារ (KhmerChar) ដោយផ្ទាល់ ជាមួយវេយ្យាករណ៍ច្បាស់លាស់ គាំទ្រ OOP និងរ៉ាន់កូដលើ Web Browser ភ្លាមៗ!',
     },
     head: [
       link(rel: 'canonical', href: 'https://sengson-great.github.io/KhmerLang/'),
@@ -43,8 +44,8 @@ void main() {
   "@graph": [
     {
       "@type": "SoftwareApplication",
-      "name": "KhmerLang",
-      "alternateName": "ភាសាខ្មែរ",
+      "name": "KhmerChar",
+      "alternateName": "ខ្មែរចារ",
       "applicationCategory": "DeveloperApplication",
       "operatingSystem": "macOS, Linux, Windows, Web",
       "description": "ភាសាប្រូក្រាមីងកម្រិតខ្ពស់គាំទ្រ OOP, លេខខ្មែរ ០-៩ និងមាន Web & Flutter IDE",
@@ -57,13 +58,13 @@ void main() {
     },
     {
       "@type": "TechArticle",
-      "headline": "ភាសាខ្មែរ (KhmerLang) — ឯកសារណែនាំផ្លូវការ",
-      "description": "ឯកសារណែនាំផ្លូវការនៃភាសាប្រូក្រាមីងខ្មែរ (KhmerLang)",
+      "headline": "ខ្មែរចារ (KhmerChar) — ឯកសារណែនាំផ្លូវការ",
+      "description": "ឯកសារណែនាំផ្លូវការនៃភាសាប្រូក្រាមីង ខ្មែរចារ (KhmerChar)",
       "url": "https://sengson-great.github.io/KhmerLang/",
       "inLanguage": ["km", "en"],
       "about": {
         "@type": "ComputerLanguage",
-        "name": "KhmerLang"
+        "name": "KhmerChar"
       }
     }
   ]

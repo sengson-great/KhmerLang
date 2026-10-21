@@ -10,7 +10,7 @@ void runRepl({String promptStyle = 'ascii', String version = '1.0.0'}) {
   final promptStr = promptStyle == 'ascii' ? 'khmer> ' : 'ខ្មែរ> ';
 
   stdout.writeln('==================================================');
-  stdout.writeln('  ភាសាខ្មែរ (KhmerLang) v$version REPL');
+  stdout.writeln('  ខ្មែរចារ (KhmerChar) v$version REPL');
   stdout.writeln("  វាយ 'ចាកចេញ' ឬ 'exit' ដើម្បីចាកចេញ / Type 'exit' to quit");
   stdout.writeln('  គន្លឹះ: បើអក្សរខ្មែរមិនស្អាតលើ Terminal សូមរ៉ាន់: khmer terminal');
   stdout.writeln('==================================================');

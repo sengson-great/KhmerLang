@@ -15,10 +15,10 @@ class GettingStartedSections extends StatelessComponent {
           span([Component.text('✨ ភាសាប្រូក្រាមីងខ្មែរដំបូងគេបង្អស់គាំទ្រ OOP ពេញលេញ')]),
         ]),
         h1(classes: 'doc-title', [
-          Component.text('ឯកសារណែនាំផ្លូវការ — ភាសាខ្មែរ (KhmerLang)'),
+          Component.text('ឯកសារណែនាំផ្លូវការ — ខ្មែរចារ (KhmerChar)'),
         ]),
         p(classes: 'hero-lead', [
-          strong([Component.text('KhmerLang (ភាសាខ្មែរ)')]),
+          strong([Component.text('ខ្មែរចារ (KhmerChar)')]),
           Component.text(' គឺជាភាសាប្រូក្រាមីងកម្រិតខ្ពស់ដែលត្រូវបានរចនាឡើងជាមួយវាក្យសព្ទ និងពាក្យគន្លឹះជាភាសាខ្មែរពិតប្រាកដ។ វាផ្ដល់នូវភាពងាយស្រួលក្នុងការសិក្សា សរសេរកូដតាមបែប Object-Oriented Programming (OOP) និងគាំទ្រលេខខ្មែរ (០-៩) ដោយផ្ទាល់។'),
         ]),
         div(classes: 'hero-buttons', [
@@ -42,7 +42,7 @@ class GettingStartedSections extends StatelessComponent {
           a(href: '#intro', classes: 'heading-anchor', [Component.text('#')]),
         ]),
         p([
-          Component.text('ភាសាខ្មែរ (KhmerLang) ត្រូវបានបង្កើតឡើងដើម្បីកាត់បន្ថយរបាំងភាសាក្នុងវិស័យវិទ្យាសាស្ត្រកុំព្យូទ័រនៅកម្ពុជា។ សិស្ស និស្សិត និងអ្នករៀនដំបូងអាចយល់ច្បាស់អំពីតក្កវិជ្ជានៃកូដ (Logic) តាមរយៈការប្រើពាក្យខ្មែរធម្មជាតិ ដូចជា '),
+          Component.text('ខ្មែរចារ (KhmerChar) ត្រូវបានបង្កើតឡើងដើម្បីកាត់បន្ថយរបាំងភាសាក្នុងវិស័យវិទ្យាសាស្ត្រកុំព្យូទ័រនៅកម្ពុជា។ សិស្ស និស្សិត និងអ្នករៀនដំបូងអាចយល់ច្បាស់អំពីតក្កវិជ្ជានៃកូដ (Logic) តាមរយៈការប្រើពាក្យខ្មែរធម្មជាតិ ដូចជា '),
           code([Component.text('តាំង')]), Component.text(', '),
           code([Component.text('បង្ហាញ')]), Component.text(', '),
           code([Component.text('បើ')]), Component.text(', '),
@@ -69,7 +69,7 @@ class GettingStartedSections extends StatelessComponent {
         ]),
         p([
           Component.text('ការចាប់ផ្តើមសរសេរកូដជាមួយ '),
-          strong([Component.text('KhmerLang (ភាសាខ្មែរ)')]),
+          strong([Component.text('ខ្មែរចារ (KhmerChar)')]),
           Component.text(' មានភាពងាយស្រួល និងរហ័ស។ អ្នកប្រើប្រាស់អាចជ្រើសរើសការដំឡើងតាមរយៈ '),
           strong([Component.text('Command Line Tool (CLI)')]),
           Component.text(' សម្រាប់ដំណើរការលើម៉ាស៊ីនផ្ទាល់ ឬប្រើប្រាស់កម្មវិធី '),
@@ -145,13 +145,13 @@ class GettingStartedSections extends StatelessComponent {
         CodeCard(
           title: 'Interactive Console',
           lang: 'BASH',
-          code: '\$ khmer\nភាសាខ្មែរ (KhmerLang) v1.0.0 REPL\nវាយ \'ចាកចេញ\' ឬចុច Ctrl+D ដើម្បីចាកចេញ។\n\n>>> តាំង ពិន្ទុ = ៩៥;\n>>> បង្ហាញ("ពិន្ទុសរុប:", ពិន្ទុ);\nពិន្ទុសរុប: ៩៥\n>>> តាំង ទ្វេដង = ពិន្ទុ * ២;\n>>> បង្ហាញ(ទ្វេដង);\n១៩០',
+          code: '\$ khmer\nខ្មែរចារ (KhmerChar) v1.0.0 REPL\nវាយ \'ចាកចេញ\' ឬចុច Ctrl+D ដើម្បីចាកចេញ។\n\n>>> តាំង ពិន្ទុ = ៩៥;\n>>> បង្ហាញ("ពិន្ទុសរុប:", ពិន្ទុ);\nពិន្ទុសរុប: ៩៥\n>>> តាំង ទ្វេដង = ពិន្ទុ * ២;\n>>> បង្ហាញ(ទ្វេដង);\n១៩០',
           canRun: false,
         ),
 
         h3(classes: 'sub-heading', [Component.text('៥. ការប្រើប្រាស់ជាមួយគ្រប់ Text Editor ទាំងអស់ (VS Code, Vim, Sublime, Nano)')]),
         p([
-          Component.text('KhmerLang CLI ផ្ដល់ឧបករណ៍ជំនួយស្រាប់សម្រាប់ភ្ជាប់ទៅកាន់ Text Editor ណាមួយដែលអ្នកពេញចិត្ត៖'),
+          Component.text('ខ្មែរចារ (KhmerChar) CLI ផ្ដល់ឧបករណ៍ជំនួយស្រាប់សម្រាប់ភ្ជាប់ទៅកាន់ Text Editor ណាមួយដែលអ្នកពេញចិត្ត៖'),
         ]),
 
         CodeCard(
@@ -192,7 +192,7 @@ class GettingStartedSections extends StatelessComponent {
         CodeCard(
           title: 'hello_world.khmer',
           lang: 'KHMER',
-          code: '# កម្មវិធីដំបូងរបស់ខ្ញុំក្នុងភាសាខ្មែរ\nបង្ហាញ("សួស្តីពិភពលោក!")\nបង្ហាញ("សូមស្វាគមន៍មកកាន់ KhmerLang v1.0")',
+          code: '# កម្មវិធីដំបូងរបស់ខ្ញុំក្នុងភាសាខ្មែរ\nបង្ហាញ("សួស្តីពិភពលោក!")\nបង្ហាញ("សូមស្វាគមន៍មកកាន់ ខ្មែរចារ (KhmerChar) v1.0")',
         ),
       ]),
     ]);

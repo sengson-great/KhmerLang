@@ -13,7 +13,7 @@ class _PlaygroundState extends State<Playground> {
   static const Map<String, String> _samples = {
     'hello': '''# ១. កម្មវិធីដំបូង (Hello World)
 បង្ហាញ("សួស្តីពិភពលោក!")
-បង្ហាញ("សូមស្វាគមន៍មកកាន់ KhmerLang v1.0")''',
+បង្ហាញ("សូមស្វាគមន៍មកកាន់ ខ្មែរចារ (KhmerChar) v1.0")''',
 
     'math': '''# ២. គណនាផលបូកលេខខ្មែរ (Khmer Math)
 តាំង ក = ១៥

@@ -199,7 +199,7 @@ class _SearchModalState extends State<SearchModal> {
 
             const div(classes: 'search-modal-footer', [
               span([Component.text('ចុចដើម្បីរុករកដោយផ្ទាល់ទៅកាន់ប្រធានបទ')]),
-              span([Component.text('KhmerLang Docs Search')]),
+              span([Component.text('ស្វែងរកក្នុង ខ្មែរចារ (KhmerChar)')]),
             ]),
           ],
         ),

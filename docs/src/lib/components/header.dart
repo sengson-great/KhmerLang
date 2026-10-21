@@ -45,14 +45,14 @@ class Header extends StatelessComponent {
           href: '#intro',
           classes: 'brand-link',
           [
-            div(classes: 'brand-logo-badge', [Component.text('ក')]),
+            div(classes: 'brand-logo-badge', [Component.text('ច')]),
             div(classes: 'brand-text', [
               div(classes: 'brand-title', [
-                Component.text('ភាសាខ្មែរ '),
+                Component.text('ខ្មែរចារ '),
                 span(classes: 'brand-version-badge', [Component.text('v1.0.0')]),
               ]),
               div(classes: 'brand-subtitle', [
-                Component.text('Khmer Programming Language'),
+                Component.text('KhmerChar Programming Language'),
               ]),
             ]),
           ],

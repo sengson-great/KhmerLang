@@ -111,7 +111,7 @@ class CheatSheetDialog extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '📖 តារាងពាក្យគន្លឹះ និងវេយ្យាករណ៍ភាសាខ្មែរ (KhmerLang Cheat Sheet)',
+                          '📖 តារាងពាក្យគន្លឹះ និងវេយ្យាករណ៍ ខ្មែរចារ (KhmerChar Cheat Sheet)',
                           style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.bold,

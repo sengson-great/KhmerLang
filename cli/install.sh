@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # ==============================================================================
-# KhmerLang (ភាសាខ្មែរ) — Universal Cross-Platform Installer (Powered by Dart)
-# Enables ANY user on macOS, Linux, or Windows (WSL) to install KhmerLang globally.
+# ខ្មែរចារ KhmerChar — Universal Cross-Platform Installer (Powered by Dart)
+# Enables ANY user on macOS, Linux, or Windows (WSL) to install ខ្មែរចារ (KhmerChar) globally.
 #
 # One-line remote installation:
 #   curl -fsSL https://raw.githubusercontent.com/sengson-great/KhmerLang/main/install.sh | bash
@@ -33,7 +33,7 @@ echo " | . \| | | | | | | | |  __/ |   | |__| (_| | | | | (_| |   "
 echo " |_|\_\_| |_|_| |_| |_|\___|_|   |_____\__,_|_| |_|\__, |   "
 echo "                                                   |___/    "
 echo -e "${RESET}"
-echo -e "${BOLD}🇰🇭 កំពុងដំឡើងភាសាខ្មែរ (Installing KhmerLang with Dart Engine)...${RESET}"
+echo -e "${BOLD}🇰🇭 កំពុងដំឡើង ខ្មែរចារ (Installing KhmerChar with Dart Engine)...${RESET}"
 echo "------------------------------------------------------------"
 
 # 1. Detect Dart SDK
@@ -82,7 +82,7 @@ if [ "$IS_LOCAL" = true ]; then
     echo "📂 កំពុងដំឡើងចេញពី Repository ក្នុងស្រុក (Local repo): $LOCAL_ROOT"
     FINAL_APP_DIR="$LOCAL_ROOT"
 else
-    echo "🌐 កំពុងទាញយក KhmerLang ពី GitHub មកកាន់: $INSTALL_DIR"
+    echo "🌐 កំពុងទាញយក ខ្មែរចារ (KhmerChar) ពី GitHub មកកាន់: $INSTALL_DIR"
     if command -v git &> /dev/null; then
         if [ -d "$INSTALL_DIR/.git" ]; then
             echo "🔄 កំពុងធ្វើបច្ចុប្បន្នភាពគម្រោង (Updating existing installation)..."
@@ -157,9 +157,9 @@ if [[ ":$PATH:" != *":$BIN_DIR:"* ]]; then
     if [ -n "$SHELL_CONFIG" ]; then
         if [ ! -f "$SHELL_CONFIG" ] || ! grep -q "$BIN_DIR" "$SHELL_CONFIG" 2>/dev/null; then
             if [[ "$SHELL" == *"fish"* ]]; then
-                echo -e "\n# KhmerLang PATH\nset -gx PATH $BIN_DIR \$PATH" >> "$SHELL_CONFIG"
+                echo -e "\n# KhmerChar PATH\nset -gx PATH $BIN_DIR \$PATH" >> "$SHELL_CONFIG"
             else
-                echo -e "\n# KhmerLang PATH\nexport PATH=\"$BIN_DIR:\$PATH\"" >> "$SHELL_CONFIG"
+                echo -e "\n# KhmerChar PATH\nexport PATH=\"$BIN_DIR:\$PATH\"" >> "$SHELL_CONFIG"
             fi
             PATH_UPDATED=true
             echo -e "✓ បានបន្ថែម ${CYAN}$BIN_DIR${RESET} ទៅក្នុង Shell Profile របស់អ្នក: ${GREEN}$SHELL_CONFIG${RESET}"

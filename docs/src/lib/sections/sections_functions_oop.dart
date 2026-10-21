@@ -37,7 +37,7 @@ class FunctionsOopSections extends StatelessComponent {
           a(href: '#recursion', classes: 'heading-anchor', [Component.text('#')]),
         ]),
         p([
-          Component.text('KhmerLang គាំទ្រការហៅអនុគមន៍ខ្លួនឯង (Recursive Functions) យ៉ាងរលូន៖'),
+          Component.text('ខ្មែរចារ (KhmerChar) គាំទ្រការហៅអនុគមន៍ខ្លួនឯង (Recursive Functions) យ៉ាងរលូន៖'),
         ]),
 
         CodeCard(
@@ -54,7 +54,7 @@ class FunctionsOopSections extends StatelessComponent {
           a(href: '#classes', classes: 'heading-anchor', [Component.text('#')]),
         ]),
         p([
-          Component.text('KhmerLang គាំទ្រការសរសេរប្រូក្រាមតាមបែប OOP ពេញលេញ។ អ្នកអាចបង្កើតគំរូថ្នាក់ដោយប្រើពាក្យគន្លឹះ '),
+          Component.text('ខ្មែរចារ (KhmerChar) គាំទ្រការសរសេរប្រូក្រាមតាមបែប OOP ពេញលេញ។ អ្នកអាចបង្កើតគំរូថ្នាក់ដោយប្រើពាក្យគន្លឹះ '),
           code([Component.text('ថ្នាក់')]),
           Component.text(' (Class) និងបង្កើត Constructor សម្រាប់ចាប់ផ្តើមទិន្នន័យដោយប្រើ '),
           code([Component.text('បង្កើត(...)')]),

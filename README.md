@@ -1,6 +1,6 @@
-# ភាសាខ្មែរ (KhmerLang) — Khmer Programming Language & Programiz-Style Web IDE
+# ខ្មែរចារ (KhmerChar) — Khmer Programming Language & Programiz-Style Web IDE
 
-**KhmerLang (ភាសាខ្មែរ)** គឺជាភាសាប្រូក្រាមីងដែលមានវាក្យសព្ទ និងពាក្យគន្លឹះជាភាសាខ្មែរផ្លូវការ ព្រមទាំងគាំទ្រការសរសេរប្រូក្រាមតាមបែប **OOP (Object-Oriented Programming)** និងការសរសេរលេខខ្មែរ (០-៩) ដោយផ្ទាល់។
+**ខ្មែរចារ (KhmerChar)** គឺជាភាសាប្រូក្រាមីងដែលមានវាក្យសព្ទ និងពាក្យគន្លឹះជាភាសាខ្មែរផ្លូវការ ព្រមទាំងគាំទ្រការសរសេរប្រូក្រាមតាមបែប **OOP (Object-Oriented Programming)** និងការសរសេរលេខខ្មែរ (០-៩) ដោយផ្ទាល់។
 
 ---
 
@@ -43,7 +43,7 @@
 គម្រោងត្រូវបានរៀបចំជា ៣ ថតធំៗយ៉ាងមានរបៀបរៀបរយ៖
 ```
 Khmer-programming-language/
-├── 📂 cli/               # KhmerLang Native Engine, Interpreter, Compiler, REPL & CLI Tools
+├── 📂 cli/               # ខ្មែរចារ KhmerChar Native Engine, Interpreter, Compiler, REPL & CLI Tools
 │   ├── bin/             # CLI executables & launchers (khmer.dart, khmer)
 │   ├── lib/             # Core Engine (Lexer, Parser, AST, Interpreter, Runner)
 │   ├── examples/        # កូដគំរូភាសាខ្មែរ (.khmer)
@@ -64,7 +64,7 @@ Khmer-programming-language/
 ## 🚀 របៀបដំឡើង និងដំណើការ (Installation & Quickstart)
 
 ### ១. ដំឡើងភាសាខ្មែរលើកុំព្យូទ័ររបស់អ្នក (Universal One-Line Installer)
-អ្នកប្រើប្រាស់ទូទៅអាចដំឡើង **KhmerLang CLI** ដោយផ្ទាល់ជាមួយពាក្យបញ្ជាតែមួយបន្ទាត់៖
+អ្នកប្រើប្រាស់ទូទៅអាចដំឡើង **ខ្មែរចារ (KhmerChar) CLI** ដោយផ្ទាល់ជាមួយពាក្យបញ្ជាតែមួយបន្ទាត់៖
 
 * **លើ macOS & Linux (Terminal)**:
   ```bash
@@ -88,7 +88,7 @@ Khmer-programming-language/
 ---
 
 ### ២. ការប្រើប្រាស់ជាមួយ Text Editor ណាមួយតាមរយៈ CLI (Use With Any Text Editor)
-បន្ទាប់ពីដំឡើងរួច KhmerLang អាចប្រើប្រាស់ជាមួយគ្រប់ Text Editor ទាំងអស់ (VS Code, Cursor, Vim, Neovim, Sublime Text, Nano, Zed, ឬ Terminal)៖
+បន្ទាប់ពីដំឡើងរួច ខ្មែរចារ (KhmerChar) អាចប្រើប្រាស់ជាមួយគ្រប់ Text Editor ទាំងអស់ (VS Code, Cursor, Vim, Neovim, Sublime Text, Nano, Zed, ឬ Terminal)៖
 
 ```bash
 # ១. ដំឡើង Syntax Highlighting សម្រាប់ Editor របស់អ្នក

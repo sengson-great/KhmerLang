@@ -1,12 +1,12 @@
 # ==============================================================================
-# KhmerLang (ភាសាខ្មែរ) — Windows PowerShell Universal Installer (Dart Engine)
+# ខ្មែរចារ KhmerChar — Windows PowerShell Universal Installer (Dart Engine)
 # Run in PowerShell:
 #   irm https://raw.githubusercontent.com/sengson-great/KhmerLang/main/install.ps1 | iex
 # ==============================================================================
 
 $ErrorActionPreference = "Stop"
 
-Write-Host "🇰🇭 កំពុងដំឡើង KhmerLang លើ Windows (Dart Native Engine)..." -ForegroundColor Cyan
+Write-Host "🇰🇭 កំពុងដំឡើង ខ្មែរចារ (KhmerChar) លើ Windows (Dart Native Engine)..." -ForegroundColor Cyan
 
 # 1. Check Dart SDK
 $dartCmd = Get-Command dart -ErrorAction SilentlyContinue
@@ -42,7 +42,7 @@ if ($PSScriptRoot -and (Test-Path "$PSScriptRoot\cli\bin\khmer.dart")) {
     $isLocal = $true
 } else {
     $sourceDir = $installDir
-    Write-Host "🌐 កំពុងទាញយក KhmerLang ពី GitHub..." -ForegroundColor Cyan
+    Write-Host "🌐 កំពុងទាញយក ខ្មែរចារ (KhmerChar) ពី GitHub..." -ForegroundColor Cyan
     if (Get-Command git -ErrorAction SilentlyContinue) {
         if (Test-Path "$installDir\.git") {
             git -C $installDir pull --quiet
