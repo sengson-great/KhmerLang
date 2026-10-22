@@ -59,6 +59,7 @@ ExecutionResult runKhmerCode(
   String source, {
   String? filepath,
   void Function(String text)? stdoutWrite,
+  String Function(String prompt)? stdinRead,
 }) {
   final buffer = StringBuffer();
   final stopwatch = Stopwatch()..start();
@@ -80,7 +81,10 @@ ExecutionResult runKhmerCode(
     final parser = Parser(tokens);
     parsedAst = parser.parse();
 
-    globalEnv = createGlobalEnvironment(stdoutWrite: customStdout);
+    globalEnv = createGlobalEnvironment(
+      stdoutWrite: customStdout,
+      stdinRead: stdinRead,
+    );
     final interpreter = Interpreter(
       globalEnv: globalEnv,
       stdoutWrite: customStdout,

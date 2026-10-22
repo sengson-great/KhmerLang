@@ -22,9 +22,9 @@ class KhmerCodeEditingController extends TextEditingController {
     // 3. Khmer & ASCII Numbers
     r'|(?<number>[០-៩]+(?:\.[០-៩]+)?|[0-9]+(?:\.[0-9]+)?)'
     // 4. OOP Keywords
-    r'|(?<=^|[' '$_delimiterChars' r'])(?<oop>ថ្នាក់|វិធី|បង្កើត|នេះ|ខ្លួនវា|ថ្មី|បន្តពី)(?=$|[' '$_delimiterChars' r'])'
-    // 5. Standard Keywords
-    r'|(?<=^|[' '$_delimiterChars' r'])(?<keyword>តាំង|បង្ហាញ|បើ|ឬបើ|ផ្សេងទៀត|ខណៈ|សម្រាប់|អនុគមន៍|ត្រឡប់|ពិត|មិនពិត|ទទេ|និង|ឬ|មិន)(?=$|[' '$_delimiterChars' r'])'
+    r'|(?<=^|[' '$_delimiterChars' r'])(?<oop>ថ្នាក់|វិធី|បង្កើត|នេះ|ខ្លួនវា|ថ្មី|បន្តពី|យក|ដាក់|កំណត់|get|set)(?=$|[' '$_delimiterChars' r'])'
+    // 5. Standard Keywords & Builtins
+    r'|(?<=^|[' '$_delimiterChars' r'])(?<keyword>តាំង|បង្ហាញ|បើ|ឬបើ|ផ្សេងទៀត|ខណៈ|សម្រាប់|អនុគមន៍|ត្រឡប់|ពិត|មិនពិត|ទទេ|និង|ឬ|មិន|ប្រវែង|ប្រភេទ|បន្ថែម|បញ្ចូល|ដកចេញ|លុប|ភ្ជាប់|តម្រៀប|ត្រឡប់បញ្ជី|ស្វែងរក|មាន|ដាច់ខាត|ឬសការ៉េ|ស្វ័យគុណ|បង្គត់|បង្គត់ចុះ|បង្គត់ឡើង|អតិបរមា|អប្បបរមា|ចៃដន្យ|ជាលេខ|ជាអក្សរ|ជាតក្ក|ពុះ|កាត់|ជំនួស|សម្អាត|អក្សរធំ|អក្សរតូច|ពេលនេះ|អាន|print|len|type|append|insert|pop|remove|join|sort|reverse|indexOf|contains|abs|sqrt|pow|round|floor|ceil|max|min|random|toNum|toInt|toStr|toBool|split|substr|replace|trim|upper|lower|now|input)(?=$|[' '$_delimiterChars' r'])'
     // 6. Operators & Delimiters
     r'|(?<operator>==|!=|<=|>=|&&|\|\||[+\-*/%=<>!។៖;,.(){}\[\]])',
   );

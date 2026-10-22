@@ -48,6 +48,34 @@ class Parser {
     );
   }
 
+  Token _consumeIdentifier(String message) {
+    if (_check(TokenType.identifier) ||
+        _check(TokenType.getter) ||
+        _check(TokenType.setter)) {
+      return _advance();
+    }
+    final tok = _peek();
+    throw ParserError(
+      "$message (បានជួប/Found '${tok.value}' នៅបន្ទាត់ ${tok.line})",
+      tok.line,
+      tok.column,
+    );
+  }
+
+  Token _consumeMemberName(String message) {
+    if (_check(TokenType.identifier) ||
+        _check(TokenType.getter) ||
+        _check(TokenType.setter)) {
+      return _advance();
+    }
+    final tok = _peek();
+    throw ParserError(
+      "$message (បានជួប/Found '${tok.value}' នៅបន្ទាត់ ${tok.line})",
+      tok.line,
+      tok.column,
+    );
+  }
+
   List<ASTNode> parse() {
     final List<ASTNode> statements = [];
     while (!_check(TokenType.eof)) {
@@ -227,7 +255,7 @@ class Parser {
     if (!(_match([TokenType.function]) || _match([TokenType.method]))) {
       final tok = _peek();
       throw ParserError(
-          "ត្រូវមាន 'អនុគមន៍' ឬ 'វិធី' / Expected 'អនុគមន៍' or 'វិធី'",
+          "ត្រូវមាន 'អនុគមន៍' / Expected 'អនុគមន៍'",
           tok.line,
           tok.column);
     }
@@ -255,12 +283,12 @@ class Parser {
 
   ClassDeclNode _classDeclStatement() {
     _consume(TokenType.classType, "ត្រូវមាន 'ថ្នាក់' / Expected 'ថ្នាក់'");
-    final classNameTok = _consume(
-        TokenType.identifier, "ត្រូវមានឈ្មោះថ្នាក់ / Expected class name");
+    final classNameTok = _consumeIdentifier(
+        "ត្រូវមានឈ្មោះថ្នាក់ / Expected class name");
 
     String? parentName;
     if (_match([TokenType.extendsType])) {
-      final parentTok = _consume(TokenType.identifier,
+      final parentTok = _consumeIdentifier(
           "ត្រូវមានឈ្មោះថ្នាក់មេ / Expected parent class name");
       parentName = parentTok.value.toString();
     }
@@ -268,42 +296,91 @@ class Parser {
     _consume(
         TokenType.lbrace, "ត្រូវមាន '{' ដើមថ្នាក់ / Expected '{' for class body");
     final List<FunctionDeclNode> methods = [];
+    final List<GetterDeclNode> getters = [];
+    final List<SetterDeclNode> setters = [];
 
     while (!_check(TokenType.rbrace) && !_check(TokenType.eof)) {
-      Token methodNameTok;
-      if (_match([TokenType.method, TokenType.function])) {
-        methodNameTok = _consume(
-            TokenType.identifier, "ត្រូវមានឈ្មោះវិធី / Expected method name");
-      } else if (_check(TokenType.identifier)) {
-        methodNameTok = _advance();
+      if (_match([TokenType.getter])) {
+        final nameTok = _consumeMemberName("ត្រូវមានឈ្មោះ Getter / Expected getter name");
+        if (_match([TokenType.lparen])) {
+          _consume(TokenType.rparen, "ត្រូវមាន ')' / Expected ')'");
+        }
+        final body = _blockStatement();
+        getters.add(GetterDeclNode(nameTok.value.toString(), body));
+      } else if (_match([TokenType.setter])) {
+        final nameTok = _consumeMemberName("ត្រូវមានឈ្មោះ Setter / Expected setter name");
+        _consume(TokenType.lparen, "ត្រូវមាន '(' / Expected '('");
+        final paramTok = _consumeIdentifier(
+            "ត្រូវមានឈ្មោះប៉ារ៉ាម៉ែត្រសម្រាប់ Setter / Expected parameter name for setter");
+        _consume(TokenType.rparen, "ត្រូវមាន ')' / Expected ')'");
+        final body = _blockStatement();
+        setters.add(SetterDeclNode(nameTok.value.toString(), paramTok.value.toString(), body));
+      } else if (_match([TokenType.method, TokenType.function])) {
+        if (_match([TokenType.getter])) {
+          final nameTok = _consumeMemberName("ត្រូវមានឈ្មោះ Getter / Expected getter name");
+          if (_match([TokenType.lparen])) {
+            _consume(TokenType.rparen, "ត្រូវមាន ')' / Expected ')'");
+          }
+          final body = _blockStatement();
+          getters.add(GetterDeclNode(nameTok.value.toString(), body));
+        } else if (_match([TokenType.setter])) {
+          final nameTok = _consumeMemberName("ត្រូវមានឈ្មោះ Setter / Expected setter name");
+          _consume(TokenType.lparen, "ត្រូវមាន '(' / Expected '('");
+          final paramTok = _consumeIdentifier(
+              "ត្រូវមានឈ្មោះប៉ារ៉ាម៉ែត្រសម្រាប់ Setter / Expected parameter name for setter");
+          _consume(TokenType.rparen, "ត្រូវមាន ')' / Expected ')'");
+          final body = _blockStatement();
+          setters.add(SetterDeclNode(nameTok.value.toString(), paramTok.value.toString(), body));
+        } else {
+          final methodNameTok = _consumeMemberName(
+              "ត្រូវមានឈ្មោះអនុគមន៍ / Expected method/function name");
+          _consume(TokenType.lparen, "ត្រូវមាន '(' / Expected '('");
+          final List<String> params = [];
+          if (!_check(TokenType.rparen)) {
+            final paramTok = _consumeIdentifier(
+                "ត្រូវមានឈ្មោះប៉ារ៉ាម៉ែត្រ / Expected parameter name");
+            params.add(paramTok.value.toString());
+            while (_match([TokenType.comma])) {
+              final nextParam = _consumeIdentifier(
+                  "ត្រូវមានឈ្មោះប៉ារ៉ាម៉ែត្រ / Expected parameter name");
+              params.add(nextParam.value.toString());
+            }
+          }
+          _consume(TokenType.rparen, "ត្រូវមាន ')' / Expected ')'");
+          final body = _blockStatement();
+          methods.add(FunctionDeclNode(methodNameTok.value.toString(), params, body));
+        }
+      } else if (_check(TokenType.identifier) ||
+          _check(TokenType.getter) ||
+          _check(TokenType.setter)) {
+        final methodNameTok = _advance();
+        _consume(TokenType.lparen, "ត្រូវមាន '(' / Expected '('");
+        final List<String> params = [];
+        if (!_check(TokenType.rparen)) {
+          final paramTok = _consumeIdentifier(
+              "ត្រូវមានឈ្មោះប៉ារ៉ាម៉ែត្រ / Expected parameter name");
+          params.add(paramTok.value.toString());
+          while (_match([TokenType.comma])) {
+            final nextParam = _consumeIdentifier(
+                "ត្រូវមានឈ្មោះប៉ារ៉ាម៉ែត្រ / Expected parameter name");
+            params.add(nextParam.value.toString());
+          }
+        }
+        _consume(TokenType.rparen, "ត្រូវមាន ')' / Expected ')'");
+        final body = _blockStatement();
+        methods.add(FunctionDeclNode(methodNameTok.value.toString(), params, body));
       } else {
         final tok = _peek();
         throw ParserError(
-            "វិធីសាស្ត្រមិនត្រឹមត្រូវក្នុងថ្នាក់ '${tok.value}' / Invalid method definition in class",
+            "សមាជិកមិនត្រឹមត្រូវក្នុងថ្នាក់ '${tok.value}' / Invalid member definition in class",
             tok.line,
             tok.column);
       }
-
-      _consume(TokenType.lparen, "ត្រូវមាន '(' / Expected '('");
-      final List<String> params = [];
-      if (!_check(TokenType.rparen)) {
-        final paramTok = _consume(TokenType.identifier,
-            "ត្រូវមានឈ្មោះប៉ារ៉ាម៉ែត្រ / Expected parameter name");
-        params.add(paramTok.value.toString());
-        while (_match([TokenType.comma])) {
-          final nextParam = _consume(TokenType.identifier,
-              "ត្រូវមានឈ្មោះប៉ារ៉ាម៉ែត្រ / Expected parameter name");
-          params.add(nextParam.value.toString());
-        }
-      }
-      _consume(TokenType.rparen, "ត្រូវមាន ')' / Expected ')'");
-
-      final body = _blockStatement();
-      methods.add(FunctionDeclNode(methodNameTok.value.toString(), params, body));
     }
 
     _consume(TokenType.rbrace, "ត្រូវមាន '}' បិទថ្នាក់ / Expected '}' for class body");
-    return ClassDeclNode(classNameTok.value.toString(), parentName, methods);
+    return ClassDeclNode(classNameTok.value.toString(), parentName, methods,
+        getters: getters, setters: setters);
   }
 
   ASTNode _returnStatement() {
@@ -450,7 +527,7 @@ class Parser {
         _consume(TokenType.rparen, "ត្រូវមាន ')' / Expected ')'");
         expr = FunctionCallNode(expr, args);
       } else if (_match([TokenType.dot])) {
-        final memberTok = _consume(TokenType.identifier,
+        final memberTok = _consumeMemberName(
             "ត្រូវមានឈ្មោះសមាជិក / Expected member name after '.'");
         expr = MemberAccessNode(expr, memberTok.value.toString());
       } else if (_match([TokenType.lbracket])) {
@@ -484,7 +561,7 @@ class Parser {
     if (_match([TokenType.thisType, TokenType.self])) {
       return const ThisNode();
     }
-    if (_match([TokenType.identifier])) {
+    if (_match([TokenType.identifier, TokenType.getter, TokenType.setter])) {
       return IdentifierNode(tokens[current - 1].value.toString());
     }
 

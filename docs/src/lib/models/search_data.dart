@@ -122,12 +122,20 @@ const List<SearchItem> searchIndex = [
     description: 'ការបន្តវេនពីថ្នាក់មេដោយប្រើពាក្យគន្លឹះ បន្តពី (extends)',
   ),
   SearchItem(
+    id: 'getters-setters',
+    titleKm: 'Getter & Setter (យក & ដាក់)',
+    titleEn: 'Getters and Setters',
+    category: '🏛️ សរសេរកូដតាមវត្ថុ',
+    keywords: 'getter setter យក ដាក់ កំណត់ get set property properties oop encapsulation computed property validation ថ្នាក់ សមាជិក',
+    description: 'ការប្រើប្រាស់ Getter (យក) និង Setter (ដាក់ / កំណត់) ក្នុងថ្នាក់ OOP',
+  ),
+  SearchItem(
     id: 'builtins',
     titleKm: 'អនុគមន៍ស្ដង់ដារ (Builtins)',
     titleEn: 'Standard Built-in Functions',
     category: '🛠️ ឧបករណ៍ & ឯកសារយោង',
-    keywords: 'builtins standard functions បង្ហាញ ប្រវែង ប្រភេទ បន្ថែម length print type push builtin helper utility array list functions បញ្ជី',
-    description: 'អនុគមន៍ស្រាប់ៗដូចជា បង្ហាញ(), ប្រវែង(), ប្រភេទ(), បន្ថែម()',
+    keywords: 'builtins standard functions បង្ហាញ ប្រវែង ប្រភេទ បន្ថែម បញ្ចូល ដកចេញ លុប ភ្ជាប់ តម្រៀប ត្រឡប់បញ្ជី ស្វែងរក មាន ដាច់ខាត ឬសការ៉េ ស្វ័យគុណ បង្គត់ បង្គត់ចុះ បង្គត់ឡើង អតិបរមា អប្បបរមា ចៃដន្យ ជាលេខ ជាអក្សរ ជាតក្ក ពុះ កាត់ ជំនួស សម្អាត អក្សរធំ អក្សរតូច ពេលនេះ អាន math string array helper abs sqrt pow round floor ceil max min random split substr replace trim upper lower insert pop join sort reverse indexOf contains now input',
+    description: 'អនុគមន៍ស្រាប់ៗសម្រាប់ Math, String, Array, Type Conversions និង System I/O',
   ),
   SearchItem(
     id: 'ides',

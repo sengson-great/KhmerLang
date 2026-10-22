@@ -15,7 +15,12 @@ void runRepl({String promptStyle = 'ascii', String version = '1.0.0'}) {
   stdout.writeln('  គន្លឹះ: បើអក្សរខ្មែរមិនស្អាតលើ Terminal សូមរ៉ាន់: khmer terminal');
   stdout.writeln('==================================================');
 
-  final globalEnv = createGlobalEnvironment();
+  final globalEnv = createGlobalEnvironment(
+    stdinRead: (prompt) {
+      if (prompt.isNotEmpty) stdout.write(prompt);
+      return stdin.readLineSync(encoding: utf8) ?? '';
+    },
+  );
   final interpreter = Interpreter(globalEnv: globalEnv);
 
   while (true) {

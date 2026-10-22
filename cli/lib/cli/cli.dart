@@ -136,7 +136,14 @@ Future<void> runCli(List<String> args) async {
 }
 
 void executeSource(String source, {String filepath = '<source>'}) {
-  final res = runKhmerCode(source, filepath: filepath);
+  final res = runKhmerCode(
+    source,
+    filepath: filepath,
+    stdinRead: (prompt) {
+      if (prompt.isNotEmpty) stdout.write(prompt);
+      return stdin.readLineSync(encoding: utf8) ?? '';
+    },
+  );
   if (res.stdout.isNotEmpty) {
     stdout.write(res.stdout);
   }

@@ -31,12 +31,19 @@ class ExecutionResult {
   bool get isSuccess => status == 'success';
 }
 
-ExecutionResult runKhmerCode(String source) {
+ExecutionResult runKhmerCode(
+  String source, {
+  void Function(String text)? stdoutWrite,
+  String Function(String prompt)? stdinRead,
+}) {
   final buffer = StringBuffer();
   final stopwatch = Stopwatch()..start();
 
   void customStdout(String text) {
     buffer.write(text);
+    if (stdoutWrite != null) {
+      stdoutWrite(text);
+    }
   }
 
   List<ASTNode>? parsedAst;
@@ -49,7 +56,10 @@ ExecutionResult runKhmerCode(String source) {
     final parser = Parser(tokens);
     parsedAst = parser.parse();
 
-    globalEnv = createGlobalEnvironment(stdoutWrite: customStdout);
+    globalEnv = createGlobalEnvironment(
+      stdoutWrite: customStdout,
+      stdinRead: stdinRead,
+    );
     final interpreter = Interpreter(
       globalEnv: globalEnv,
       stdoutWrite: customStdout,

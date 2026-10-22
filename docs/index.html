@@ -627,7 +627,8 @@ khmer check my_app.khmer</code></pre>
             </h2>
             <p>
               ខ្មែរចារ (KhmerChar) គាំទ្រការសរសេរប្រូក្រាមតាមបែប OOP ពេញលេញ។ អ្នកអាចបង្កើតគំរូថ្នាក់ដោយប្រើពាក្យគន្លឹះ 
-              <code>ថ្នាក់</code> (Class) និងបង្កើត Constructor សម្រាប់ចាប់ផ្តើមទិន្នន័យដោយប្រើ <code>បង្កើត(...)</code>។
+              <code>ថ្នាក់</code> (Class) និងបង្កើត Constructor សម្រាប់ចាប់ផ្តើមទិន្នន័យដោយប្រើ <code>បង្កើត(...)</code>។ ចំណែកឯវិធីសាស្ត្រក្នុងថ្នាក់ (Methods) គឺប្រើពាក្យគន្លឹះ 
+              <code>អនុគមន៍</code> ដូចអនុគមន៍ទូទៅដែរ។
             </p>
             <p>ដើម្បីបង្កើត Instance ថ្មីនៃថ្នាក់ យើងប្រើពាក្យគន្លឹះ <code>ថ្មី</code> (New)៖</p>
             <div class="code-card">
@@ -645,7 +646,7 @@ khmer check my_app.khmer</code></pre>
         នេះ.អាយុ = អាយុ
     }
 
-    <span class="kw">វិធី</span> ណែនាំខ្លួន() {
+    <span class="kw">អនុគមន៍</span> ណែនាំខ្លួន() {
         <span class="builtin">បង្ហាញ</span>(<span class="str">"ជម្រាបសួរ! ខ្ញុំឈ្មោះ"</span>, នេះ.ឈ្មោះ, <span class="str">"អាយុ"</span>, នេះ.អាយុ, <span class="str">"ឆ្នាំ"</span>)
     }
 }
@@ -658,7 +659,7 @@ khmer check my_app.khmer</code></pre>
           <section id="inheritance" class="doc-section">
             <h2 class="section-heading">ការបន្តវេនថ្នាក់ (OOP Inheritance: `បន្តពី`) <a class="heading-anchor" href="#inheritance">#</a></h2>
             <p>
-              ការបន្តវេនពីថ្នាក់មេ (Superclass) ត្រូវបានធ្វើឡើងដោយប្រើពាក្យគន្លឹះ <code>បន្តពី</code> (extends)។ ថ្នាក់កូន (Subclass) នឹងទទួលយកលក្ខណៈសម្បត្តិ និងវិធីសាស្ត្រពីថ្នាក់មេដោយស្វ័យប្រវត្តិ៖
+              ការបន្តវេនពីថ្នាក់មេ (Superclass) ត្រូវបានធ្វើឡើងដោយប្រើពាក្យគន្លឹះ <code>បន្តពី</code> (extends)។ ថ្នាក់កូន (Subclass) នឹងទទួលយកលក្ខណៈសម្បត្តិ និងអនុគមន៍ពីថ្នាក់មេដោយស្វ័យប្រវត្តិ៖
             </p>
             <div class="code-card">
               <div class="code-card-header">
@@ -674,14 +675,14 @@ khmer check my_app.khmer</code></pre>
         នេះ.ឈ្មោះ = ឈ្មោះ
     }
 
-    <span class="kw">វិធី</span> ធ្វើសំឡេង() {
+    <span class="kw">អនុគមន៍</span> ធ្វើសំឡេង() {
         <span class="builtin">បង្ហាញ</span>(នេះ.ឈ្មោះ, <span class="str">"កំពុងធ្វើសំឡេង..."</span>)
     }
 }
 
 <span class="com"># ថ្នាក់ ឆ្កែ បន្តវេនពី ថ្នាក់ សត្វ</span>
 <span class="kw">ថ្នាក់</span> ឆ្កែ <span class="kw">បន្តពី</span> សត្វ {
-    <span class="kw">វិធី</span> ព្រុស() {
+    <span class="kw">អនុគមន៍</span> ព្រុស() {
         <span class="builtin">បង្ហាញ</span>(នេះ.ឈ្មោះ, <span class="str">"ព្រុស: វូស! វូស!"</span>)
     }
 }
@@ -692,32 +693,263 @@ khmer check my_app.khmer</code></pre>
               </div>
             </div>
           </section>
+          <section id="getters-setters" class="doc-section">
+            <h2 class="section-heading">
+              Getter និង Setter (`យក` &amp; `ដាក់` / `កំណត់`) <a class="heading-anchor" href="#getters-setters">#</a>
+            </h2>
+            <p>
+              ខ្មែរចារ (KhmerChar) គាំទ្រការបង្កើត <strong>Getter</strong> ដោយប្រើពាក្យគន្លឹះ <code>យក</code> (ឬ <code>get</code>) និង 
+              <strong>Setter</strong> ដោយប្រើពាក្យគន្លឹះ <code>ដាក់</code> ឬ <code>កំណត់</code> (ឬ <code>set</code>) ដើម្បីគ្រប់គ្រង និងការពារទិន្នន័យ (Encapsulation / Computed Properties) ក្នុង Object៖
+            </p>
+            <div class="code-card">
+              <div class="code-card-header">
+                <div class="code-card-meta"><span class="code-card-lang">KHMER</span><span class="code-card-title">getter_setter.khmer</span></div>
+                <div class="code-card-actions">
+                  <button class="btn-code-action btn-copy-code">ចម្លង</button>
+                  <button class="btn-code-action btn-code-run">▷ រ៉ាន់កូដ</button>
+                </div>
+              </div>
+              <div class="code-content-wrapper">
+                <pre class="code-block"><code class="snippet-source"><span class="kw">ថ្នាក់</span> រង្វង់ {
+    <span class="kw">បង្កើត</span>(កាំ) {
+        នេះ._កាំ = កាំ
+    }
+
+<span class="com">    # Getter: ចូលប្រើប្រាស់ដូច Property</span>
+    <span class="kw">យក</span> កាំ {
+        <span class="kw">ត្រឡប់</span> នេះ._កាំ
+    }
+
+<span class="com">    # Setter: ហៅដោយស្វ័យប្រវត្តិតាមរយៈ Assignment</span>
+    <span class="kw">ដាក់</span> កាំ(តម្លៃថ្មី) {
+        <span class="kw">បើ</span> (តម្លៃថ្មី &gt; <span class="num">០</span>) {
+            នេះ._កាំ = តម្លៃថ្មី
+        } <span class="kw">ផ្សេងទៀត</span> {
+            <span class="builtin">បង្ហាញ</span>(<span class="str">"កំហុស: កាំត្រូវតែធំជាង ០!"</span>)
+        }
+    }
+
+<span class="com">    # Computed Property Getter</span>
+    <span class="kw">យក</span> ផ្ទៃក្រឡា {
+        <span class="kw">ត្រឡប់</span> <span class="num">៣.១៤</span> * នេះ._កាំ * នេះ._កាំ
+    }
+}
+
+<span class="kw">តាំង</span> c = <span class="kw">ថ្មី</span> រង្វង់(<span class="num">៥</span>)
+<span class="builtin">បង្ហាញ</span>(<span class="str">"កាំដើម:"</span>, c.កាំ)
+<span class="builtin">បង្ហាញ</span>(<span class="str">"ផ្ទៃក្រឡា:"</span>, c.ផ្ទៃក្រឡា)
+
+c.កាំ = <span class="num">១០</span>
+<span class="builtin">បង្ហាញ</span>(<span class="str">"កាំថ្មី:"</span>, c.កាំ)
+<span class="builtin">បង្ហាញ</span>(<span class="str">"ផ្ទៃក្រឡាថ្មី:"</span>, c.ផ្ទៃក្រឡា)</code></pre>
+              </div>
+            </div>
+          </section>
           <section id="builtins" class="doc-section">
             <h2 class="section-heading">អនុគមន៍ស្ដង់ដារ (Built-in Functions) <a class="heading-anchor" href="#builtins">#</a></h2>
             <p>ខ្មែរចារ (KhmerChar) ផ្ដល់នូវអនុគមន៍ស្ដង់ដារដែលភ្ជាប់មកស្រាប់ជាមួយភាសា៖</p>
             <div class="table-responsive">
               <table class="doc-table">
-                <thead><tr><th>អនុគមន៍ (Builtin)</th><th>ការប្រើប្រាស់ (Usage)</th><th>ការពន្យល់ (Explanation)</th></tr></thead>
+                <thead>
+                  <tr>
+                    <th>អនុគមន៍ (Builtin)</th>
+                    <th>ឈ្មោះអង់គ្លេស (Alias)</th>
+                    <th>ការប្រើប្រាស់ (Usage)</th>
+                    <th>ការពន្យល់ (Explanation)</th>
+                  </tr>
+                </thead>
                 <tbody>
                   <tr>
                     <td><code>បង្ហាញ(...)</code></td>
+                    <td><code>print(...)</code></td>
                     <td><code>បង្ហាញ("តម្លៃ:", x)</code></td>
                     <td>បង្ហាញអត្ថបទ ឬតម្លៃអថេរនៅលើស្ថានីយ (Standard Output)</td>
                   </tr>
                   <tr>
                     <td><code>ប្រវែង(...)</code></td>
+                    <td><code>len(...)</code></td>
                     <td><code>ប្រវែង("កម្ពុជា")</code></td>
-                    <td>គណនាប្រវែងតួអក្សរ ឬចំនួនធាតុក្នុង Array</td>
+                    <td>គណនាប្រវែងតួអក្សរ ឬចំនួនធាតុក្នុង Array/Map</td>
                   </tr>
                   <tr>
                     <td><code>ប្រភេទ(...)</code></td>
+                    <td><code>type(...)</code></td>
                     <td><code>ប្រភេទ(១២៣)</code></td>
-                    <td>កំណត់ប្រភេទតម្លៃ (string, number, boolean, null, class, etc.)</td>
+                    <td>កំណត់ប្រភេទតម្លៃ (លេខ, អក្សរ, តក្កវិទ្យា, បញ្ជី, វត្ថុ, ថ្នាក់, etc.)</td>
+                  </tr>
+                  <tr>
+                    <td><code>ដាច់ខាត(...)</code></td>
+                    <td><code>abs(...)</code></td>
+                    <td><code>ដាច់ខាត(-១០)</code></td>
+                    <td>តម្លៃដាច់ខាតនៃលេខ (Absolute value)</td>
+                  </tr>
+                  <tr>
+                    <td><code>ឬសការ៉េ(...)</code></td>
+                    <td><code>sqrt(...)</code></td>
+                    <td><code>ឬសការ៉េ(២៥)</code></td>
+                    <td>រកឬសការ៉េនៃលេខ (Square root)</td>
+                  </tr>
+                  <tr>
+                    <td><code>ស្វ័យគុណ(...)</code></td>
+                    <td><code>pow(...)</code></td>
+                    <td><code>ស្វ័យគុណ(២, ៣)</code></td>
+                    <td>គណនាស្វ័យគុណ (២^៣ = ៨)</td>
+                  </tr>
+                  <tr>
+                    <td><code>បង្គត់(...)</code></td>
+                    <td><code>round(...)</code></td>
+                    <td><code>បង្គត់(៤.៧)</code></td>
+                    <td>បង្គត់រកចំនួនគត់ជិតបំផុត (Round to nearest integer)</td>
+                  </tr>
+                  <tr>
+                    <td><code>បង្គត់ចុះ(...)</code></td>
+                    <td><code>floor(...)</code></td>
+                    <td><code>បង្គត់ចុះ(៤.៩)</code></td>
+                    <td>បង្គត់ទម្លាក់ចុះក្រោម (Floor)</td>
+                  </tr>
+                  <tr>
+                    <td><code>បង្គត់ឡើង(...)</code></td>
+                    <td><code>ceil(...)</code></td>
+                    <td><code>បង្គត់ឡើង(៤.១)</code></td>
+                    <td>បង្គត់រុញឡើងលើ (Ceiling)</td>
+                  </tr>
+                  <tr>
+                    <td><code>អតិបរមា(...)</code></td>
+                    <td><code>max(...)</code></td>
+                    <td><code>អតិបរមា(១០, ២០, ៥)</code></td>
+                    <td>រកតម្លៃធំបំផុត អាចប្រើជាមួយអាគុយម៉ង់ ឬបញ្ជី</td>
+                  </tr>
+                  <tr>
+                    <td><code>អប្បបរមា(...)</code></td>
+                    <td><code>min(...)</code></td>
+                    <td><code>អប្បបរមា(១០, ២០, ៥)</code></td>
+                    <td>រកតម្លៃតូចបំផុត អាចប្រើជាមួយអាគុយម៉ង់ ឬបញ្ជី</td>
+                  </tr>
+                  <tr>
+                    <td><code>ចៃដន្យ(...)</code></td>
+                    <td><code>random(...)</code></td>
+                    <td><code>ចៃដន្យ(១, ១០)</code></td>
+                    <td>បង្កើតលេខចៃដន្យ (Random number between min and max)</td>
+                  </tr>
+                  <tr>
+                    <td><code>ជាលេខ(...)</code></td>
+                    <td><code>toNum / toInt</code></td>
+                    <td><code>ជាលេខ("១២៣")</code></td>
+                    <td>បម្លែងទៅជាលេខ គាំទ្រទាំងលេខខ្មែរ និងអារ៉ាប់</td>
+                  </tr>
+                  <tr>
+                    <td><code>ជាអក្សរ(...)</code></td>
+                    <td><code>toStr(...)</code></td>
+                    <td><code>ជាអក្សរ(៧៨៩)</code></td>
+                    <td>បម្លែងតម្លៃទៅជាអត្ថបទ String</td>
+                  </tr>
+                  <tr>
+                    <td><code>ជាតក្ក(...)</code></td>
+                    <td><code>toBool(...)</code></td>
+                    <td><code>ជាតក្ក(១)</code></td>
+                    <td>បម្លែងតម្លៃទៅជាតក្កវិទ្យា Boolean (ពិត / មិនពិត)</td>
+                  </tr>
+                  <tr>
+                    <td><code>ពុះ(...)</code></td>
+                    <td><code>split(...)</code></td>
+                    <td><code>ពុះ("ក ខ គ", " ")</code></td>
+                    <td>បំបែកអត្ថបទទៅជាបញ្ជី Array</td>
+                  </tr>
+                  <tr>
+                    <td><code>កាត់(...)</code></td>
+                    <td><code>substr(...)</code></td>
+                    <td><code>កាត់("សួស្តី", ០, ៤)</code></td>
+                    <td>កាត់យកផ្នែកនៃអត្ថបទតាមសន្ទស្សន៍ចាប់ផ្តើម និងបញ្ចប់</td>
+                  </tr>
+                  <tr>
+                    <td><code>ជំនួស(...)</code></td>
+                    <td><code>replace(...)</code></td>
+                    <td><code>ជំនួស(str, "ចាស់", "ថ្មី")</code></td>
+                    <td>ជំនួសពាក្យចាស់ដោយពាក្យថ្មីក្នុងអត្ថបទ</td>
+                  </tr>
+                  <tr>
+                    <td><code>សម្អាត(...)</code></td>
+                    <td><code>trim(...)</code></td>
+                    <td><code>សម្អាត("  អត្ថបទ  ")</code></td>
+                    <td>លុបចន្លោះទទេ (Whitespace) ខាងដើម និងខាងចុង</td>
+                  </tr>
+                  <tr>
+                    <td><code>អក្សរធំ(...)</code></td>
+                    <td><code>upper(...)</code></td>
+                    <td><code>អក្សរធំ("hello")</code></td>
+                    <td>បម្លែងអក្សរទាំងអស់ទៅជាអក្សរធំ</td>
+                  </tr>
+                  <tr>
+                    <td><code>អក្សរតូច(...)</code></td>
+                    <td><code>lower(...)</code></td>
+                    <td><code>អក្សរតូច("HELLO")</code></td>
+                    <td>បម្លែងអក្សរទាំងអស់ទៅជាអក្សរតូច</td>
                   </tr>
                   <tr>
                     <td><code>បន្ថែម(...)</code></td>
-                    <td><code>បន្ថែម(បញ្ជី, ធាតុថ្មី)</code></td>
+                    <td><code>append(...)</code></td>
+                    <td><code>បន្ថែម(បញ្ជី, ធាតុ)</code></td>
                     <td>បន្ថែមធាតុថ្មីទៅចុងបញ្ចប់នៃបញ្ជី Array</td>
+                  </tr>
+                  <tr>
+                    <td><code>បញ្ចូល(...)</code></td>
+                    <td><code>insert(...)</code></td>
+                    <td><code>បញ្ចូល(បញ្ជី, ០, ធាតុ)</code></td>
+                    <td>បញ្ចូលធាតុនៅទីតាំងកំណត់ក្នុងបញ្ជី</td>
+                  </tr>
+                  <tr>
+                    <td><code>ដកចេញ(...)</code></td>
+                    <td><code>pop(...)</code></td>
+                    <td><code>ដកចេញ(បញ្ជី, [ទីតាំង])</code></td>
+                    <td>ដកធាតុចុងក្រោយ ឬតាមទីតាំងដែលបានបញ្ជាក់</td>
+                  </tr>
+                  <tr>
+                    <td><code>លុប(...)</code></td>
+                    <td><code>remove(...)</code></td>
+                    <td><code>លុប(បញ្ជី, ធាតុ)</code></td>
+                    <td>លុបធាតុដែលមានតម្លៃត្រូវគ្នាចេញពីបញ្ជី</td>
+                  </tr>
+                  <tr>
+                    <td><code>ភ្ជាប់(...)</code></td>
+                    <td><code>join(...)</code></td>
+                    <td><code>ភ្ជាប់(បញ្ជី, "-")</code></td>
+                    <td>ភ្ជាប់ធាតុទាំងអស់ក្នុងបញ្ជីជាអត្ថបទ String តែមួយ</td>
+                  </tr>
+                  <tr>
+                    <td><code>តម្រៀប(...)</code></td>
+                    <td><code>sort(...)</code></td>
+                    <td><code>តម្រៀប(បញ្ជី)</code></td>
+                    <td>តម្រៀបធាតុក្នុងបញ្ជីតាមលំដាប់លេខ ឬអក្ខរក្រម</td>
+                  </tr>
+                  <tr>
+                    <td><code>ត្រឡប់បញ្ជី(...)</code></td>
+                    <td><code>reverse(...)</code></td>
+                    <td><code>ត្រឡប់បញ្ជី(បញ្ជី)</code></td>
+                    <td>ត្រឡប់បញ្ជី ឬអក្សរពីក្រោយមកមុខ (Reverse)</td>
+                  </tr>
+                  <tr>
+                    <td><code>ស្វែងរក(...)</code></td>
+                    <td><code>indexOf(...)</code></td>
+                    <td><code>ស្វែងរក(បញ្ជី, ធាតុ)</code></td>
+                    <td>រកសន្ទស្សន៍ (Index) នៃធាតុ ឬអក្សរ (ផ្ដល់ -១ បើគ្មាន)</td>
+                  </tr>
+                  <tr>
+                    <td><code>មាន(...)</code></td>
+                    <td><code>contains(...)</code></td>
+                    <td><code>មាន(បញ្ជី, ធាតុ)</code></td>
+                    <td>ពិនិត្យវត្តមានធាតុក្នុងបញ្ជី អត្ថបទ ឬវត្ថុ (ពិត / មិនពិត)</td>
+                  </tr>
+                  <tr>
+                    <td><code>ពេលនេះ()</code></td>
+                    <td><code>now()</code></td>
+                    <td><code>ពេលនេះ()</code></td>
+                    <td>ផ្ដល់ពេលវេលាបច្ចុប្បន្នគិតជា Milliseconds ចាប់ពី Epoch</td>
+                  </tr>
+                  <tr>
+                    <td><code>អាន(...)</code></td>
+                    <td><code>input(...)</code></td>
+                    <td><code>អាន("បញ្ចូលឈ្មោះ: ")</code></td>
+                    <td>ទទួលការវាយបញ្ចូលពីអ្នកប្រើប្រាស់ (Standard Input)</td>
                   </tr>
                 </tbody>
               </table>
@@ -798,9 +1030,9 @@ khmer check my_app.khmer</code></pre>
                     <td><code>សម្រាប់ (តាំង i=០; i&lt;៥; i=i+១)</code></td>
                   </tr>
                   <tr>
-                    <td><code>អនុគមន៍</code> / <code>វិធី</code></td>
-                    <td><code>function / def</code></td>
-                    <td>ប្រកាសអនុគមន៍ ឬវិធីសាស្ត្រ</td>
+                    <td><code>អនុគមន៍</code></td>
+                    <td><code>function / method</code></td>
+                    <td>ប្រកាសអនុគមន៍ទូទៅ ឬវិធីសាស្ត្រក្នុងថ្នាក់</td>
                     <td><code>អនុគមន៍ បូក(ក, ខ) { ... }</code></td>
                   </tr>
                   <tr>
@@ -838,6 +1070,18 @@ khmer check my_app.khmer</code></pre>
                     <td><code>extends</code></td>
                     <td>បន្តវេនពីថ្នាក់មេ (Inheritance)</td>
                     <td><code>ថ្នាក់ ឆ្មា បន្តពី សត្វ</code></td>
+                  </tr>
+                  <tr>
+                    <td><code>យក</code></td>
+                    <td><code>get</code></td>
+                    <td>ប្រកាស Getter សម្រាប់ទាញយកតម្លៃគុណលក្ខណៈ</td>
+                    <td><code>យក ឈ្មោះពេញ { ... }</code></td>
+                  </tr>
+                  <tr>
+                    <td><code>ដាក់</code> / <code>កំណត់</code></td>
+                    <td><code>set</code></td>
+                    <td>ប្រកាស Setter សម្រាប់កំណត់តម្លៃគុណលក្ខណៈ</td>
+                    <td><code>ដាក់ អាយុ(ត) { នេះ._អាយុ = ត; }</code></td>
                   </tr>
                   <tr>
                     <td><code>ពិត</code></td>
@@ -908,7 +1152,6 @@ khmer check my_app.khmer</code></pre>
                 <button class="vk-btn">ត្រឡប់</button>
                 <button class="vk-btn">ថ្នាក់</button>
                 <button class="vk-btn">បង្កើត</button>
-                <button class="vk-btn">វិធី</button>
                 <button class="vk-btn">នេះ.</button>
                 <button class="vk-btn">ថ្មី</button>
                 <button class="vk-btn">បន្តពី</button>

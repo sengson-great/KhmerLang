@@ -86,7 +86,22 @@ class Interpreter {
   }
 
   dynamic _visitIdentifierNode(IdentifierNode node, Environment env) {
-    return env.get(node.name);
+    try {
+      return env.get(node.name);
+    } on RuntimeError {
+      // Fallback: if 'នេះ' is in scope, check if thisObj has getter, field, or method
+      try {
+        final thisObj = env.get('នេះ');
+        if (thisObj is KhmerInstance) {
+          if (thisObj.khmerClass.findGetter(node.name) != null ||
+              thisObj.fields.containsKey(node.name) ||
+              thisObj.khmerClass.findMethod(node.name) != null) {
+            return thisObj.get(node.name, this);
+          }
+        }
+      } catch (_) {}
+      rethrow;
+    }
   }
 
   dynamic _visitThisNode(ThisNode node, Environment env) {
@@ -97,7 +112,7 @@ class Interpreter {
         return env.get('ខ្លួនវា');
       } catch (_) {
         throw RuntimeError(
-            "ពាក្យ 'នេះ' ឬ 'ខ្លួនវា' អាចប្រើប្រាស់បានតែក្នុងវិធីសាស្ត្រនៃថ្នាក់ប៉ុណ្ណោះ / 'នេះ'/'ខ្លួនវា' can only be used inside class methods");
+            "ពាក្យ 'នេះ' ឬ 'ខ្លួនវា' អាចប្រើប្រាស់បានតែក្នុងអនុគមន៍នៃថ្នាក់ប៉ុណ្ណោះ / 'នេះ'/'ខ្លួនវា' can only be used inside class methods");
       }
     }
   }
@@ -206,11 +221,11 @@ class Interpreter {
     try {
       env.assign(node.name, val);
     } on RuntimeError {
-      // Fallback: if 'នេះ' is in scope, assign to thisObj.fields
+      // Fallback: if 'នេះ' is in scope, assign to thisObj.fields (or setter)
       try {
         final thisObj = env.get('នេះ');
         if (thisObj is KhmerInstance) {
-          thisObj.set(node.name, val);
+          thisObj.set(node.name, val, this);
           return val;
         }
       } catch (_) {}
@@ -222,7 +237,7 @@ class Interpreter {
   dynamic _visitMemberAccessNode(MemberAccessNode node, Environment env) {
     final target = execute(node.target, env);
     if (target is KhmerInstance) {
-      return target.get(node.member);
+      return target.get(node.member, this);
     }
     if (target is Map) {
       return target[node.member];
@@ -235,7 +250,7 @@ class Interpreter {
     final target = execute(node.target, env);
     final val = execute(node.value, env);
     if (target is KhmerInstance) {
-      target.set(node.member, val);
+      target.set(node.member, val, this);
       return val;
     }
     if (target is Map) {
@@ -351,7 +366,25 @@ class Interpreter {
       methods[mStmt.name] = func;
     }
 
-    final khmerClass = KhmerClass(node.name, parentClass, methods);
+    final Map<String, KhmerFunction> getters = {};
+    for (final gStmt in node.getters) {
+      final func = KhmerFunction(gStmt.name, [], gStmt.body, env);
+      getters[gStmt.name] = func;
+    }
+
+    final Map<String, KhmerFunction> setters = {};
+    for (final sStmt in node.setters) {
+      final func = KhmerFunction(sStmt.name, [sStmt.param], sStmt.body, env);
+      setters[sStmt.name] = func;
+    }
+
+    final khmerClass = KhmerClass(
+      node.name,
+      parentClass,
+      methods,
+      getters: getters,
+      setters: setters,
+    );
     env.define(node.name, khmerClass);
     return khmerClass;
   }

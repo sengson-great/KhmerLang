@@ -68,10 +68,11 @@
                     <button class="kw-btn kw-fn" data-insert="អនុគមន៍ ឈ្មោះ() {\n    \n}">អនុគមន៍</button>
                     <button class="kw-btn kw-fn" data-insert="ត្រឡប់ ">ត្រឡប់</button>
                     <button class="kw-btn kw-oop" data-insert="ថ្នាក់ ឈ្មោះថ្នាក់ {\n    បង្កើត(ឈ្មោះ) {\n        នេះ.ឈ្មោះ = ឈ្មោះ\n    }\n}">ថ្នាក់ (Class)</button>
-                    <button class="kw-btn kw-oop" data-insert="វិធី ឈ្មោះវិធី() {\n    \n}">វិធី (Method)</button>
                     <button class="kw-btn kw-oop" data-insert="នេះ.">នេះ (this)</button>
                     <button class="kw-btn kw-oop" data-insert="ថ្មី ">ថ្មី (new)</button>
                     <button class="kw-btn kw-oop" data-insert=" បន្តពី ">បន្តពី (extends)</button>
+                    <button class="kw-btn kw-oop" data-insert="យក ឈ្មោះ {\n    \n}">យក (get)</button>
+                    <button class="kw-btn kw-oop" data-insert="ដាក់ ឈ្មោះ(តម្លៃ) {\n    \n}">ដាក់ (set)</button>
                     <button class="kw-btn kw-val" data-insert="ពិត">ពិត</button>
                     <button class="kw-btn kw-val" data-insert="មិនពិត">មិនពិត</button>
                     <button class="kw-btn kw-val" data-insert="ទទេ">ទទេ</button>
@@ -164,13 +165,15 @@
                             <tr><td><code>ផ្សេងទៀត</code></td><td>លក្ខខណ្ឌចុងក្រោយ (Else)</td><td><code>ផ្សេងទៀត { ... }</code></td></tr>
                             <tr><td><code>ខណៈ</code></td><td>រង្វិលជុំ (While)</td><td><code>ខណៈ (x > ០) { ... }</code></td></tr>
                             <tr><td><code>សម្រាប់</code></td><td>រង្វិលជុំកំណត់ (For)</td><td><code>សម្រាប់ (តាំង i = ០; i < ៥; i = i + ១)</code></td></tr>
-                            <tr><td><code>អនុគមន៍</code></td><td>បង្កើតអនុគមន៍ (Function)</td><td><code>អនុគមន៍ បូក(a, b) { ... }</code></td></tr>
+                            <tr><td><code>អនុគមន៍</code></td><td>អនុគមន៍ & វិធីសាស្ត្រ (Function / Method)</td><td><code>អនុគមន៍ បូក(a, b) { ... }</code></td></tr>
                             <tr><td><code>ត្រឡប់</code></td><td>បញ្ជូនតម្លៃមកវិញ (Return)</td><td><code>ត្រឡប់ a + b</code></td></tr>
                             <tr><td><code>ថ្នាក់</code></td><td>បង្កើត Class (OOP)</td><td><code>ថ្នាក់ មនុស្ស { ... }</code></td></tr>
-                            <tr><td><code>វិធី / បង្កើត</code></td><td>Method / Constructor</td><td><code>បង្កើត(ឈ្មោះ) { នេះ.ឈ្មោះ = ឈ្មោះ }</code></td></tr>
+                            <tr><td><code>បង្កើត</code></td><td>Constructor (OOP)</td><td><code>បង្កើត(ឈ្មោះ) { នេះ.ឈ្មោះ = ឈ្មោះ }</code></td></tr>
                             <tr><td><code>នេះ / ខ្លួនវា</code></td><td>this / self (OOP)</td><td><code>នេះ.ឈ្មោះ</code></td></tr>
                             <tr><td><code>ថ្មី</code></td><td>New Instance (OOP)</td><td><code>តាំង p = ថ្មី មនុស្ស("សុខ")</code></td></tr>
                             <tr><td><code>បន្តពី</code></td><td>Inheritance / Extends</td><td><code>ថ្នាក់ សិស្ស បន្តពី មនុស្ស</code></td></tr>
+                            <tr><td><code>យក / get</code></td><td>Getter (OOP)</td><td><code>យក ឈ្មោះពេញ { ... }</code></td></tr>
+                            <tr><td><code>ដាក់ / កំណត់ / set</code></td><td>Setter (OOP)</td><td><code>ដាក់ អាយុ(ត) { នេះ._អាយុ = ត; }</code></td></tr>
                             <tr><td><code>ពិត / មិនពិត</code></td><td>តក្កវិទ្យា (True / False)</td><td><code>តាំង ត្រូវ = ពិត</code></td></tr>
                             <tr><td><code>០, ១, ២ ... ៩</code></td><td>លេខខ្មែរ (Khmer Digits)</td><td><code>តាំង លេខ = ១២៣</code></td></tr>
                         </tbody>

@@ -217,14 +217,42 @@ class FunctionDeclNode extends ASTNode {
   String toString() => 'FunctionDeclNode($name($params), $body)';
 }
 
+class GetterDeclNode extends ASTNode {
+  final String name;
+  final BlockNode body;
+  const GetterDeclNode(this.name, this.body);
+
+  @override
+  String toString() => 'GetterDeclNode($name, $body)';
+}
+
+class SetterDeclNode extends ASTNode {
+  final String name;
+  final String param;
+  final BlockNode body;
+  const SetterDeclNode(this.name, this.param, this.body);
+
+  @override
+  String toString() => 'SetterDeclNode($name($param), $body)';
+}
+
 class ClassDeclNode extends ASTNode {
   final String name;
   final String? parentName;
   final List<FunctionDeclNode> methods;
-  const ClassDeclNode(this.name, this.parentName, this.methods);
+  final List<GetterDeclNode> getters;
+  final List<SetterDeclNode> setters;
+  const ClassDeclNode(
+    this.name,
+    this.parentName,
+    this.methods, {
+    this.getters = const [],
+    this.setters = const [],
+  });
 
   @override
-  String toString() => 'ClassDeclNode($name extends $parentName, methods: $methods)';
+  String toString() =>
+      'ClassDeclNode($name extends $parentName, methods: $methods, getters: $getters, setters: $setters)';
 }
 
 class ReturnNode extends ASTNode {

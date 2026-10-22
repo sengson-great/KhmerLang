@@ -28,6 +28,8 @@ enum TokenType {
   self, // ខ្លួនវា
   newType, // ថ្មី
   extendsType, // បន្តពី
+  getter, // យក, get
+  setter, // ដាក់, កំណត់, set
 
   // Operators
   plus, // +
@@ -78,11 +80,16 @@ const Map<String, TokenType> keywords = {
 
   // OOP
   'ថ្នាក់': TokenType.classType,
-  'វិធី': TokenType.method,
+  'វិធី': TokenType.function, // រួមបញ្ចូលគ្នាជាមួយ អនុគមន៍ (Combined into function)
   'នេះ': TokenType.thisType,
   'ខ្លួនវា': TokenType.self,
   'ថ្មី': TokenType.newType,
   'បន្តពី': TokenType.extendsType,
+  'យក': TokenType.getter,
+  'get': TokenType.getter,
+  'ដាក់': TokenType.setter,
+  'កំណត់': TokenType.setter,
+  'set': TokenType.setter,
 };
 
 const Map<String, String> khmerDigits = {

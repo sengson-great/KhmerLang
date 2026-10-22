@@ -44,9 +44,9 @@ class CheatSheetDialog extends StatelessWidget {
       'example': 'អនុគមន៍ បូក(a, b) {\n    ត្រឡប់ a + b\n}',
     },
     {
-      'keyword': 'ថ្នាក់ / វិធី / បង្កើត',
-      'meaning': 'OOP Class, Method & Constructor',
-      'example': 'ថ្នាក់ មនុស្ស {\n    បង្កើត(ឈ្មោះ) { នេះ.ឈ្មោះ = ឈ្មោះ }\n    វិធី ជម្រាបសួរ() { បង្ហាញ(នេះ.ឈ្មោះ) }\n}',
+      'keyword': 'ថ្នាក់ / បង្កើត',
+      'meaning': 'OOP Class & Constructor',
+      'example': 'ថ្នាក់ មនុស្ស {\n    បង្កើត(ឈ្មោះ) { នេះ.ឈ្មោះ = ឈ្មោះ }\n    អនុគមន៍ ជម្រាបសួរ() { បង្ហាញ(នេះ.ឈ្មោះ) }\n}',
     },
     {
       'keyword': 'នេះ / ខ្លួនវា',
@@ -62,6 +62,16 @@ class CheatSheetDialog extends StatelessWidget {
       'keyword': 'បន្តពី',
       'meaning': 'Class Inheritance (extends)',
       'example': 'ថ្នាក់ សិស្ស បន្តពី មនុស្ស { ... }',
+    },
+    {
+      'keyword': 'យក / get',
+      'meaning': 'Getter declaration in class',
+      'example': 'យក ឈ្មោះពេញ { ត្រឡប់ នេះ.ត្រកូល + " " + នេះ.ឈ្មោះ; }',
+    },
+    {
+      'keyword': 'ដាក់ / កំណត់ / set',
+      'meaning': 'Setter declaration in class',
+      'example': 'ដាក់ អាយុ(ត) { នេះ._អាយុ = ត; }',
     },
     {
       'keyword': 'ពិត / មិនពិត / ទទេ',

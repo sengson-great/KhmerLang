@@ -82,7 +82,11 @@ Map<String, dynamic> getVsCodeTmLanguage() {
         "patterns": [
           {
             "name": "keyword.declaration.khmer storage.type.khmer",
-            "match": r"(?<![\u1780-\u17FF])(តាំង|អនុគមន៍|ថ្នាក់|វិធី|បង្កើត|ថ្មី|បន្តពី)(?![\u1780-\u17FF])"
+            "match": r"(?<![\u1780-\u17FF])(តាំង|អនុគមន៍|ថ្នាក់|វិធី|បង្កើត|ថ្មី|បន្តពី|យក|ដាក់|កំណត់)(?![\u1780-\u17FF])"
+          },
+          {
+            "name": "keyword.declaration.khmer storage.type.khmer",
+            "match": r"\b(get|set)\b"
           }
         ]
       },
@@ -110,7 +114,11 @@ Map<String, dynamic> getVsCodeTmLanguage() {
         "patterns": [
           {
             "name": "support.function.builtin.khmer",
-            "match": r"(?<![\u1780-\u17FF])(បង្ហាញ|ប្រវែង|ប្រភេទ|បន្ថែម)(?![\u1780-\u17FF])"
+            "match": r"(?<![\u1780-\u17FF])(បង្ហាញ|ប្រវែង|ប្រភេទ|បន្ថែម|បញ្ចូល|ដកចេញ|លុប|ភ្ជាប់|តម្រៀប|ត្រឡប់បញ្ជី|ស្វែងរក|មាន|ដាច់ខាត|ឬសការ៉េ|ស្វ័យគុណ|បង្គត់|បង្គត់ចុះ|បង្គត់ឡើង|អតិបរមា|អប្បបរមា|ចៃដន្យ|ជាលេខ|ជាអក្សរ|ជាតក្ក|ពុះ|កាត់|ជំនួស|សម្អាត|អក្សរធំ|អក្សរតូច|ពេលនេះ|អាន)(?![\u1780-\u17FF])"
+          },
+          {
+            "name": "support.function.builtin.khmer",
+            "match": r"\b(print|len|type|append|insert|pop|remove|join|sort|reverse|indexOf|contains|abs|sqrt|pow|round|floor|ceil|max|min|random|toNum|toInt|toStr|toBool|split|substr|replace|trim|upper|lower|now|input)\b"
           }
         ]
       },
@@ -263,7 +271,7 @@ if exists("b:current_syntax")
   finish
 endif
 
-syn keyword khmerKeyword តាំង អនុគមន៍ ថ្នាក់ វិធី បង្កើត ថ្មី បន្តពី
+syn keyword khmerKeyword តាំង អនុគមន៍ ថ្នាក់ វិធី បង្កើត ថ្មី បន្តពី យក ដាក់ កំណត់ get set
 syn keyword khmerConditional បើ ឬបើ ផ្សេងទៀត
 syn keyword khmerRepeat ខណៈ សម្រាប់
 syn keyword khmerStatement ត្រឡប់
@@ -271,7 +279,7 @@ syn keyword khmerBoolean ពិត មិនពិត
 syn keyword khmerNull ទទេ
 syn keyword khmerOperator និង ឬ មិន
 syn keyword khmerThis នេះ ខ្លួនវា
-syn keyword khmerBuiltin បង្ហាញ ប្រវែង ប្រភេទ បន្ថែម
+syn keyword khmerBuiltin បង្ហាញ ប្រវែង ប្រភេទ បន្ថែម បញ្ចូល ដកចេញ លុប ភ្ជាប់ តម្រៀប ត្រឡប់បញ្ជី ស្វែងរក មាន ដាច់ខាត ឬសការ៉េ ស្វ័យគុណ បង្គត់ បង្គត់ចុះ បង្គត់ឡើង អតិបរមា អប្បបរមា ចៃដន្យ ជាលេខ ជាអក្សរ ជាតក្ក ពុះ កាត់ ជំនួស សម្អាត អក្សរធំ អក្សរតូច ពេលនេះ អាន print len type append insert pop remove join sort reverse indexOf contains abs sqrt pow round floor ceil max min random toNum toInt toStr toBool split substr replace trim upper lower now input
 
 syn match khmerNumber "\\v[0-9]+(\\.[0-9]+)?"
 syn match khmerKhmerNumber "\\v[០-៩]+(\\.[០-៩]+)?"
@@ -331,7 +339,9 @@ contexts:
       scope: constant.numeric.khmer-digits.khmer
     - match: '\\b[0-9]+(\\.[0-9]+)?\\b'
       scope: constant.numeric.khmer
-    - match: '(?<![\\u1780-\\u17FF])(តាំង|អនុគមន៍|ថ្នាក់|វិធី|បង្កើត|ថ្មី|បន្តពី)(?![\\u1780-\\u17FF])'
+    - match: '(?<![\\u1780-\\u17FF])(តាំង|អនុគមន៍|ថ្នាក់|វិធី|បង្កើត|ថ្មី|បន្តពី|យក|ដាក់|កំណត់)(?![\\u1780-\\u17FF])'
+      scope: keyword.declaration.khmer
+    - match: '\\b(get|set)\\b'
       scope: keyword.declaration.khmer
     - match: '(?<![\\u1780-\\u17FF])(បើ|ឬបើ|ផ្សេងទៀត|ខណៈ|សម្រាប់|ត្រឡប់)(?![\\u1780-\\u17FF])'
       scope: keyword.control.khmer
@@ -339,7 +349,9 @@ contexts:
       scope: variable.language.this.khmer
     - match: '(?<![\\u1780-\\u17FF])(ពិត|មិនពិត|ទទេ)(?![\\u1780-\\u17FF])'
       scope: constant.language.khmer
-    - match: '(?<![\\u1780-\\u17FF])(បង្ហាញ|ប្រវែង|ប្រភេទ|បន្ថែម)(?![\\u1780-\\u17FF])'
+    - match: '(?<![\\u1780-\\u17FF])(បង្ហាញ|ប្រវែង|ប្រភេទ|បន្ថែម|បញ្ចូល|ដកចេញ|លុប|ភ្ជាប់|តម្រៀប|ត្រឡប់បញ្ជី|ស្វែងរក|មាន|ដាច់ខាត|ឬសការ៉េ|ស្វ័យគុណ|បង្គត់|បង្គត់ចុះ|បង្គត់ឡើង|អតិបរមា|អប្បបរមា|ចៃដន្យ|ជាលេខ|ជាអក្សរ|ជាតក្ក|ពុះ|កាត់|ជំនួស|សម្អាត|អក្សរធំ|អក្សរតូច|ពេលនេះ|អាន)(?![\\u1780-\\u17FF])'
+      scope: support.function.builtin.khmer
+    - match: '\\b(print|len|type|append|insert|pop|remove|join|sort|reverse|indexOf|contains|abs|sqrt|pow|round|floor|ceil|max|min|random|toNum|toInt|toStr|toBool|split|substr|replace|trim|upper|lower|now|input)\\b'
       scope: support.function.builtin.khmer
     - match: '[។៕;]'
       scope: punctuation.terminator.khmer
@@ -376,13 +388,15 @@ syntax "khmer" "\\.(khmer|km)\$"
 comment "#"
 
 # Keywords & Declarations
-color brightred "(^|[[:space:]])(តាំង|អនុគមន៍|ថ្នាក់|វិធី|បង្កើត|ថ្មី|បន្តពី)(\$|[[:space:]])"
+color brightred "(^|[[:space:]])(តាំង|អនុគមន៍|ថ្នាក់|វិធី|បង្កើត|ថ្មី|បន្តពី|យក|ដាក់|កំណត់)(\$|[[:space:]])"
+color brightred "\<(get|set)\>"
 # Control flow
 color brightmagenta "(^|[[:space:]])(បើ|ឬបើ|ផ្សេងទៀត|ខណៈ|សម្រាប់|ត្រឡប់)(\$|[[:space:]])"
 # Booleans & Null
 color brightblue "(^|[[:space:]])(ពិត|មិនពិត|ទទេ)(\$|[[:space:]])"
 # Builtins
-color brightcyan "(^|[[:space:]])(បង្ហាញ|ប្រវែង|ប្រភេទ|បន្ថែម)(\$|[[:space:]]|\\()"
+color brightcyan "(^|[[:space:]])(បង្ហាញ|ប្រវែង|ប្រភេទ|បន្ថែម|បញ្ចូល|ដកចេញ|លុប|ភ្ជាប់|តម្រៀប|ត្រឡប់បញ្ជី|ស្វែងរក|មាន|ដាច់ខាត|ឬសការ៉េ|ស្វ័យគុណ|បង្គត់|បង្គត់ចុះ|បង្គត់ឡើង|អតិបរមា|អប្បបរមា|ចៃដន្យ|ជាលេខ|ជាអក្សរ|ជាតក្ក|ពុះ|កាត់|ជំនួស|សម្អាត|អក្សរធំ|អក្សរតូច|ពេលនេះ|អាន)(\$|[[:space:]]|\\()"
+color brightcyan "\\<(print|len|type|append|insert|pop|remove|join|sort|reverse|indexOf|contains|abs|sqrt|pow|round|floor|ceil|max|min|random|toNum|toInt|toStr|toBool|split|substr|replace|trim|upper|lower|now|input)\\>"
 # OOP this
 color yellow "(^|[[:space:]])(នេះ|ខ្លួនវា)(\$|[[:space:]]|\\.)"
 # Khmer Numerals & Arabic Numbers

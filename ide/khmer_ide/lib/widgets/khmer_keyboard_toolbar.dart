@@ -54,7 +54,6 @@ class _KhmerKeyboardToolbarState extends State<KhmerKeyboardToolbar> {
 
   final List<String> _oopKeywords = [
     'ថ្នាក់ ',
-    'វិធី ',
     'បង្កើត',
     'នេះ.',
     'ខ្លួនវា.',
