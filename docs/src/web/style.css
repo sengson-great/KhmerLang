@@ -242,6 +242,22 @@ code, kbd, pre, samp {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    flex: 1;
+}
+
+.header-search-inline-input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    font-family: inherit;
+    width: 100%;
+    cursor: text;
+}
+
+.header-search-inline-input::placeholder {
+    color: var(--text-secondary);
 }
 
 .search-kbd-shortcut {
@@ -1043,7 +1059,8 @@ pre.code-block code {
     padding-top: 15vh;
 }
 
-.search-modal-backdrop.open {
+.search-modal-backdrop.open,
+.search-modal-backdrop.visible {
     display: flex;
 }
 

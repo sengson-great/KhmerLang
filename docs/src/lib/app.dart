@@ -39,6 +39,9 @@ class AppState extends State<App> {
         setState(() {
           _isSearchOpen = !_isSearchOpen;
         });
+        if (_isSearchOpen && kIsWeb) {
+          focusSearchInput();
+        }
       });
 
       final currentHash = getLocationHash();
@@ -82,6 +85,9 @@ class AppState extends State<App> {
           setState(() {
             _isSearchOpen = true;
           });
+          if (kIsWeb) {
+            focusSearchInput();
+          }
         },
       ),
 

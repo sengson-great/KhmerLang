@@ -1,6 +1,7 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:khmer_lang/engine/runner.dart';
+import '../utils/browser.dart';
 
 class Playground extends StatefulComponent {
   const Playground({super.key});
@@ -297,13 +298,14 @@ class _PlaygroundState extends State<Playground> {
         div(classes: 'playground-editor-pane', [
           textarea(
             classes: 'playground-textarea',
+            id: 'playground-code-textarea',
             attributes: {
               'spellcheck': 'false',
               'placeholder': 'សរសេរកូដខ្មែរនៅទីនេះ...',
             },
             events: {
               'input': (dynamic e) {
-                _code = '${e.target?.value ?? ""}';
+                _code = getElementValueById('playground-code-textarea');
               },
             },
             [Component.text(_code)],

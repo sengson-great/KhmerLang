@@ -2,6 +2,7 @@ import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 
 import '../models/search_data.dart';
+import '../utils/browser.dart';
 
 class SearchModal extends StatefulComponent {
   final bool isOpen;
@@ -90,6 +91,13 @@ class _SearchModalState extends State<SearchModal> {
     return scored.map((e) => e.$1).toList();
   }
 
+  void _close() {
+    setState(() {
+      _query = '';
+    });
+    component.onClose();
+  }
+
   @override
   Component build(BuildContext context) {
     if (!component.isOpen) {
@@ -99,12 +107,12 @@ class _SearchModalState extends State<SearchModal> {
     final results = _filteredItems;
 
     return div(
-      classes: 'search-modal-backdrop visible',
+      classes: 'search-modal-backdrop open visible',
       id: 'search-modal-backdrop',
       events: {
         'click': (dynamic e) {
           if (e.target == e.currentTarget) {
-            component.onClose();
+            _close();
           }
         },
       },
@@ -134,6 +142,7 @@ class _SearchModalState extends State<SearchModal> {
                 ],
               ),
               input(
+                key: const Key('search-modal-input-field'),
                 type: InputType.text,
                 id: 'search-modal-input',
                 classes: 'search-modal-input',
@@ -146,19 +155,25 @@ class _SearchModalState extends State<SearchModal> {
                 events: {
                   'input': (dynamic e) {
                     setState(() {
-                      _query = '${e.target?.value ?? ""}';
+                      _query = getSearchInputValue();
                     });
                   },
                   'keydown': (dynamic e) {
                     if (e.key == 'Escape') {
-                      component.onClose();
+                      _close();
+                    } else if (e.key == 'Enter') {
+                      final items = _filteredItems;
+                      if (items.isNotEmpty) {
+                        component.onSelectSection(items.first.id);
+                        _close();
+                      }
                     }
                   },
                 },
               ),
               button(
                 classes: 'search-kbd-esc-btn',
-                events: {'click': (e) => component.onClose()},
+                events: {'click': (e) => _close()},
                 [const Component.text('ESC')],
               ),
             ]),
@@ -180,7 +195,7 @@ class _SearchModalState extends State<SearchModal> {
                     events: {
                       'click': (e) {
                         component.onSelectSection(item.id);
-                        component.onClose();
+                        _close();
                       },
                     },
                     [

@@ -74,13 +74,13 @@
         </a>
       </div>
       <div class="header-center-search">
-        <button id="search-trigger-btn" class="search-trigger-btn" aria-label="ស្វែងរកឯកសារ (Search Docs)">
+        <div id="search-trigger-btn" class="search-trigger-btn">
           <div class="search-trigger-content">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
-            <span>ស្វែងរកឯកសារ (Search docs)...</span>
+            <input id="header-search-input" class="header-search-inline-input" placeholder="ស្វែងរកឯកសារ (Search docs)..." autocomplete="off" aria-label="ស្វែងរកឯកសារ (Search Docs)" type="text"/>
           </div>
           <div class="search-kbd-shortcut"><kbd>⌘</kbd><kbd>K</kbd></div>
-        </button>
+        </div>
       </div>
       <div class="header-actions">
         <a id="nav-btn-playground" class="btn-primary-compact" href="#playground">
@@ -1163,7 +1163,7 @@ c.កាំ = <span class="num">១០</span>
               </div>
               <div class="playground-grid">
                 <div class="playground-editor-pane">
-                  <textarea class="playground-textarea" spellcheck="false" placeholder="សរសេរកូដខ្មែរនៅទីនេះ...">
+                  <textarea id="playground-code-textarea" class="playground-textarea" spellcheck="false" placeholder="សរសេរកូដខ្មែរនៅទីនេះ...">
                     # ១. កម្មវិធីដំបូង (Hello World)
                     បង្ហាញ("សួស្តីពិភពលោក!")
                     បង្ហាញ("សូមស្វាគមន៍មកកាន់ ខ្មែរចារ (KhmerChar) v1.0")

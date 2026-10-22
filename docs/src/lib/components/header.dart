@@ -60,14 +60,13 @@ class Header extends StatelessComponent {
       ]),
 
       div(classes: 'header-center-search', [
-        button(
+        div(
           classes: 'search-trigger-btn',
           id: 'search-trigger-btn',
-          attributes: {'aria-label': 'ស្វែងរកឯកសារ (Search Docs)'},
           events: {'click': (e) => onOpenSearch()},
           [
-            const div(classes: 'search-trigger-content', [
-              svg(
+            div(classes: 'search-trigger-content', [
+              const svg(
                 attributes: {
                   'width': '16',
                   'height': '16',
@@ -81,7 +80,22 @@ class Header extends StatelessComponent {
                   path([], attributes: {'d': 'm21 21-4.3-4.3'}),
                 ],
               ),
-              span([Component.text('ស្វែងរកឯកសារ (Search docs)...')]),
+              input(
+                type: InputType.text,
+                id: 'header-search-input',
+                classes: 'header-search-inline-input',
+                attributes: {
+                  'placeholder': 'ស្វែងរកឯកសារ (Search docs)...',
+                  'autocomplete': 'off',
+                  'aria-label': 'ស្វែងរកឯកសារ (Search Docs)',
+                },
+                events: {
+                  'focus': (e) => onOpenSearch(),
+                  'click': (e) => onOpenSearch(),
+                  'input': (dynamic e) => onOpenSearch(),
+                  'keydown': (dynamic e) => onOpenSearch(),
+                },
+              ),
             ]),
             div(classes: 'search-kbd-shortcut', [
               kbd('⌘'),

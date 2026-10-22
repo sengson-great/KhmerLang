@@ -33,3 +33,27 @@ void setLocationHash(String hash) {
 String getLocationHash() {
   return web.window.location.hash.replaceFirst('#', '');
 }
+
+void focusSearchInput() {
+  web.window.setTimeout(
+    () {
+      final input = web.document.getElementById('search-modal-input') as web.HTMLInputElement?;
+      input?.focus();
+      input?.select();
+    }.toJS,
+    25.toJS,
+  );
+}
+
+String getSearchInputValue() {
+  final input = web.document.getElementById('search-modal-input') as web.HTMLInputElement?;
+  return input?.value ?? '';
+}
+
+String getElementValueById(String id) {
+  final el = web.document.getElementById(id);
+  if (el is web.HTMLInputElement) return el.value;
+  if (el is web.HTMLTextAreaElement) return el.value;
+  if (el is web.HTMLSelectElement) return el.value;
+  return '';
+}
