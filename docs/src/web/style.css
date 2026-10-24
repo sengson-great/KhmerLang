@@ -166,8 +166,9 @@ code, kbd, pre, samp {
 }
 
 .brand-logo-badge {
-    width: 38px;
+    min-width: 40px;
     height: 38px;
+    padding: 0 4px;
     border-radius: var(--radius-md);
     background: var(--accent-gradient);
     display: flex;
@@ -175,7 +176,8 @@ code, kbd, pre, samp {
     justify-content: center;
     color: #ffffff;
     font-weight: 700;
-    font-size: 1.35rem;
+    font-size: 1.125rem;
+    letter-spacing: -0.5px;
     box-shadow: 0 0 16px var(--accent-glow);
     user-select: none;
 }
